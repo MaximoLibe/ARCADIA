@@ -44,6 +44,35 @@ One sol (Martian day) lasts 10 minutes of play at ×1 speed. When each mission f
 
 **Building:** every structure can be up to 3 squares away from the base; domes that are lined up are joined automatically by long tunnels. Everything (including the starting base) can be moved, rotated or dismantled. Before building, «Are you sure?» appears. In Free mode building costs no budget. The statistics at the top are grouped into **HOUSING** (water, oxygen, food, energy, protection and budget) and the **player's name** (sanity, wellbeing and health). The build panel slides in from the left and the white **BUILD MODE** tab drops from the box at the top right. Every build order is carried out by three humanoid robots that assemble it in 5 seconds. Also included: a **Research habitat** (desks, ergonomic chairs, lights and computers), **huge methane tanks** (they replace batteries: spare energy is stored as methane) and **5 gas tanks** of 0.6 × 1.90 m (O₂, N₂, CH₄, CO₂ and CO). The Control Module has no beds (the base starts with a dormitory). Every module has a security camera outside and, at the same height inside, a screen that shows the outside in real time. The KRUSTY reactor, the ice drill (auger with tripod), the furniture and the cameras are the team's 3D models.
 
+## «Errores y mejoras» changes
+
+- **Telescope:** a new **Observatory** dome (Habitat category) with a telescope inside. Look at the planets as seen from Mars (Earth and the Moon, Venus, Mercury, Jupiter, Saturn, Uranus, Neptune, Phobos and Deimos), each with facts and a cutaway of its inner layers, and at the interstellar visitors **1I/'Oumuamua** and **3I/ATLAS**, including the alien-technology hypotheses and why most scientists think they are natural.
+- **Computer (ARCADIA OS):** from the Control, Research or Communications panel. Three boxes: **Arcadia Ships** (a 2D shooter: your ship on the left moves up and down, 3 lives, enemies shoot back, score at the bottom right), **Research papers** (reserved for the papers the team will choose) and **Rover control** in first person from its camera.
+- **Rosario is hacked:** at most twice per game, about every 20 minutes, a rocket lands and an intruder robot hacks Rosario. Take control of your cadet (first or third person), reach the Communications computer and find the reset program in a Unix-style terminal (`ls`, `cd`, `cat`, `./program`). The password prompt reads «Clave (8 caracteres):» and there is a sticky note on the monitor. You have 3 minutes, with threats and tense music. If time runs out, the rocket leaves for Earth with part of the supplies, the base loses communications and the mission starts again. The second hack uses a different folder tree and can coincide with a storm.
+- **Expedition:** with 5 astronauts or more, the airlock offers «Plan an expedition». Choose up to 4 members and a day on the calendar (it shows the storm forecast if you have the Communications antenna). They leave at 8:00 and come back at 20:00 with budget and a new ice area. If a storm catches them outside, they all die.
+- **Team missions:** «Call the crew» brings 2–3 astronauts to the lab, kitchen or MOXIE.
+- **Indoor storm missions:** seal the airlock leaks and reset the power board in the control centre (your cadet has to go there).
+- **KRUSTY:** takes 3×3 squares, nobody walks into its radiation field, it cannot be built touching the habitat, and it has a new shielding check with a dosimeter.
+- **Sound:** the recreation room radio plays a synthesised arrangement of Wagner's «Entry of the Gods into Valhalla», heard all over the base. Pause and restart buttons sit in the top bar and disappear after 15 s paused. Each room has its own ambient sound, and astronauts say «ua», «uaua» or «uaaa» when you pass by.
+- **Builder robots** leave their own hangar next to the landing pad and walk around the structures.
+- **Crew rocket:** it lands, and the new astronauts step out in their suits and walk to the airlock.
+- **Landing in Explore:** drag to orbit the camera freely and use the wheel (or pinch) to zoom; «Automatic camera» goes back to the cinematic shots. Also more detailed backshell, descent stage and entry sparks.
+- **Also:**
+  - running (Shift, or B on a controller or touch screen);
+  - first person no longer sees through walls;
+  - tunnels are covered in regolith and appear together with the domes in the timelapse;
+  - storms are at least 15 minutes apart;
+  - watts depend on the module size;
+  - astronauts no longer get stuck on each other;
+  - an «Astronauts» counter;
+  - a food panel with production per farm and consumption;
+  - a ✕ on the build column;
+  - arrows for lights, rooms and the airlock exit;
+  - a maps button (base map and a storm map based on NASA ESCAPADE and MAVEN);
+  - the ice mission explains where the rover is;
+  - footballs in Explore lie on the way to a scan point;
+  - Explore places and the landing screen are translated.
+
 ## PROMPT 8 changes
 
 - **Phones:** the game adapts to phone screens and is played in landscape only (portrait shows «Turn your phone»). While you control your cadet (third or first person) on a touch screen, an emulator-style overlay appears: a D-pad on the left (move), **A** (use / interact), **B** (cancel), **C** (switch view: auto → third person → first person), **■** pause and **▶** objectives; pinch to zoom and drag to look. It also works in Explore.

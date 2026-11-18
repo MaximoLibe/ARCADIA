@@ -689,13 +689,47 @@ button.tecla .bi{pointer-events:none}
 #btnMapa{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:7}
 #btnMapa svg{width:28px;height:28px;fill:none;stroke:#0b1220;stroke-width:2;stroke-linejoin:round}
 .mapas-caja{width:min(640px,94vw);max-height:90vh;overflow:auto}
-.tele-caja{width:min(1040px,96vw);max-height:92vh;overflow:auto}.tele-cuerpo{display:grid;grid-template-columns:170px minmax(220px,420px) 1fr;gap:14px;align-items:start}
+#compu{position:fixed;inset:0;z-index:90;background:linear-gradient(135deg,#1b1240,#0e2a4a 55%,#0a3b3a);color:#fff;display:flex;flex-direction:column;font-family:inherit}#compu[hidden]{display:none}
+.os-barra{display:flex;align-items:center;gap:14px;padding:10px 16px;background:linear-gradient(90deg,#ff5f8f,#ffb14a 35%,#4ad3ff 70%,#7c5cff);color:#10121a;font-weight:800;letter-spacing:.06em}
+.os-logo{font-size:15px}.os-ruta{flex:1;font-size:12px;opacity:.8;text-transform:uppercase}.os-reloj{font-size:13px}.os-x{background:#10121a;color:#fff;border:0;border-radius:6px;width:32px;height:28px;font-size:15px;cursor:pointer}
+.os-cajas{display:flex;flex-direction:column;gap:12px;padding:18px;max-width:900px;width:100%;margin:0 auto}
+.os-caja{display:flex;align-items:center;gap:16px;text-align:left;border:0;border-radius:12px;padding:18px 20px;color:#fff;cursor:pointer;font-size:15px;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .15s}
+.os-caja:hover,.os-caja:focus-visible{transform:translateX(6px);outline:2px solid #fff}.os-caja b{display:block;font-size:19px;margin-bottom:3px}.os-caja small{opacity:.85;font-size:13px}.os-ico{font-size:32px}
+.os-caja.c1{background:linear-gradient(90deg,#e83a6b,#ff7a3c)}.os-caja.c2{background:linear-gradient(90deg,#2c8a5a,#3fc2a0)}.os-caja.c3{background:linear-gradient(90deg,#3b5bdb,#7c5cff)}
+.os-app{flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px;min-height:0}.os-app[hidden]{display:none}
+.os-app canvas{max-width:100%;max-height:calc(100vh - 150px);aspect-ratio:16/9;background:#05060f;border-radius:10px;box-shadow:0 0 0 3px #e83a6b}
+.os-fila{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}.os-fila .btn{background:#10121a;color:#fff}
+.os-papers{width:min(820px,100%);display:grid;gap:10px}.os-paper{background:rgba(255,255,255,.08);border-left:4px solid #3fc2a0;border-radius:8px;padding:12px 14px}.os-paper b{display:block}.os-paper small{opacity:.75}
+.exp-caja{width:min(620px,94vw);max-width:620px!important;max-height:92vh;overflow:auto}.exp-caja h4{margin:12px 0 6px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ex-tripu{display:flex;flex-wrap:wrap;gap:6px}.ex-tripu label{display:flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:6px;padding:6px 9px;cursor:pointer;font-size:13px}.ex-tripu label.on{background:rgba(31,127,214,.25);border-color:#1f7fd6}
+.ex-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.ex-cal button{border:1px solid var(--line);background:transparent;color:inherit;border-radius:6px;padding:7px 2px;cursor:pointer;font-size:12px;min-height:54px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.ex-cal button b{font-size:15px}.ex-cal button.on{background:#1f7fd6;border-color:#1f7fd6;color:#fff}.ex-cal button.tor{border-color:#ff6b6b;color:#ffb0b0}.ex-cal button.tor.on{background:#b02a2a;color:#fff}.ex-cal button:disabled{opacity:.35;cursor:default}
+.ex-aviso{font-size:13px;min-height:1.4em;color:#ffd36b}
+#hackBox{position:fixed;top:92px;left:50%;transform:translateX(-50%);z-index:45;background:rgba(60,0,8,.88);border:2px solid #ff3a3a;border-radius:10px;padding:8px 16px;text-align:center;color:#fff;min-width:300px;max-width:min(520px,92vw);animation:hkLatido 1s infinite;pointer-events:none}
+#hackBox[hidden]{display:none}.hk-tit{font-weight:900;letter-spacing:.12em;color:#ff6b6b}.hk-reloj{font:800 34px/1.1 monospace}.hk-txt{font-size:13px;line-height:1.35}
+@keyframes hkLatido{50%{box-shadow:0 0 26px #ff2a2a}}
+body.rosario-hack #img-perro,body.rosario-hack .tu-perro,body.rosario-hack .hud-mperro{filter:hue-rotate(150deg) saturate(4) contrast(1.5);animation:glitch .35s steps(2) infinite}
+@keyframes glitch{0%{transform:translate(0,0)}25%{transform:translate(-3px,1px) skewX(8deg)}50%{transform:translate(2px,-2px)}75%{transform:translate(1px,2px) skewX(-6deg)}}
+#terminal{position:fixed;inset:0;z-index:92;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center}#terminal[hidden]{display:none}
+.tm-caja{position:relative;width:min(860px,96vw);height:min(560px,88vh);background:#0b0f14;border-radius:10px;border:1px solid #2a3a4a;box-shadow:0 20px 60px rgba(0,0,0,.6);display:flex;flex-direction:column;font:14px/1.45 'Courier New',monospace;color:#d7e2ea}
+.tm-cab{display:flex;gap:12px;align-items:center;padding:8px 12px;background:#1a2430;border-radius:10px 10px 0 0;color:#8fb3d0;font-size:12px;letter-spacing:.08em}.tm-cab span:first-child{color:#ff6b6b}.tm-cab span:nth-child(2){flex:1}
+.tm-x{background:transparent;border:0;color:#fff;font-size:16px;cursor:pointer}.tm-salida{flex:1;overflow:auto;padding:12px 14px;white-space:pre-wrap;word-break:break-word}
+.tm-linea{display:flex;gap:6px;padding:8px 14px 12px;border-top:1px solid #1a2430}.tm-prompt{color:#5fd38d;white-space:nowrap}#tmIn{flex:1;background:transparent;border:0;outline:0;color:#fff;font:inherit;caret-color:#5fd38d}
+.tm-dir{color:#4ab0ff;font-weight:700}.tm-exe{color:#5fd38d;font-weight:700}.tm-err{color:#ff6b6b}.tm-ok{color:#5fd38d}.tm-av{color:#ffd36b}.tm-rosa{color:#ff5fd0}
+.postit{position:absolute;right:-14px;top:46px;background:#ffe866;color:#3a3000;font:700 17px/1.2 'Comic Sans MS','Marker Felt',cursive;padding:16px 14px;transform:rotate(6deg);box-shadow:3px 4px 10px rgba(0,0,0,.45);width:120px;text-align:center}
+@media (max-width:700px){.postit{right:6px;top:auto;bottom:70px;font-size:14px;width:96px;padding:10px}}
+#roverCam{position:fixed;inset:0;pointer-events:none;z-index:40}#roverCam[hidden]{display:none}.rc-marco{position:absolute;inset:14px;border:2px solid rgba(255,255,255,.55);border-radius:10px;box-shadow:inset 0 0 120px rgba(0,0,0,.55)}
+.rc-txt{position:absolute;left:30px;bottom:30px;font:700 13px/1 monospace;letter-spacing:.1em;color:#fff;text-shadow:0 1px 3px #000}.rc-txt b{color:#ff4a4a}.rc-ayuda{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);font:12px monospace;color:#fff;background:rgba(0,0,0,.45);padding:5px 10px;border-radius:6px}
+body.rover-fp #minimapa,body.rover-fp .hud-perro{display:none!important}
+.tele-caja{width:min(1100px,96vw);max-width:1100px!important;max-height:92vh;overflow:auto}.tele-cuerpo{display:grid;grid-template-columns:150px minmax(200px,360px) minmax(260px,1fr);gap:16px;align-items:start}
 .tele-lista{display:flex;flex-direction:column;gap:4px}.tele-lista button{text-align:left;background:transparent;border:1px solid var(--line);border-radius:6px;color:var(--ink,#fff);padding:7px 9px;font-weight:700;cursor:pointer;font-size:13px}
 .tele-lista button.on{background:var(--accent2,#1f7fd6);border-color:transparent}.tele-vista{position:relative}#teleCv{width:100%;aspect-ratio:1;border-radius:50%;background:#02030a;box-shadow:0 0 0 6px #1c1f27,0 0 30px rgba(0,0,0,.6) inset;display:block}
 .tele-corte{display:flex;gap:6px;align-items:center;justify-content:center;margin-top:8px;font-size:13px;color:var(--muted)}.tele-info h3{margin:0 0 4px;font-size:20px}.tele-info .sub{color:#ffd36b;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
-.tele-info dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0 0 10px;font-size:13px}.tele-info dt{color:var(--muted)}.tele-info dd{margin:0;font-weight:700}.tele-info p{font-size:13.5px;line-height:1.45;margin:0 0 8px}
+.tele-info dl{display:grid;grid-template-columns:1fr;gap:1px;margin:0 0 10px;font-size:13px}.tele-info dt{color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-top:5px}.tele-info dd{margin:0;font-weight:700}.tele-info p{font-size:13.5px;line-height:1.45;margin:0 0 8px}
 .tele-info .teoria{border-left:3px solid #b07cff;padding:6px 10px;background:rgba(176,124,255,.08);border-radius:0 6px 6px 0}
-@media (max-width:820px){.tele-cuerpo{grid-template-columns:1fr}.tele-lista{flex-direction:row;flex-wrap:wrap}#teleCv{max-width:300px;margin:0 auto}}.mp-cab{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+@media (max-width:820px){.tele-cuerpo{grid-template-columns:1fr}.tele-lista{flex-direction:row;flex-wrap:wrap}#teleCv{max-width:300px;margin:0 auto}}
+@media (max-height:520px) and (orientation:landscape){.tele-caja,.exp-caja,.mapas-caja{padding:10px 12px!important;max-height:96vh}.tele-cuerpo{grid-template-columns:minmax(150px,210px) 1fr;gap:10px}.tele-lista{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}.tele-lista button{padding:4px 7px;font-size:11px}#teleCv{max-width:210px}.tele-info h3{font-size:16px}.tele-info p{font-size:12.5px}}
+.tele-caja,.exp-caja{box-sizing:border-box}.mp-cab{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .mp-tabs{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;flex:1}.mp-tabs button{flex:1;background:transparent;border:0;padding:8px 10px;color:var(--muted);font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-size:12px;cursor:pointer}
 .mp-tabs button.on{background:var(--accent2,#1f7fd6);color:#fff}.mp-txt{color:var(--muted);margin:6px 0 14px}
 .mp-tormentas canvas{width:100%;height:auto;border-radius:8px;display:block}.mp-datos{margin:10px 0}.mp-datos .row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--line)}
@@ -990,6 +1024,23 @@ button.tecla{font-size:11px;min-width:44px}
 <div id="suenoOv" hidden><div><b>Durmiendo…</b><span>Pasa la noche marciana</span></div></div>
 <div id="timerTormenta" class="hud" hidden aria-live="polite"><svg viewBox="0 0 24 24"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"/></svg><span id="ttNombre">Ventisca</span><b id="ttTiempo">0:00</b></div>
 <button class="circ" id="btnMapa" title="Mapas" aria-label="Mapas"><svg viewBox="0 0 24 24"><path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></svg></button>
+<div id="compu" hidden role="dialog" aria-label="Computadora">
+ <div class="os-barra"><span class="os-logo">◆ ARCADIA OS</span><span class="os-ruta" id="osRuta"></span><span class="os-reloj" id="osReloj"></span><button class="os-x" id="osX" title="Apagar">✕</button></div>
+ <div class="os-cajas" id="osCajas">
+  <button class="os-caja c1" data-app="naves"><span class="os-ico">🚀</span><span><b id="osT1">Naves de Arcadia</b><small id="osS1">Juego: defendé la base de las naves invasoras</small></span></button>
+  <button class="os-caja c2" data-app="papers"><span class="os-ico">📄</span><span><b id="osT2">Papers de investigación</b><small id="osS2">Artículos científicos sobre Marte</small></span></button>
+  <button class="os-caja c3" data-app="rover"><span class="os-ico">🛞</span><span><b id="osT3">Control del rover</b><small id="osS3">Manejalo en primera persona desde su cámara</small></span></button>
+ </div>
+ <div class="os-app" id="osApp" hidden></div>
+</div>
+<div class="ov" id="expedicion" hidden><div class="modal exp-caja" role="dialog" aria-label="Expedición"><div class="mp-cab"><b id="exTit" style="flex:1;font-size:18px">Expedición de exploración</b><button class="x" id="exX">✕</button></div>
+ <p class="mp-txt" id="exIntro"></p><h4 id="exH1"></h4><div class="ex-tripu" id="exTripu"></div><h4 id="exH2"></h4><div class="ex-cal" id="exCal"></div><p class="ex-aviso" id="exAviso"></p>
+ <div class="os-fila" style="justify-content:flex-end"><button class="btn" id="exCancelar"></button><button class="btn on" id="exOk"></button></div></div></div>
+<div id="hackBox" hidden><div class="hk-tit">⚠ <span id="hkTit">ROSARIO HACKEADA</span></div><div class="hk-reloj" id="hkReloj">3:00</div><div class="hk-txt" id="hkTxt"></div></div>
+<div id="terminal" hidden role="dialog" aria-label="Terminal"><div class="tm-caja"><div class="tm-cab"><span>● ● ●</span><span id="tmTit">TERMINAL DE EMERGENCIA · COMUNICACIONES</span><button class="tm-x" id="tmX">✕</button></div>
+ <div class="tm-salida" id="tmSalida"></div><div class="tm-linea"><span class="tm-prompt" id="tmPrompt"></span><input id="tmIn" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+ <div class="postit">C: TRONADOR</div></div></div>
+<div id="roverCam" hidden><div class="rc-marco"></div><div class="rc-txt"><b>● REC</b> <span id="rcTit">CÁMARA DEL ROVER</span></div><div class="rc-ayuda" id="rcAyuda">W / S avanzar · A / D girar · Esc salir</div></div>
 <div class="ov" id="telescopio" hidden><div class="modal tele-caja" role="dialog" aria-label="Telescopio"><div class="mp-cab"><div class="mp-tabs"><button data-tp="planetas" class="on">Planetas</button><button data-tp="interestelares">Visitantes interestelares</button></div><button class="x" id="teleX">✕</button></div>
 <div class="tele-cuerpo"><div class="tele-lista" id="teleLista"></div><div class="tele-vista"><canvas id="teleCv" width="420" height="420"></canvas><label class="tele-corte"><input type="checkbox" id="teleCorte"> <span id="teleCorteTxt">Ver por dentro</span></label></div><div class="tele-info" id="teleInfo"></div></div></div></div>
 <div class="ov" id="mapas" hidden><div class="modal mapas-caja" role="dialog" aria-label="Mapas"><div class="mp-cab"><div class="mp-tabs"><button data-mp="base" class="on">Mapa de la base</button><button data-mp="tormentas">Mapa de tormentas</button></div><button class="x" id="mapasX">✕</button></div><div id="mapasCuerpo"></div></div></div>
@@ -3203,7 +3254,153 @@ const D=[
 ['Cadete: automático o manual (tecla C) · mantener O / Y: primera o tercera persona','Cadet: automatic or manual (C key) · hold O / Y: first or third person','Cadetto: automatico o manuale (tasto C) · tieni premuto O / Y: prima o terza persona'],
 ['Mantén','Hold','Tieni'],['para cambiar de modalidad','to switch view','per cambiare visuale'],['Hábitat','Habitat','Habitat'],
 ['¡Una tormenta se acerca!','A storm is coming!','Sta arrivando una tempesta!'],['Ventisca','Blizzard','Bufera'],['Tornado','Tornado','Tornado'],['Templado','Mild','Mite'],
-['Salir del modo VR','Exit VR mode','Esci dalla modalità VR'],['Fase 1 de 6','Phase 1 of 6','Fase 1 di 6'],['Fase 2 de 6','Phase 2 of 6','Fase 2 di 6'],['Fase 3 de 6','Phase 3 of 6','Fase 3 di 6'],['Fase 4 de 6','Phase 4 of 6','Fase 4 di 6'],['Fase 5 de 6','Phase 5 of 6','Fase 5 di 6'],['Fase 6 de 6','Phase 6 of 6','Fase 6 di 6'],['Enfriar el reactor KRUSTY','Cool down the KRUSTY reactor','Raffredda il reattore KRUSTY'],['Enfriar el reactor','Cool the reactor','Raffredda il reattore'],[' % recalentado)',' % overheated)',' % surriscaldato)'],['Mové las barras de control hasta que la temperatura quede en la franja verde','Move the control rods until the temperature sits in the green band','Muovi le barre di controllo finché la temperatura resta nella fascia verde'],['Stick izquierdo ↑ ↓: barras de control · B salir','Left stick ↑ ↓: control rods · B exit','Stick sinistro ↑ ↓: barre di controllo · B esci'],['↑ ↓ o W / S: barras de control · o arrastrá las barras con el mouse','↑ ↓ or W / S: control rods · or drag the rods with the mouse','↑ ↓ o W / S: barre di controllo · o trascina le barre con il mouse'],['BARRAS DE CONTROL','CONTROL RODS','BARRE DI CONTROLLO'],['TEMPERATURA','TEMPERATURE','TEMPERATURA'],['¡CALIENTE!','HOT!','CALDO!'],['FRÍO','COLD','FREDDO'],['ESTABLE','STABLE','STABILE'],['Reactor estable: el radiador vuelve a enfriar al KRUSTY.','Reactor stable: the radiator cools the KRUSTY again.','Reattore stabile: il radiatore raffredda di nuovo il KRUSTY.'],['Aterrizó la nave de tripulación: llegan 2 astronautas nuevos (','The crew ship landed: 2 new astronauts arrive (','La nave dell\'equipaggio è atterrata: arrivano 2 nuovi astronauti ('],[' en la base).',' in the base).',' nella base).'],['La Tierra vio camas libres: una nave con 2 astronautas aterriza en unas horas.','Earth saw free beds: a ship with 2 astronauts lands in a few hours.','La Terra ha visto letti liberi: una nave con 2 astronauti atterra tra poche ore.'],['Hay camas libres, pero sin antena de Comunicaciones la Tierra no puede mandar astronautas.','There are free beds, but without the Communications antenna Earth cannot send astronauts.','Ci sono letti liberi, ma senza l\'antenna delle Comunicazioni la Terra non può mandare astronauti.'],['Girá el celular','Turn your phone','Ruota il telefono'],['ARCADIA se juega en horizontal.','ARCADIA is played in landscape.','ARCADIA si gioca in orizzontale.'],['Controles del rover y del dron','Rover and drone controls','Comandi del rover e del drone'],['Avanzar / retroceder','Forward / back','Avanti / indietro'],['Girar','Turn','Girare'],['Mirar alrededor','Look around','Guardarsi intorno'],['Analizar objetivo','Analyse target','Analizza obiettivo'],['Cambiar cámara','Switch camera','Cambia telecamera'],['Desplegar / pilotar Ingenuity','Deploy / fly Ingenuity','Fai decollare / pilota Ingenuity'],['Subir / bajar (dron)','Up / down (drone)','Su / giù (drone)'],['Repetir aterrizaje','Replay landing','Ripeti atterraggio'],['Arrastrar','Drag','Trascina'],['La cápsula entra a unos 19.500 km/h. El escudo térmico soporta cerca de 1.300 °C mientras el roce con el aire la frena.','The capsule enters at about 19,500 km/h. The heat shield withstands about 1,300 °C while friction with the air slows it down.','La capsula entra a circa 19.500 km/h. Lo scudo termico sopporta circa 1.300 °C mentre l\'attrito con l\'aria la frena.'],['A unos 11 km de altura se abre un paracaídas de 21,5 m de diámetro, cuando la cápsula todavía va a casi 1.500 km/h.','About 11 km up, a 21.5 m parachute opens while the capsule is still moving at almost 1,500 km/h.','A circa 11 km di quota si apre un paracadute di 21,5 m, quando la capsula va ancora a quasi 1.500 km/h.'],['Se suelta el escudo. El radar y las cámaras miran el suelo y la navegación por terreno (TRN) elige un punto seguro para bajar.','The shield drops. The radar and cameras look at the ground and terrain-relative navigation (TRN) picks a safe spot to land.','Lo scudo si stacca. Radar e telecamere guardano il suolo e la navigazione sul terreno (TRN) sceglie un punto sicuro.'],['A unos 2 km del suelo, la etapa de descenso se separa de la cubierta y del paracaídas y enciende sus 8 motores.','About 2 km above the ground, the descent stage separates from the backshell and parachute and fires its 8 engines.','A circa 2 km dal suolo, lo stadio di discesa si separa dal guscio e dal paracadute e accende i suoi 8 motori.'],['A unos 20 m del suelo, el rover baja colgado de tres cables de 6,4 m mientras la etapa sigue frenando a menos de 3 km/h.','About 20 m above the ground, the rover is lowered on three 6.4 m cables while the stage keeps braking below 3 km/h.','A circa 20 m dal suolo, il rover scende appeso a tre cavi di 6,4 m mentre lo stadio frena sotto i 3 km/h.'],['Las ruedas tocan el suelo, se cortan los cables y la etapa de descenso se aleja para caer lejos del rover. Todo ocurre sin ayuda desde la Tierra: la señal tarda varios minutos en llegar.','The wheels touch the ground, the cables are cut and the descent stage flies away to crash far from the rover. It all happens without help from Earth: the signal takes several minutes to arrive.','Le ruote toccano il suolo, i cavi vengono tagliati e lo stadio di discesa si allontana per cadere lontano dal rover. Tutto avviene senza aiuto dalla Terra: il segnale impiega diversi minuti.'],['Coleccionable oculto','Hidden collectible','Oggetto nascosto'],['¡Encontraste una pelota de fútbol!','You found a football!','Hai trovato un pallone da calcio!'],['Estaba medio enterrada en el polvo rojo de ','It was half-buried in the red dust of ','Era mezzo sepolta nella polvere rossa di '],[' Llevás ',' You have ',' Ne hai '],['Próximamente','Coming soon','Prossimamente'],['El modo VR llega próximamente.','VR mode is coming soon.','La modalità VR arriva prossimamente.'],['Modo VR (celular)','VR mode (phone)','Modalità VR (telefono)'],['Durmiendo…','Sleeping…','Dormendo…'],['Pasa la noche marciana','The Martian night goes by','Passa la notte marziana'],
+['Salir del modo VR','Exit VR mode','Esci dalla modalità VR'],
+// ---------- PDF «Errores y mejoras» ----------
+['Enlace orbital · NASA Mars Trek','Orbital link · NASA Mars Trek','Collegamento orbitale · NASA Mars Trek'],
+['Adquiriendo señal…','Acquiring signal…','Acquisizione segnale…'],
+['Aproximación orbital','Orbital approach','Avvicinamento orbitale'],
+['Sector de destino','Target sector','Settore di destinazione'],
+['Zona de aterrizaje confirmada','Landing zone confirmed','Zona di atterraggio confermata'],
+['Zona de exploración','Exploration zone','Zona di esplorazione'],
+['Altitud','Altitude','Altitudine'],
+['MONTE OLIMPO','OLYMPUS MONS','OLYMPUS MONS'],
+['CRÁTER KOROLEV','KOROLEV CRATER','CRATERE KOROLEV'],
+['CRÁTER JEZERO','JEZERO CRATER','CRATERE JEZERO'],
+['MONTE SHARP','MOUNT SHARP','MONTE SHARP'],
+['Monte Olimpo','Olympus Mons','Olympus Mons'],
+['Cráter Korolev','Korolev Crater','Cratere Korolev'],
+['Cráter Jezero','Jezero Crater','Cratere Jezero'],
+['Monte Sharp','Mount Sharp','Monte Sharp'],
+['Caldera de la cumbre','Summit caldera','Caldera sommitale'],
+['Volcán en escudo, el más alto del sistema solar','Shield volcano, the tallest in the solar system','Vulcano a scudo, il più alto del sistema solare'],
+['600 km de ancho · 21,9 km sobre el nivel medio','600 km wide · 21.9 km above mean level','600 km di larghezza · 21,9 km sul livello medio'],
+['Ningún rover · solo orbitadores','No rover · orbiters only','Nessun rover · solo orbiter'],
+['Un volcán tan ancho como Francia y casi tres veces más alto que el Everest. En la cumbre se abre una caldera de 60 × 80 km formada por varios hundimientos encadenados, las pateras.','A volcano as wide as France and almost three times taller than Everest. At the summit there is a 60 × 80 km caldera made of several linked collapses, called paterae.','Un vulcano largo quanto la Francia e quasi tre volte più alto dell\'Everest. In cima si apre una caldera di 60 × 80 km formata da vari sprofondamenti in fila, le paterae.'],
+['Borde de la caldera','Caldera rim','Bordo della caldera'],
+['Estás a más de 20 km de altura, sobre el borde oeste de la caldera de Monte Olimpo. El relieve que ves hasta el horizonte es el real: lo midió el altímetro láser MOLA de la sonda Mars Global Surveyor, disparando pulsos de luz hacia la superficie y midiendo cuánto tardaban en volver. La caldera mide unos 60 × 80 km y tiene hasta 3 km de profundidad.','You are more than 20 km high, on the western rim of the Olympus Mons caldera. The terrain you see up to the horizon is real: it was measured by the MOLA laser altimeter on the Mars Global Surveyor probe, which fired light pulses at the surface and timed how long they took to come back. The caldera is about 60 × 80 km and up to 3 km deep.','Sei a più di 20 km di altezza, sul bordo ovest della caldera di Olympus Mons. Il rilievo che vedi fino all\'orizzonte è reale: l\'ha misurato l\'altimetro laser MOLA della sonda Mars Global Surveyor, sparando impulsi di luce verso la superficie e misurando quanto ci mettevano a tornare. La caldera misura circa 60 × 80 km ed è profonda fino a 3 km.'],
+['Mirador de las pateras','Paterae viewpoint','Belvedere delle paterae'],
+['La caldera no es un solo pozo: son por lo menos seis hundimientos encimados, llamados pateras. En los mapas aparecen con nombres como Zeus, Hermes, Apollo, Dionysus y Athena. Cada uno se formó cuando la cámara de magma de abajo se vació y el techo se derrumbó. La cámara HRSC de Mars Express calculó que los pisos más jóvenes tienen entre 100 y 200 millones de años.','The caldera is not a single pit: it is at least six overlapping collapses, called paterae. On maps they have names like Zeus, Hermes, Apollo, Dionysus and Athena. Each one formed when the magma chamber below emptied and the roof caved in. The HRSC camera on Mars Express estimated that the youngest floors are between 100 and 200 million years old.','La caldera non è un solo pozzo: sono almeno sei sprofondamenti sovrapposti, chiamati paterae. Sulle mappe hanno nomi come Zeus, Hermes, Apollo, Dionysus e Athena. Ognuno si è formato quando la camera magmatica sottostante si è svuotata e il tetto è crollato. La camera HRSC di Mars Express ha calcolato che i fondi più giovani hanno tra 100 e 200 milioni di anni.'],
+['Lavas de la cumbre','Summit lavas','Lave sommitali'],
+['Pisás lava basáltica, como la de los volcanes de Hawái, pero acá la gravedad es de 0,38 g y no hay placas tectónicas que muevan la corteza: el volcán quedó siempre sobre la misma fuente de magma y creció durante cientos de millones de años. El aire a esta altura es tan fino que la presión es más o menos un sexto de la que hay en las llanuras de Marte.','You are standing on basaltic lava, like the lava of Hawaii\'s volcanoes, but here gravity is 0.38 g and there are no tectonic plates moving the crust: the volcano always stayed over the same magma source and grew for hundreds of millions of years. The air at this height is so thin that the pressure is about one sixth of that on the Martian plains.','Cammini su lava basaltica, come quella dei vulcani delle Hawaii, ma qui la gravità è di 0,38 g e non ci sono placche tettoniche che muovano la crosta: il vulcano è rimasto sempre sopra la stessa fonte di magma ed è cresciuto per centinaia di milioni di anni. L\'aria a questa altezza è così sottile che la pressione è circa un sesto di quella delle pianure di Marte.'],
+['Llanuras del polo norte','North polar plains','Pianure del polo nord'],
+['Cráter de impacto lleno de hielo de agua','Impact crater filled with water ice','Cratere da impatto pieno di ghiaccio d\'acqua'],
+['82 km de diámetro · hielo de 1,8 km de espesor','82 km across · ice 1.8 km thick','82 km di diametro · ghiaccio spesso 1,8 km'],
+['Cerca del casquete polar norte, este cráter guarda todo el año un domo de hielo de agua de casi 2 km de espesor: unos 2.200 km³, tanto como el Gran Lago del Oso de Canadá.','Near the north polar cap, this crater holds a dome of water ice almost 2 km thick all year round: about 2,200 km³, as much as Canada\'s Great Bear Lake.','Vicino alla calotta polare nord, questo cratere conserva tutto l\'anno una cupola di ghiaccio d\'acqua spessa quasi 2 km: circa 2.200 km³, quanto il Grande Lago degli Orsi in Canada.'],
+['Domo de hielo','Ice dome','Cupola di ghiaccio'],
+['Estás arriba de un domo de hielo de agua casi pura de unos 1,8 km de espesor. Los radares de los orbitadores, como SHARAD de Mars Reconnaissance Orbiter, atraviesan el hielo y miden su espesor; RIMFAX hace lo mismo desde el suelo, a unos 10 m de profundidad. Para una base humana, un depósito así sería agua para beber, oxígeno y combustible.','You are on top of a dome of almost pure water ice about 1.8 km thick. Orbiter radars, like SHARAD on Mars Reconnaissance Orbiter, see through the ice and measure its thickness; RIMFAX does the same from the ground, down to about 10 m. For a human base, a deposit like this would mean drinking water, oxygen and fuel.','Sei sopra una cupola di ghiaccio d\'acqua quasi pura spessa circa 1,8 km. I radar degli orbiter, come SHARAD di Mars Reconnaissance Orbiter, attraversano il ghiaccio e ne misurano lo spessore; RIMFAX fa lo stesso dal suolo, fino a circa 10 m. Per una base umana, un deposito così significherebbe acqua da bere, ossigeno e carburante.'],
+['Trampa de aire frío','Cold-air trap','Trappola di aria fredda'],
+['Korolev es una trampa fría: el aire que toca el hielo se enfría, se vuelve más pesado y se queda en el fondo del cráter como una manta. Esa capa de aire helado protege al hielo del sol y evita que se evapore. MEDA mediría acá temperaturas de más de 100 °C bajo cero en invierno.','Korolev is a cold trap: air touching the ice cools down, gets heavier and stays at the bottom of the crater like a blanket. That layer of icy air shields the ice from the Sun and stops it from evaporating. MEDA would measure temperatures below −100 °C here in winter.','Korolev è una trappola fredda: l\'aria che tocca il ghiaccio si raffredda, diventa più pesante e resta sul fondo del cratere come una coperta. Quello strato di aria gelida protegge il ghiaccio dal Sole e ne impedisce l\'evaporazione. MEDA misurerebbe qui temperature sotto i −100 °C in inverno.'],
+['Mirador del borde','Rim viewpoint','Belvedere del bordo'],
+['Mirá alrededor: el horizonte que se levanta es el borde del cráter, cerca de 2 km por encima del hielo, medido por el altímetro láser MOLA. La sonda europea Mars Express fotografió Korolev en 2018 con su cámara HRSC: el hielo se ve como una pista de patinaje gigante. El cráter lleva el nombre de Serguéi Koroliov, ingeniero jefe del programa espacial soviético.','Look around: the rising horizon is the crater rim, about 2 km above the ice, measured by the MOLA laser altimeter. The European probe Mars Express photographed Korolev in 2018 with its HRSC camera: the ice looks like a giant skating rink. The crater is named after Sergei Korolev, chief engineer of the Soviet space programme.','Guardati intorno: l\'orizzonte che si alza è il bordo del cratere, circa 2 km sopra il ghiaccio, misurato dall\'altimetro laser MOLA. La sonda europea Mars Express ha fotografato Korolev nel 2018 con la sua camera HRSC: il ghiaccio sembra una pista di pattinaggio gigante. Il cratere porta il nome di Sergej Korolëv, ingegnere capo del programma spaziale sovietico.'],
+['Cráter con el delta de un antiguo lago','Crater with the delta of an ancient lake','Cratere con il delta di un antico lago'],
+['45 km de diámetro','45 km across','45 km di diametro'],
+['Perseverance · 2021 a hoy','Perseverance · 2021 to today','Perseverance · dal 2021 a oggi'],
+['Hace unos 3.500 millones de años un río desembocaba acá y formó un delta dentro de un lago. Perseverance busca rastros de vida microbiana antigua y guarda muestras de roca en tubos sellados.','About 3.5 billion years ago a river flowed in here and built a delta inside a lake. Perseverance looks for traces of ancient microbial life and stores rock samples in sealed tubes.','Circa 3,5 miliardi di anni fa un fiume sfociava qui e formò un delta dentro un lago. Perseverance cerca tracce di antica vita microbica e conserva campioni di roccia in tubi sigillati.'],
+['Campo Wright Brothers','Wright Brothers Field','Campo Wright Brothers'],
+['Desde acá despegó Ingenuity el 19 de abril de 2021: el primer vuelo con motor y controlado en otro planeta. El helicóptero pesaba 1,8 kg y sus rotores giraban a unas 2.500 rpm para sostenerse en un aire unas 100 veces menos denso que el de la Tierra. MEDA aportó datos de viento y presión para planificar los vuelos. Ingenuity hizo 72 vuelos hasta enero de 2024.','Ingenuity took off from here on 19 April 2021: the first powered, controlled flight on another planet. The helicopter weighed 1.8 kg and its rotors spun at about 2,500 rpm to stay up in air about 100 times thinner than Earth\'s. MEDA provided wind and pressure data to plan the flights. Ingenuity made 72 flights until January 2024.','Da qui è decollato Ingenuity il 19 aprile 2021: il primo volo a motore e controllato su un altro pianeta. L\'elicottero pesava 1,8 kg e i rotori giravano a circa 2.500 giri/min per reggersi in un\'aria circa 100 volte meno densa di quella terrestre. MEDA ha fornito dati di vento e pressione per pianificare i voli. Ingenuity ha fatto 72 voli fino a gennaio 2024.'],
+['Mirador del delta','Delta viewpoint','Belvedere del delta'],
+['Mirá hacia el noroeste: el terreno que sube a lo lejos es el frente del delta, medido por la cámara CTX de Mars Reconnaissance Orbiter. Hace unos 3.500 millones de años un río depositaba ahí sus sedimentos al entrar en un lago. En 2021 Mastcam-Z fotografió con zoom, desde unos 2 km, la colina Kodiak: sus capas inclinadas son las de un delta que avanzaba sobre el agua. Fue la confirmación desde el suelo de que Jezero tuvo un lago.','Look northwest: the rising ground in the distance is the front of the delta, measured by the CTX camera on Mars Reconnaissance Orbiter. About 3.5 billion years ago a river dropped its sediments there as it entered a lake. In 2021 Mastcam-Z zoomed in from about 2 km on the Kodiak butte: its tilted layers are those of a delta growing over water. It was the confirmation from the ground that Jezero had a lake.','Guarda a nord-ovest: il terreno che sale in lontananza è il fronte del delta, misurato dalla camera CTX di Mars Reconnaissance Orbiter. Circa 3,5 miliardi di anni fa un fiume vi depositava i sedimenti entrando in un lago. Nel 2021 Mastcam-Z ha fotografato con lo zoom, da circa 2 km, la collina Kodiak: i suoi strati inclinati sono quelli di un delta che avanzava sull\'acqua. Fu la conferma dal suolo che Jezero ebbe un lago.'],
+['Rocas de Máaz','Máaz rocks','Rocce di Máaz'],
+['Perseverance aterrizó sobre la formación Máaz, rocas volcánicas del piso del cráter. SHERLOC y PIXL, los instrumentos del brazo, mostraron que el agua las alteró después de enfriarse. Más tarde, sobre el delta, el rover encontró la roca Cheyava Falls, con manchas que podrían haber dejado microbios antiguos: la NASA la presentó en 2025 como posible biofirma, todavía sin confirmar.','Perseverance landed on the Máaz formation, volcanic rocks of the crater floor. SHERLOC and PIXL, the instruments on its arm, showed that water altered them after they cooled. Later, on the delta, the rover found the Cheyava Falls rock, with spots that ancient microbes might have left: in 2025 NASA presented it as a potential biosignature, still unconfirmed.','Perseverance è atterrato sulla formazione Máaz, rocce vulcaniche del fondo del cratere. SHERLOC e PIXL, gli strumenti del braccio, hanno mostrato che l\'acqua le ha alterate dopo il raffreddamento. Più tardi, sul delta, il rover ha trovato la roccia Cheyava Falls, con macchie che potrebbero aver lasciato antichi microbi: nel 2025 la NASA l\'ha presentata come possibile biofirma, ancora non confermata.'],
+['Cráter Gale','Gale Crater','Cratere Gale'],
+['Montaña de capas sedimentarias dentro de un cráter','Mountain of sedimentary layers inside a crater','Montagna di strati sedimentari dentro un cratere'],
+['5,5 km de alto · cráter de 154 km','5.5 km high · 154 km crater','5,5 km di altezza · cratere di 154 km'],
+['Curiosity · 2012 a hoy','Curiosity · 2012 to today','Curiosity · dal 2012 a oggi'],
+['En el centro del cráter Gale se levanta Monte Sharp, una montaña hecha de capas de sedimento. Cada capa guarda una etapa del clima marciano, desde la época húmeda hasta la seca.','Mount Sharp rises in the middle of Gale Crater, a mountain made of layers of sediment. Each layer keeps a stage of the Martian climate, from the wet era to the dry one.','Al centro del cratere Gale si alza il Monte Sharp, una montagna fatta di strati di sedimenti. Ogni strato conserva una fase del clima marziano, dall\'epoca umida a quella secca.'],
+['Planicie Aeolis','Aeolis plain','Pianura Aeolis'],
+['Estás en el fondo plano del cráter Gale, una llanura llamada Aeolis Palus. Curiosity aterrizó en esta misma llanura en 2012 y encontró piedras redondeadas por un antiguo arroyo. SuperCam dispara un láser que vaporiza un punto de la roca y lee su química por la luz que emite, desde varios metros.','You are on the flat floor of Gale Crater, a plain called Aeolis Palus. Curiosity landed on this very plain in 2012 and found pebbles rounded by an ancient stream. SuperCam fires a laser that vaporises a spot on the rock and reads its chemistry from the light it gives off, from several metres away.','Sei sul fondo piatto del cratere Gale, una pianura chiamata Aeolis Palus. Curiosity è atterrato proprio qui nel 2012 e ha trovato ciottoli arrotondati da un antico ruscello. SuperCam spara un laser che vaporizza un punto della roccia e ne legge la chimica dalla luce emessa, da diversi metri.'],
+['Pie del montículo','Foot of the mound','Piede del rilievo'],
+['Acá empieza a subir el terreno: es la base del montículo central de Gale. Las capas de abajo son arcillas que se formaron en un lago; Curiosity las estudió en la formación Murray. Más arriba, en el canal Gediz Vallis, encontró en 2024 cristales de azufre puro. PIXL usa rayos X para mapear los elementos de la roca.','Here the ground starts to rise: it is the base of Gale\'s central mound. The lower layers are clays that formed in a lake; Curiosity studied them in the Murray formation. Higher up, in the Gediz Vallis channel, it found crystals of pure sulfur in 2024. PIXL uses X-rays to map the elements in the rock.','Qui il terreno comincia a salire: è la base del rilievo centrale di Gale. Gli strati in basso sono argille formatesi in un lago; Curiosity le ha studiate nella formazione Murray. Più in alto, nel canale Gediz Vallis, ha trovato nel 2024 cristalli di zolfo puro. PIXL usa i raggi X per mappare gli elementi della roccia.'],
+['Capas de Monte Sharp','Layers of Mount Sharp','Strati del Monte Sharp'],
+['Estas laderas son reales: las midió la cámara HiRISE con 1 m de detalle. Monte Sharp se eleva unos 5,5 km sobre el fondo del cráter. Sus capas funcionan como un libro de historia del clima: abajo hay arcillas que se forman con agua y más arriba aparecen sulfatos, señal de que Marte se fue secando. Curiosity sube por sus laderas desde 2014.','These slopes are real: the HiRISE camera measured them with 1 m detail. Mount Sharp rises about 5.5 km above the crater floor. Its layers work like a climate history book: at the bottom there are clays that form with water and higher up sulfates appear, a sign that Mars was drying out. Curiosity has been climbing its slopes since 2014.','Questi pendii sono reali: li ha misurati la camera HiRISE con 1 m di dettaglio. Il Monte Sharp si alza circa 5,5 km sul fondo del cratere. I suoi strati sono come un libro di storia del clima: in basso ci sono argille che si formano con l\'acqua e più in alto compaiono solfati, segno che Marte si stava seccando. Curiosity sale i suoi pendii dal 2014.'],
+['Sistema de cañones tectónicos','System of tectonic canyons','Sistema di canyon tettonici'],
+['4.000 km de largo · hasta 7 km de profundidad','4,000 km long · up to 7 km deep','4.000 km di lunghezza · fino a 7 km di profondità'],
+['El cañón más grande del sistema solar. En la Tierra cruzaría Estados Unidos de costa a costa. Ningún rover llegó: todo lo que sabemos viene de orbitadores como Mars Reconnaissance Orbiter.','The largest canyon in the solar system. On Earth it would cross the United States from coast to coast. No rover has been there: everything we know comes from orbiters like Mars Reconnaissance Orbiter.','Il canyon più grande del sistema solare. Sulla Terra attraverserebbe gli Stati Uniti da costa a costa. Nessun rover ci è arrivato: tutto ciò che sappiamo viene da orbiter come Mars Reconnaissance Orbiter.'],
+['Borde del cañón','Canyon rim','Bordo del canyon'],
+['Estás parado sobre el borde de la pared sur de Coprates Chasma. Adelante, el terreno cae más de 3 km hasta el fondo del cañón: no es un efecto, es el relieve medido por la cámara CTX de Mars Reconnaissance Orbiter. Valles Marineris mide más de 4.000 km de largo y hasta 7 km de profundidad. En la pared se ven cientos de capas de roca volcánica y sedimentos.','You are standing on the rim of the south wall of Coprates Chasma. Ahead, the ground drops more than 3 km to the canyon floor: it is not an effect, it is the terrain measured by the CTX camera on Mars Reconnaissance Orbiter. Valles Marineris is more than 4,000 km long and up to 7 km deep. Hundreds of layers of volcanic rock and sediment show on the wall.','Sei in piedi sul bordo della parete sud di Coprates Chasma. Davanti, il terreno scende di oltre 3 km fino al fondo del canyon: non è un effetto, è il rilievo misurato dalla camera CTX di Mars Reconnaissance Orbiter. Valles Marineris è lunga più di 4.000 km e profonda fino a 7 km. Sulla parete si vedono centinaia di strati di roccia vulcanica e sedimenti.'],
+['Mirador de las vetas oscuras','Dark streaks viewpoint','Belvedere delle strisce scure'],
+['En las paredes de Coprates Chasma aparecen vetas oscuras que crecen en la estación cálida y se desvanecen después (se llaman RSL). Al principio se pensó que podían ser agua salada; estudios más recientes apuntan a flujos de arena y polvo seco. La cámara telescópica de SuperCam permite ver detalles desde lejos.','Dark streaks appear on the walls of Coprates Chasma that grow in the warm season and then fade (they are called RSL). At first they were thought to be salty water; more recent studies point to flows of dry sand and dust. SuperCam\'s telescopic camera lets you see details from far away.','Sulle pareti di Coprates Chasma compaiono strisce scure che crescono nella stagione calda e poi svaniscono (si chiamano RSL). All\'inizio si pensò che fossero acqua salata; studi più recenti indicano flussi di sabbia e polvere secca. La camera telescopica di SuperCam permette di vedere dettagli da lontano.'],
+['Grietas de la meseta','Plateau cracks','Fratture dell\'altopiano'],
+['El cañón no lo cavó un río: se formó cuando la corteza se estiró y se partió, probablemente por el peso y el levantamiento de la región volcánica de Tharsis. Sobre la meseta todavía quedan fracturas paralelas al borde. RIMFAX, el radar de Perseverance, puede ver capas y grietas a unos 10 m bajo el suelo.','The canyon was not carved by a river: it formed when the crust stretched and split, probably because of the weight and uplift of the Tharsis volcanic region. Fractures parallel to the rim still remain on the plateau. RIMFAX, Perseverance\'s radar, can see layers and cracks about 10 m underground.','Il canyon non l\'ha scavato un fiume: si è formato quando la crosta si è stirata e spaccata, probabilmente per il peso e il sollevamento della regione vulcanica di Tharsis. Sull\'altopiano restano ancora fratture parallele al bordo. RIMFAX, il radar di Perseverance, può vedere strati e crepe a circa 10 m sotto il suolo.'],
+['Sellar fugas de la esclusa','Seal the airlock leaks','Sigilla le perdite della camera stagna'],
+['La ventisca aflojó los burletes: tocá cada fuga (donde sale aire) para sellarla','The blizzard loosened the seals: tap each leak (where air comes out) to seal it','La tempesta ha allentato le guarnizioni: tocca ogni perdita (dove esce aria) per sigillarla'],
+['Cruceta: elegir fuga · A sellar','D-pad: choose leak · A seal','Croce: scegli perdita · A sigilla'],
+['Clic en cada fuga · o flechas + Enter','Click each leak · or arrows + Enter','Clic su ogni perdita · o frecce + Invio'],
+['Esclusa hermética otra vez: no se escapa el aire.','The airlock is airtight again: no air escapes.','Camera stagna di nuovo ermetica: l\'aria non esce.'],
+['Restablecer el tablero eléctrico','Reset the power board','Ripristina il quadro elettrico'],
+['La tormenta hizo saltar los disyuntores: subilos en el orden que marca el tablero (1 → 6)','The storm tripped the breakers: switch them on in the order shown on the board (1 → 6)','La tempesta ha fatto scattare gli interruttori: alzali nell\'ordine indicato sul quadro (1 → 6)'],
+['Cruceta: elegir · A subir','D-pad: choose · A switch on','Croce: scegli · A alza'],
+['Clic en cada disyuntor en orden · o flechas + Enter','Click each breaker in order · or arrows + Enter','Clic su ogni interruttore in ordine · o frecce + Invio'],
+['Tablero restablecido: vuelve la energía a toda la base.','Board reset: power is back in the whole base.','Quadro ripristinato: torna l\'energia in tutta la base.'],
+['Revisar el blindaje del KRUSTY','Check the KRUSTY shielding','Controlla la schermatura del KRUSTY'],
+['Con el brazo robótico, pasá el dosímetro alrededor del reactor y marcá las 3 fugas de radiación','With the robotic arm, move the dosimeter around the reactor and mark the 3 radiation leaks','Con il braccio robotico, passa il dosimetro intorno al reattore e segna le 3 perdite di radiazioni'],
+['Stick izquierdo: mover el dosímetro · A marcar','Left stick: move the dosimeter · A mark','Stick sinistro: muovi il dosimetro · A segna'],
+['Mové el mouse (o flechas) · clic o Enter para marcar donde el contador suene más','Move the mouse (or arrows) · click or Enter to mark where the counter clicks most','Muovi il mouse (o le frecce) · clic o Invio per segnare dove il contatore suona di più'],
+['Blindaje sellado: la radiación vuelve a quedar dentro del campo.','Shielding sealed: the radiation stays inside the field again.','Schermatura sigillata: la radiazione torna a restare nel campo.'],
+['Revisar el blindaje (dosímetro)','Check the shielding (dosimeter)','Controlla la schermatura (dosimetro)'],
+['Enfriar el reactor','Cool the reactor','Raffredda il reattore'],
+['Ahí está el hangar de los robots constructores.','The builder robots\' hangar is there.','Lì c\'è l\'hangar dei robot costruttori.'],
+['El campo de radiación del KRUSTY (4,5 m) no puede tocar el hábitat.','The KRUSTY radiation field (4.5 m) cannot touch the habitat.','Il campo di radiazioni del KRUSTY (4,5 m) non può toccare l\'habitat.'],
+['Mapa de la base','Base map','Mappa della base'],
+['Mapa de tormentas','Storm map','Mappa delle tempeste'],
+['Mapas','Maps','Mappe'],
+['Pausar / seguir','Pause / resume','Pausa / riprendi'],
+['Reiniciar','Restart','Ricomincia'],
+['Apagar','Turn off','Spegni'],
+['Telescopio','Telescope','Telescopio'],
+['Computadora','Computer','Computer'],
+['Expedición','Expedition','Spedizione'],
+['Planetas','Planets','Pianeti'],
+['Visitantes interestelares','Interstellar visitors','Visitatori interstellari'],
+['Ver por dentro','See inside','Vedi dentro'],
+['Naves de Arcadia','Arcadia Ships','Navi di Arcadia'],
+['Juego: defendé la base de las naves invasoras','Game: defend the base from the invading ships','Gioco: difendi la base dalle navi invasori'],
+['Papers de investigación','Research papers','Articoli di ricerca'],
+['Artículos científicos sobre Marte','Scientific articles about Mars','Articoli scientifici su Marte'],
+['Control del rover','Rover control','Controllo del rover'],
+['Manejalo en primera persona desde su cámara','Drive it in first person from its camera','Guidalo in prima persona dalla sua telecamera'],
+['CÁMARA DEL ROVER','ROVER CAMERA','TELECAMERA DEL ROVER'],
+['W / S avanzar · A / D girar · Esc salir','W / S drive · A / D turn · Esc exit','W / S avanti · A / D gira · Esc esci'],
+['ROSARIO HACKEADA','ROSARIO HACKED','ROSARIO HACKERATA'],
+['TERMINAL DE EMERGENCIA · COMUNICACIONES','EMERGENCY TERMINAL · COMMUNICATIONS','TERMINALE DI EMERGENZA · COMUNICAZIONI'],
+['Expedición de exploración','Exploration expedition','Spedizione di esplorazione'],
+['Arrastrá para girar la cámara · rueda para acercar','Drag to orbit the camera · wheel to zoom','Trascina per ruotare la telecamera · rotella per zoom'],
+['Cámara automática','Automatic camera','Telecamera automatica'],
+['55 a 400 millones de km','55 to 400 million km','da 55 a 400 milioni di km'],
+['La «estrella» azul más brillante del amanecer o del atardecer','The brightest blue «star» at dawn or dusk','La «stella» azzurra più luminosa all\'alba o al tramonto'],
+['71 % océanos','71 % oceans','71 % oceani'],
+['465 °C en la superficie','465 °C at the surface','465 °C in superficie'],
+['96 % CO₂, 92 veces la presión de la Tierra','96 % CO₂, 92 times Earth\'s pressure','96 % CO₂, 92 volte la pressione terrestre'],
+['243 días terrestres (gira al revés)','243 Earth days (it spins backwards)','243 giorni terrestri (gira al contrario)'],
+['88 días','88 days','88 giorni'],
+['de −180 °C a 430 °C','from −180 °C to 430 °C','da −180 °C a 430 °C'],
+['Muy difícil de ver: siempre pegado al Sol','Very hard to see: always close to the Sun','Difficilissimo da vedere: sempre vicino al Sole'],
+['69.911 km (11 Tierras)','69,911 km (11 Earths)','69.911 km (11 Terre)'],
+['Hidrógeno y helio','Hydrogen and helium','Idrogeno ed elio'],
+['Más de 90 (las 4 grandes se ven con el telescopio)','More than 90 (the 4 big ones are visible in the telescope)','Più di 90 (le 4 grandi si vedono al telescopio)'],
+['Una tormenta más grande que la Tierra','A storm bigger than Earth','Una tempesta più grande della Terra'],
+['0,69 g/cm³: flotaría en el agua','0.69 g/cm³: it would float on water','0,69 g/cm³: galleggerebbe sull\'acqua'],
+['Hielo y roca; casi siempre menos de 1 km de espesor','Ice and rock; mostly less than 1 km thick','Ghiaccio e roccia; quasi sempre meno di 1 km di spessore'],
+['Más de 270','More than 270','Più di 270'],
+['98°: gira «acostado»','98°: it spins «lying down»','98°: gira «sdraiato»'],
+['Gigante de hielo','Ice giant','Gigante di ghiaccio'],
+['El metano absorbe el rojo','Methane absorbs red light','Il metano assorbe il rosso'],
+['Hasta 2.000 km/h, los más rápidos del sistema solar','Up to 2,000 km/h, the fastest in the solar system','Fino a 2.000 km/h, i più veloci del sistema solare'],
+['165 años terrestres','165 Earth years','165 anni terrestri'],
+['27 × 22 × 18 km, a 6.000 km del suelo','27 × 22 × 18 km, 6,000 km above the ground','27 × 22 × 18 km, a 6.000 km dal suolo'],
+['15 × 12 × 11 km, a 23.000 km','15 × 12 × 11 km, at 23,000 km','15 × 12 × 11 km, a 23.000 km'],
+['3 vueltas a Marte por día','3 orbits of Mars per day','3 giri di Marte al giorno'],
+['Fobos se acerca 1,8 m por siglo','Phobos gets 1.8 m closer per century','Phobos si avvicina di 1,8 m per secolo'],
+['19 de octubre de 2017, telescopio Pan-STARRS1 (Hawái)','19 October 2017, Pan-STARRS1 telescope (Hawaii)','19 ottobre 2017, telescopio Pan-STARRS1 (Hawaii)'],
+['Unos 100 a 400 m de largo, muy alargado o chato','About 100 to 400 m long, very elongated or flat','Circa 100-400 m di lunghezza, molto allungato o piatto'],
+['En hawaiano, «mensajero que llega primero desde lejos»','In Hawaiian, «a messenger from afar arriving first»','In hawaiano, «messaggero che arriva per primo da lontano»'],
+['Unos 26 km/s antes de entrar al sistema solar','About 26 km/s before entering the solar system','Circa 26 km/s prima di entrare nel sistema solare'],
+['1 de julio de 2025, telescopio ATLAS (Río Hurtado, Chile)','1 July 2025, ATLAS telescope (Río Hurtado, Chile)','1 luglio 2025, telescopio ATLAS (Río Hurtado, Cile)'],
+['Tercer objeto interestelar (después de \'Oumuamua y 2I/Borisov)','Third interstellar object (after \'Oumuamua and 2I/Borisov)','Terzo oggetto interstellare (dopo \'Oumuamua e 2I/Borisov)'],
+['Unos 58 km/s: uno de los más rápidos jamás vistos','About 58 km/s: one of the fastest ever seen','Circa 58 km/s: uno dei più veloci mai visti'],
+['3 de octubre de 2025, a unos 29 millones de km','3 October 2025, about 29 million km away','3 ottobre 2025, a circa 29 milioni di km'],
+['Observatorio','Observatory','Osservatorio'],
+['Fase 1 de 6','Phase 1 of 6','Fase 1 di 6'],['Fase 2 de 6','Phase 2 of 6','Fase 2 di 6'],['Fase 3 de 6','Phase 3 of 6','Fase 3 di 6'],['Fase 4 de 6','Phase 4 of 6','Fase 4 di 6'],['Fase 5 de 6','Phase 5 of 6','Fase 5 di 6'],['Fase 6 de 6','Phase 6 of 6','Fase 6 di 6'],['Enfriar el reactor KRUSTY','Cool down the KRUSTY reactor','Raffredda il reattore KRUSTY'],['Enfriar el reactor','Cool the reactor','Raffredda il reattore'],[' % recalentado)',' % overheated)',' % surriscaldato)'],['Mové las barras de control hasta que la temperatura quede en la franja verde','Move the control rods until the temperature sits in the green band','Muovi le barre di controllo finché la temperatura resta nella fascia verde'],['Stick izquierdo ↑ ↓: barras de control · B salir','Left stick ↑ ↓: control rods · B exit','Stick sinistro ↑ ↓: barre di controllo · B esci'],['↑ ↓ o W / S: barras de control · o arrastrá las barras con el mouse','↑ ↓ or W / S: control rods · or drag the rods with the mouse','↑ ↓ o W / S: barre di controllo · o trascina le barre con il mouse'],['BARRAS DE CONTROL','CONTROL RODS','BARRE DI CONTROLLO'],['TEMPERATURA','TEMPERATURE','TEMPERATURA'],['¡CALIENTE!','HOT!','CALDO!'],['FRÍO','COLD','FREDDO'],['ESTABLE','STABLE','STABILE'],['Reactor estable: el radiador vuelve a enfriar al KRUSTY.','Reactor stable: the radiator cools the KRUSTY again.','Reattore stabile: il radiatore raffredda di nuovo il KRUSTY.'],['Aterrizó la nave de tripulación: llegan 2 astronautas nuevos (','The crew ship landed: 2 new astronauts arrive (','La nave dell\'equipaggio è atterrata: arrivano 2 nuovi astronauti ('],[' en la base).',' in the base).',' nella base).'],['La Tierra vio camas libres: una nave con 2 astronautas aterriza en unas horas.','Earth saw free beds: a ship with 2 astronauts lands in a few hours.','La Terra ha visto letti liberi: una nave con 2 astronauti atterra tra poche ore.'],['Hay camas libres, pero sin antena de Comunicaciones la Tierra no puede mandar astronautas.','There are free beds, but without the Communications antenna Earth cannot send astronauts.','Ci sono letti liberi, ma senza l\'antenna delle Comunicazioni la Terra non può mandare astronauti.'],['Girá el celular','Turn your phone','Ruota il telefono'],['ARCADIA se juega en horizontal.','ARCADIA is played in landscape.','ARCADIA si gioca in orizzontale.'],['Controles del rover y del dron','Rover and drone controls','Comandi del rover e del drone'],['Avanzar / retroceder','Forward / back','Avanti / indietro'],['Girar','Turn','Girare'],['Mirar alrededor','Look around','Guardarsi intorno'],['Analizar objetivo','Analyse target','Analizza obiettivo'],['Cambiar cámara','Switch camera','Cambia telecamera'],['Desplegar / pilotar Ingenuity','Deploy / fly Ingenuity','Fai decollare / pilota Ingenuity'],['Subir / bajar (dron)','Up / down (drone)','Su / giù (drone)'],['Repetir aterrizaje','Replay landing','Ripeti atterraggio'],['Arrastrar','Drag','Trascina'],['La cápsula entra a unos 19.500 km/h. El escudo térmico soporta cerca de 1.300 °C mientras el roce con el aire la frena.','The capsule enters at about 19,500 km/h. The heat shield withstands about 1,300 °C while friction with the air slows it down.','La capsula entra a circa 19.500 km/h. Lo scudo termico sopporta circa 1.300 °C mentre l\'attrito con l\'aria la frena.'],['A unos 11 km de altura se abre un paracaídas de 21,5 m de diámetro, cuando la cápsula todavía va a casi 1.500 km/h.','About 11 km up, a 21.5 m parachute opens while the capsule is still moving at almost 1,500 km/h.','A circa 11 km di quota si apre un paracadute di 21,5 m, quando la capsula va ancora a quasi 1.500 km/h.'],['Se suelta el escudo. El radar y las cámaras miran el suelo y la navegación por terreno (TRN) elige un punto seguro para bajar.','The shield drops. The radar and cameras look at the ground and terrain-relative navigation (TRN) picks a safe spot to land.','Lo scudo si stacca. Radar e telecamere guardano il suolo e la navigazione sul terreno (TRN) sceglie un punto sicuro.'],['A unos 2 km del suelo, la etapa de descenso se separa de la cubierta y del paracaídas y enciende sus 8 motores.','About 2 km above the ground, the descent stage separates from the backshell and parachute and fires its 8 engines.','A circa 2 km dal suolo, lo stadio di discesa si separa dal guscio e dal paracadute e accende i suoi 8 motori.'],['A unos 20 m del suelo, el rover baja colgado de tres cables de 6,4 m mientras la etapa sigue frenando a menos de 3 km/h.','About 20 m above the ground, the rover is lowered on three 6.4 m cables while the stage keeps braking below 3 km/h.','A circa 20 m dal suolo, il rover scende appeso a tre cavi di 6,4 m mentre lo stadio frena sotto i 3 km/h.'],['Las ruedas tocan el suelo, se cortan los cables y la etapa de descenso se aleja para caer lejos del rover. Todo ocurre sin ayuda desde la Tierra: la señal tarda varios minutos en llegar.','The wheels touch the ground, the cables are cut and the descent stage flies away to crash far from the rover. It all happens without help from Earth: the signal takes several minutes to arrive.','Le ruote toccano il suolo, i cavi vengono tagliati e lo stadio di discesa si allontana per cadere lontano dal rover. Tutto avviene senza aiuto dalla Terra: il segnale impiega diversi minuti.'],['Coleccionable oculto','Hidden collectible','Oggetto nascosto'],['¡Encontraste una pelota de fútbol!','You found a football!','Hai trovato un pallone da calcio!'],['Estaba medio enterrada en el polvo rojo de ','It was half-buried in the red dust of ','Era mezzo sepolta nella polvere rossa di '],[' Llevás ',' You have ',' Ne hai '],['Próximamente','Coming soon','Prossimamente'],['El modo VR llega próximamente.','VR mode is coming soon.','La modalità VR arriva prossimamente.'],['Modo VR (celular)','VR mode (phone)','Modalità VR (telefono)'],['Durmiendo…','Sleeping…','Dormendo…'],['Pasa la noche marciana','The Martian night goes by','Passa la notte marziana'],
 ['Granja hidropónica · vista desde la puerta','Hydroponic farm · view from the door','Serra idroponica · vista dalla porta'],
 ['Primera persona','First person','Prima persona'],['Tercera persona (vista de arriba)','Third person (top view)','Terza persona (vista dall\'alto)'],['Cadete manual','Manual cadet','Cadetto manuale'],
 ['moverse','move','muoversi'],['arrastrá para mirar','drag to look','trascina per guardare'],['cambiar vista','switch view','cambia visuale'],['Stick izq. moverse','Left stick move','Stick sin. muoversi'],['Stick der. mirar','Right stick look','Stick des. guardare'],['Stick der. girar','Right stick turn','Stick des. ruotare'],['botón del cadete','cadet button','pulsante del cadetto'],
@@ -3531,6 +3728,7 @@ const MISSIONS=[
  {cat:'salud',t:['Trabajo en equipo: 3 astronautas en el laboratorio','Teamwork: 3 astronauts in the lab','Lavoro di squadra: 3 astronauti in laboratorio'],h:['Construí un laboratorio, elegilo y tocá «Llamar a la tripulación». Después llevá a tu cadete: tienen que estar los 3 juntos adentro.','Build a lab, select it and press «Call the crew». Then take your cadet there: all 3 must be inside together.','Costruisci un laboratorio, premi «Chiama l\'equipaggio» e porta il tuo cadetto: devono esserci tutti e 3.'],c:()=>S.equipos&&S.equipos.lab},
  {cat:'alimentos',t:['Cena en equipo: 3 astronautas en la cocina','Team dinner: 3 astronauts in the kitchen','Cena di squadra: 3 astronauti in cucina'],h:['Elegí la cocina, tocá «Llamar a la tripulación» y llevá a tu cadete. Comer juntos cuida el ánimo de la tripulación.','Select the kitchen, press «Call the crew» and take your cadet. Eating together keeps morale up.','Scegli la cucina, premi «Chiama l\'equipaggio» e porta il tuo cadetto.'],c:()=>S.equipos&&S.equipos.cena},
  {cat:'oxigeno',t:['En pareja: 2 astronautas revisan el MOXIE','In pairs: 2 astronauts check MOXIE','In coppia: 2 astronauti controllano il MOXIE'],h:['Elegí el MOXIE, tocá «Llamar a la tripulación» y entrá con tu cadete.','Select MOXIE, press «Call the crew» and go in with your cadet.','Scegli il MOXIE, premi «Chiama l\'equipaggio» ed entra con il tuo cadetto.'],c:()=>S.equipos&&S.equipos.moxie},
+ {cat:'habitat',t:['Manda una expedición de exploración (con 5 astronautas)','Send an exploration expedition (with 5 astronauts)','Manda una spedizione di esplorazione (con 5 astronauti)'],h:['Cuando haya 5 astronautas, elegí la esclusa y tocá «Planificar expedición». Mirá el pronóstico: si los agarra una tormenta, no vuelven.','When there are 5 astronauts, select the airlock and press «Plan an expedition». Check the forecast: if a storm catches them, they will not come back.','Quando ci sono 5 astronauti, scegli la camera stagna e premi «Pianifica una spedizione». Guarda le previsioni: se li sorprende una tempesta, non tornano.'],c:()=>S.hecho&&S.hecho.expedicion},
  {cat:'salud',t:['Construye un observatorio y mira por el telescopio','Build an observatory and look through the telescope','Costruisci un osservatorio e guarda nel telescopio'],h:['Está en la categoría Hábitat. Entrá con tu cadete, elegí la cúpula y tocá «Mirar por el telescopio»: vas a ver los planetas y los visitantes interestelares.','It is in the Habitat category. Go in with your cadet, select the dome and press «Look through the telescope».','È nella categoria Habitat. Entra con il tuo cadetto, scegli la cupola e premi «Guarda nel telescopio».'],c:()=>S.hecho&&S.hecho.telescopio},
  {cat:'energia',t:['Revisa el blindaje del KRUSTY con el dosímetro','Check the KRUSTY shielding with the dosimeter','Controlla la schermatura del KRUSTY con il dosimetro'],h:['Nadie entra al campo de radiación: elegí un KRUSTY y tocá «Revisar el blindaje». El brazo robótico lleva el dosímetro: marcá donde el contador suene más rápido.','Nobody enters the radiation field: select a KRUSTY and press «Check the shielding». The robotic arm carries the dosimeter: mark where it clicks fastest.','Nessuno entra nel campo: scegli un KRUSTY e premi «Controlla la schermatura».'],c:()=>S.hecho&&S.hecho.blindaje},
  {cat:'habitat',t:['Sobrevive 30 soles','Survive 30 sols','Sopravvivi 30 sol'],h:['Un sol es un día marciano: 24 h y 37 min.','A sol is a Martian day: 24 h 37 min.','Un sol è un giorno marziano: 24 h e 37 min.'],c:()=>S.sol>=30},
@@ -4922,7 +5120,7 @@ const MINIJUEGOS={
    for(const p of j.par){p.x+=p.vx*dt;p.y+=p.vy*dt;p.v-=dt*1.6}j.par=j.par.filter(p=>p.v>0);if(Math.random()<dt*3&&j.f.some(f=>!f.ok))sonTarea('clic')},
   dibujar(j,c){c.fillStyle='#10151c';c.fillRect(0,0,720,420);c.strokeStyle='#5d6b7a';c.lineWidth=26;c.beginPath();c.arc(360,210,150,0,7);c.stroke();
    c.strokeStyle='#2b3440';c.lineWidth=6;c.beginPath();c.arc(360,210,120,0,7);c.stroke();c.fillStyle='#1c2430';c.beginPath();c.arc(360,210,116,0,7);c.fill();
-   c.fillStyle='#ffd36b';c.font='700 15px Helvetica,Arial';c.textAlign='center';c.fillText('ESCLUSA',360,205);c.fillStyle='#9fb0c4';c.font='12px Helvetica,Arial';c.fillText(j.f.filter(f=>f.ok).length+' / 6',360,226);
+   c.fillStyle='#ffd36b';c.font='700 15px Helvetica,Arial';c.textAlign='center';c.fillText(L3(['ESCLUSA','AIRLOCK','CAMERA STAGNA']),360,205);c.fillStyle='#9fb0c4';c.font='12px Helvetica,Arial';c.fillText(j.f.filter(f=>f.ok).length+' / 6',360,226);
    for(const p of j.par){c.fillStyle='rgba(220,235,255,'+(p.v*.6)+')';c.beginPath();c.arc(p.x,p.y,3+4*(1-p.v),0,7);c.fill()}
    j.f.forEach((f,k)=>{const q=this.pos(f);c.fillStyle=f.ok?'#5fd38d':'#ff6b6b';c.beginPath();c.arc(q.x,q.y,f.ok?9:12,0,7);c.fill();if(k===j.sel&&!f.ok){c.strokeStyle='#fff';c.lineWidth=3;c.beginPath();c.arc(q.x,q.y,20,0,7);c.stroke()}})}},
  tablero:{titulo:'Restablecer el tablero eléctrico',sub:'La tormenta hizo saltar los disyuntores: subilos en el orden que marca el tablero (1 → 6)',
@@ -4937,7 +5135,7 @@ const MINIJUEGOS={
   dibujar(j,c){c.fillStyle=j.err>0?'#2a1414':'#141a22';c.fillRect(0,0,720,420);c.fillStyle='#2c3542';c.fillRect(80,110,560,240);
    for(let k=0;k<6;k++){const q=this.pos(k),on=j.on[k];c.fillStyle='#0d1117';c.fillRect(q.x-30,q.y-60,60,120);c.fillStyle=on?'#5fd38d':'#ff6b6b';c.fillRect(q.x-22,on?q.y-52:q.y+2,44,50);
     c.fillStyle='#ffd36b';c.font='700 18px Helvetica,Arial';c.textAlign='center';c.fillText(String(j.ord[k]+1),q.x,q.y-75);if(k===j.sel){c.strokeStyle='#fff';c.lineWidth=3;c.strokeRect(q.x-34,q.y-64,68,128)}}
-   c.fillStyle='#cfe3ff';c.font='14px Helvetica,Arial';c.fillText(j.err>0?'¡Orden equivocado! Volvé a empezar.':'Disyuntor siguiente: '+(j.sig+1),360,385)}},
+   c.fillStyle='#cfe3ff';c.font='14px Helvetica,Arial';c.fillText(j.err>0?L3(['¡Orden equivocado! Volvé a empezar.','Wrong order! Start again.','Ordine sbagliato! Ricomincia.']):L3(['Disyuntor siguiente: ','Next breaker: ','Prossimo interruttore: '])+(j.sig+1),360,385)}},
  blindaje:{titulo:'Revisar el blindaje del KRUSTY',sub:'Con el brazo robótico, pasá el dosímetro alrededor del reactor y marcá las 3 fugas de radiación',
   ayuda:()=>usandoMando?'Stick izquierdo: mover el dosímetro · A marcar':'Mové el mouse (o flechas) · clic o Enter para marcar donde el contador suene más',
   iniciar(j){j.h=[0,1,2].map(k=>({a:k*2.1+Math.random()*1.4,ok:false}));j.a=0;j.tt=0;j.cl=0;j.err=0},
@@ -4954,7 +5152,7 @@ const MINIJUEGOS={
    const x=360+Math.cos(j.a)*120,y=210+Math.sin(j.a)*120;c.strokeStyle='#9fb0c4';c.lineWidth=5;c.beginPath();c.moveTo(360+Math.cos(j.a)*200,210+Math.sin(j.a)*200);c.lineTo(x,y);c.stroke();
    c.fillStyle=j.err>0?'#ff6b6b':'#cfe3ff';c.fillRect(x-12,y-12,24,24);
    const l=this.lect(j);c.fillStyle='#1c2a20';c.fillRect(560,40,130,40);c.fillStyle=l>.6?'#ff6b6b':l>.3?'#ffd36b':'#5fd38d';c.fillRect(565,45,120*l,30);
-   c.fillStyle='#cfe3ff';c.font='12px Helvetica,Arial';c.textAlign='left';c.fillText('Dosímetro',562,100);c.fillText(j.h.filter(h=>h.ok).length+' / 3',562,118)}},
+   c.fillStyle='#cfe3ff';c.font='12px Helvetica,Arial';c.textAlign='left';c.fillText(L3(['Dosímetro','Dosimeter','Dosimetro']),562,100);c.fillText(j.h.filter(h=>h.ok).length+' / 3',562,118)}},
  reactor:{titulo:'Enfriar el reactor KRUSTY',sub:'Mové las barras de control hasta que la temperatura quede en la franja verde',
   ayuda:()=>usandoMando?'Stick izquierdo ↑ ↓: barras de control · B salir':'↑ ↓ o W / S: barras de control · o arrastrá las barras con el mouse',
   iniciar(j){j.barra=.12;j.temp=.9;j.ok=0;j.tt=0;j.arr=false;j.ab=false},
@@ -5096,7 +5294,7 @@ function updateTormenta(dt){
   if(enIntro||S.over)return;if(S.climaOn===false){alertaTormenta(dt);return}if(!S.tormenta)programarTormenta();const T=S.tormenta;const v=dt*(speed||0);if(!v){return}alertaTormenta(dt);
   if(!T.activa){T.en-=v;
     if(!T.avisada&&T.en<=30){T.avisada=true;const a=$('#avisoTormenta');a.hidden=false;Sonido.efecto('alerta');clearTimeout(a._t);a._t=setTimeout(()=>a.hidden=true,5000)}
-    if(T.en<=0){T.activa=true;T.dura=45+Math.random()*20;T.clima0=S.clima;S.clima='ventisca';S.climaHoras=99;Sonido.tormenta(true);{S.urgentes=S.urgentes||[];const adentro=['sellos','tablero'].filter(k=>REPARACIONES[k].puede()&&!S.urgentes.includes(k));if(adentro.length){const k=adentro[Math.floor(Math.random()*adentro.length)];REPARACIONES[k].aplicar();S.urgentes.push(k);setTimeout(()=>{try{revisarUrgentes()}catch(_){}},50)}}toast('Ventisca: los paneles se repliegan. Esperá adentro a que pase.','bad')}}
+    if(T.en<=0){T.activa=true;T.dura=45+Math.random()*20;T.clima0=S.clima;S.clima='ventisca';S.climaHoras=99;Sonido.tormenta(true);if(S.hack&&S.hack.n===1&&!S.hack.activo&&S.hack.prox<480)S.hack.prox=0;{S.urgentes=S.urgentes||[];const adentro=['sellos','tablero'].filter(k=>REPARACIONES[k].puede()&&!S.urgentes.includes(k));if(adentro.length){const k=adentro[Math.floor(Math.random()*adentro.length)];REPARACIONES[k].aplicar();S.urgentes.push(k);setTimeout(()=>{try{revisarUrgentes()}catch(_){}},50)}}toast('Ventisca: los paneles se repliegan. Esperá adentro a que pase.','bad')}}
   else{T.dura-=v;if(T.dura<=0){T.activa=false;S.clima='templado';S.climaHoras=20+rnd()*20;Sonido.tormenta(false);dañosTormenta();programarTormenta()}}
 }
 // Cuánto falta para que termine la tormenta (a la izquierda de la barra superior derecha)
@@ -5463,6 +5661,9 @@ function renderInfo(){
    for(const id in habil){const b=$('#'+id);if(b&&!habil[id]){b.disabled=true;b.title='Sólo cuando una misión lo pide: ahora no hace falta.'}}}
   {const x=$('#info .btns'),bt=(id,txt)=>{const b=document.createElement('button');b.className='btn';b.id=id;b.textContent=txt;x.insertBefore(b,$('#mov'));return b};
    if(m.type==='esclusa')bt('btRover',modoRover?'Volver al contenedor':'Manejar el rover').onclick=()=>manejarRover(!modoRover);
+   if(m.type==='esclusa'&&PJ.length>=5)bt('btExped',L3(['Planificar expedición','Plan an expedition','Pianifica una spedizione'])).onclick=()=>abrirExpedicion();
+   if(m.type==='comms'&&hackActivo())bt('btTerminal',L3(['⚠ Terminal de emergencia','⚠ Emergency terminal','⚠ Terminale di emergenza'])).onclick=()=>abrirTerminal();
+   if(m.type==='control'||m.type==='investigacion'||m.type==='comms')bt('btCompu',L3(['Usar la computadora','Use the computer','Usa il computer'])).onclick=()=>abrirCompu();
    if(m.type==='observatorio')bt('btTele',L3(['Mirar por el telescopio','Look through the telescope','Guarda nel telescopio'])).onclick=()=>{const C=cadete();if(C&&zonaDe(C.g.position).m!==m&&modoCadete!=='auto'){avisoCentro(L3(['Llevá a tu cadete al observatorio.','Take your cadet to the observatory.','Porta il tuo cadetto all\'osservatorio.']));return}abrirTelescopio()};
    if(m.type==='ocio')bt('btRadio',Radio.on?L3(['Apagar la radio','Turn off the radio','Spegni la radio']):L3(['Encender la radio (Wagner)','Turn on the radio (Wagner)','Accendi la radio (Wagner)'])).onclick=()=>{if(Radio.on){Radio.pausar()}else{Radio.iniciar();toast(L3(['Radio: «La entrada de los dioses en el Valhalla», de Richard Wagner.','Radio: «Entry of the Gods into Valhalla», by Richard Wagner.','Radio: «Ingresso degli dei nel Walhalla», di Richard Wagner.']),'good')}renderInfo()};
    if(['investigacion','cocina','moxie'].includes(m.type))bt('btEquipo',L3(['Llamar a la tripulación','Call the crew','Chiama l\'equipaggio'])).onclick=()=>llamarTripulacion(m,m.type==='moxie'?1:2);
@@ -5834,6 +6035,238 @@ function abrirNotifs(){$('#notifPanel').hidden=false;pintarNotifs();notifs.forEa
 function cerrarNotifs(){if(!notifAbierto())return;$('#notifPanel').hidden=true;$('#btnNotif').classList.remove('on');Sonido.efecto('atras')}
 function alternarNotifs(){if(notifAbierto())cerrarNotifs();else abrirNotifs()}
 $('#btnNotif').onclick=alternarNotifs;$('#notifX').onclick=cerrarNotifs;
+// ===================== EXPEDICIÓN =====================
+// Con 5 astronautas o más se puede mandar una expedición de hasta 4 a explorar. El jugador elige el día en un calendario:
+// sale a las 8:00 y vuelve a las 20:00. Si hay una tormenta mientras están afuera, mueren todos los que fueron.
+let exSel=[],exSol=null,expedidos=[];
+const EXP_SALE=8,EXP_VUELVE=20;
+function tormentaPrevista(){if(!S.tormenta||S.tormenta.activa)return S.tormenta&&S.tormenta.activa?{sol:S.sol,hora:S.hour,ahora:true}:null;const h=S.hour+S.tormenta.en/HOUR_SEC;return{sol:S.sol+Math.floor(h/24),hora:h%24,dura:(S.tormenta.dura||55)/HOUR_SEC}}
+function abrirExpedicion(){if(S.expedicion&&S.expedicion.estado!=='fin'){avisoCentro(L3(['Ya hay una expedición planificada para el sol ','There is already an expedition planned for sol ','C\'è già una spedizione per il sol '])+S.expedicion.sol+'.');return}
+  if(PJ.length<5){avisoCentro(L3(['Hacen falta al menos 5 astronautas en la base.','At least 5 astronauts are needed in the base.','Servono almeno 5 astronauti nella base.']));return}
+  exSel=[];exSol=null;$('#expedicion').hidden=false;pintarExp();Sonido.efecto('nav')}
+function pintarExp(){$('#exTit').textContent=L3(['Expedición de exploración','Exploration expedition','Spedizione di esplorazione']);
+  $('#exIntro').textContent=L3(['Elegí hasta 4 astronautas y el día. Salen a las 8:00, recorren la región buscando hielo y minerales, y vuelven a las 20:00. ¡Cuidado! Si los agarra una tormenta afuera, no sobreviven.','Choose up to 4 astronauts and the day. They leave at 8:00, explore the region looking for ice and minerals, and come back at 20:00. Careful! If a storm catches them outside, they will not survive.','Scegli fino a 4 astronauti e il giorno. Partono alle 8:00, esplorano la regione cercando ghiaccio e minerali, e tornano alle 20:00. Attenzione! Se una tempesta li sorprende fuori, non sopravvivono.']);
+  $('#exH1').textContent=L3(['Tripulación (máximo 4)','Crew (up to 4)','Equipaggio (massimo 4)'])+' · '+exSel.length+'/4';$('#exH2').textContent=L3(['Calendario','Calendar','Calendario']);
+  const disp=PJ.filter(P=>P.id!=='cadete');$('#exTripu').innerHTML=disp.map(P=>'<label class="'+(exSel.includes(P.id)?'on':'')+'"><input type="checkbox" data-id="'+P.id+'"'+(exSel.includes(P.id)?' checked':'')+'> '+escH(P.nombre)+'</label>').join('');
+  $('#exTripu').querySelectorAll('input').forEach(i=>i.onchange=()=>{const id=i.dataset.id;if(i.checked){if(exSel.length>=4){i.checked=false;avisoCentro(L3(['Como máximo 4 astronautas.','Up to 4 astronauts.','Al massimo 4 astronauti.']));return}exSel.push(id)}else exSel=exSel.filter(x=>x!==id);pintarExp();Sonido.efecto('nav')});
+  const tp=active('comms')?tormentaPrevista():null,ini=S.hour<EXP_SALE?S.sol:S.sol+1;let html='';
+  for(let k=0;k<14;k++){const sol=ini+k,tor=tp&&sol===tp.sol;html+='<button data-sol="'+sol+'" class="'+(sol===exSol?'on ':'')+(tor?'tor':'')+'"><span>'+L3(['Sol','Sol','Sol'])+'</span><b>'+sol+'</b><small>'+(tor?'🌪 '+String(Math.floor(tp.hora)).padStart(2,'0')+':00':'☀')+'</small></button>'}
+  $('#exCal').innerHTML=html;$('#exCal').querySelectorAll('button').forEach(b=>b.onclick=()=>{exSol=+b.dataset.sol;pintarExp();Sonido.efecto('nav')});
+  $('#exAviso').textContent=!active('comms')?L3(['Sin la antena de Comunicaciones no llegan los pronósticos de tormentas de la Tierra: elegís a ciegas.','Without the Communications antenna no storm forecasts arrive from Earth: you are choosing blind.','Senza l\'antenna delle Comunicazioni non arrivano previsioni di tempeste: scegli alla cieca.'])
+    :tp?L3(['🌪 = tormenta pronosticada (a esa hora empieza). Los pronósticos sólo ven la próxima tormenta.','🌪 = forecast storm (starting at that time). Forecasts only see the next storm.','🌪 = tempesta prevista (inizia a quell\'ora). Le previsioni vedono solo la prossima tempesta.']):'';
+  $('#exCancelar').textContent=L3(['Cancelar','Cancel','Annulla']);$('#exOk').textContent=L3(['Planificar','Plan it','Pianifica']);$('#exOk').disabled=!exSel.length||exSol==null}
+$('#exX').onclick=$('#exCancelar').onclick=()=>{$('#expedicion').hidden=true;Sonido.efecto('atras')};
+$('#exOk').onclick=()=>{if(!exSel.length||exSol==null)return;S.expedicion={sol:exSol,miembros:exSel.slice(),estado:'planificada',tormenta:false};$('#expedicion').hidden=true;Sonido.efecto('ok');
+  toast(L3(['Expedición planificada: sale el sol ','Expedition planned: it leaves on sol ','Spedizione pianificata: parte il sol '])+exSol+L3([' a las 8:00.',' at 8:00.',' alle 8:00.']),'good')};
+function updateExpedicion(){const E=S.expedicion;if(!E||E.estado==='fin'||enIntro||S.over)return;
+  if(E.estado==='planificada'&&(S.sol>E.sol||(S.sol===E.sol&&S.hour>=EXP_SALE))){E.estado='afuera';E.tormenta=hayTormenta();
+    const ctrl=S.mods.find(m=>m.type==='control'),lejos=new THREE.Vector3(GRID*CELL/2+18,0,-GRID*CELL/4);
+    for(const id of E.miembros){const P=PJ.find(Q=>Q.id===id);if(!P)continue;const ext=S.mods.find(m=>DEF[m.type].kind==='ext'&&m.type!=='krusty');let r=ext?rutaHacia(P,{ext}):null;if(!r)r=[];r.push({p:lejos.clone().add(new THREE.Vector3(0,0,Math.random()*4))});
+      P.ruta=r;P.estado='caminar';P.lugar=null;P.expedicion=true;P.dest={alLlegar:Q=>{scene.remove(Q.g);const i=PJ.indexOf(Q);if(i>=0)PJ.splice(i,1);expedidos.push(Q)}}}
+    toast(L3(['La expedición sale de la base.','The expedition leaves the base.','La spedizione lascia la base.']),'good');Sonido.efecto('servo');return}
+  if(E.estado==='afuera'){if(hayTormenta())E.tormenta=true;
+    if(S.sol>E.sol||S.hour>=EXP_VUELVE){E.estado='fin';const n=E.miembros.length;
+      // los que todavía no habían llegado al borde también cuentan
+      for(const id of E.miembros){const P=PJ.find(Q=>Q.id===id);if(P){scene.remove(P.g);PJ.splice(PJ.indexOf(P),1);expedidos.push(P)}}
+      if(E.tormenta){S.crew=Math.max(1,S.crew-n);expedidos=[];toast(L3(['Una tormenta atrapó a la expedición: murieron los ','A storm caught the expedition: all ','Una tempesta ha sorpreso la spedizione: sono morti tutti i '])+n+L3([' astronautas que fueron.',' astronauts who went died.',' astronauti partiti.']),'bad');Sonido.efecto('error');S.sanity=Math.max(0,S.sanity-25);checkMissions();return}
+      const lejos=new THREE.Vector3(GRID*CELL/2+18,0,-GRID*CELL/4),ctrl=S.mods.find(m=>m.type==='control');
+      for(const P of expedidos){P.g.position.copy(lejos).add(new THREE.Vector3(0,0,Math.random()*4));scene.add(P.g);P.fuera=true;P.expedicion=false;PJ.push(P);const r=ctrl&&rutaHacia(P,{m:ctrl});if(r&&r.length){P.ruta=r;P.dest={m:ctrl};P.estado='caminar'}else{P.ruta=[];P.estado='pensar'}}
+      expedidos=[];const pts=40+n*25;S.res.mat+=pts;S.hecho=S.hecho||{};S.hecho.expedicion=true;
+      try{descubrirHielo((Math.random()-.5)*GRID*CELL*.7,(Math.random()-.5)*GRID*CELL*.7,4)}catch(_){}
+      toast(L3(['¡Volvió la expedición! Trajeron muestras y mapas: +','The expedition is back! They brought samples and maps: +','La spedizione è tornata! Hanno portato campioni e mappe: +'])+pts+L3([' de presupuesto y una zona nueva de hielo.',' budget and a new ice area.',' di budget e una nuova zona di ghiaccio.']),'good');Sonido.efecto('mision');checkMissions()}}}
+// ===================== HACKEO A ROSARIO =====================
+// Cada 20 minutos (a velocidad ×1) aterriza un cohete; la primera y la segunda vez un robot intruso lo usa para hackear a Rosario.
+// El cadete (en primera o tercera persona) tiene que llegar a la computadora de Comunicaciones y reiniciarla, como en una terminal Unix.
+const EXE='§exe';
+const HACK_VAR=[
+ {arbol:{'LEEME.txt':['Sistema de la base Arcadia. Escribí «ayuda» para ver los comandos.','Arcadia base system. Type «help» to see the commands.','Sistema della base Arcadia. Scrivi «aiuto» per vedere i comandi.'],
+   home:{cadete:{'notas.txt':['Recordatorio: la clave de emergencia está pegada en el monitor.','Reminder: the emergency password is stuck on the monitor.','Promemoria: la password di emergenza è attaccata al monitor.']}},
+   sistemas:{energia:{'paneles.log':['Paneles: OK. KRUSTY: OK.','Panels: OK. KRUSTY: OK.','Pannelli: OK. KRUSTY: OK.']},comms:{'antena.cfg':['Antena apuntando a la Tierra. Retardo: 14 min.','Antenna pointed at Earth. Delay: 14 min.','Antenna puntata verso la Terra. Ritardo: 14 min.']},
+     rosario:{voz:{'ladridos.wav':['(audio: ¡guau!)','(audio: woof!)','(audio: bau!)']},memoria:{'recuerdos.db':['Datos cifrados por el intruso.','Data encrypted by the intruder.','Dati cifrati dall\'intruso.']},nucleo:{'reset_rosario':EXE,'nucleo.cfg':['Para reiniciar a Rosario ejecutá ./reset_rosario','To reboot Rosario run ./reset_rosario','Per riavviare Rosario esegui ./reset_rosario']}}},
+   registros:{'intruso.log':['03:12 conexión desconocida desde el cohete de la plataforma.\n03:13 robot RX-7 tomó el control de ROSARIO.','03:12 unknown connection from the rocket on the pad.\n03:13 robot RX-7 took control of ROSARIO.','03:12 connessione sconosciuta dal razzo sulla piattaforma.\n03:13 il robot RX-7 ha preso il controllo di ROSARIO.']}},
+  prog:'reset_rosario',
+  amenazas:[['¡Ja! Rosario ahora es mía. En 3 minutos el cohete despega a la Tierra con todos los recursos.','Ha! Rosario is mine now. In 3 minutes the rocket takes off to Earth with all the supplies.','Ah! Rosario ora è mia. Tra 3 minuti il razzo parte per la Terra con tutte le risorse.'],
+   ['Los tanques del cohete ya se están llenando con TU agua.','The rocket tanks are already filling with YOUR water.','I serbatoi del razzo si stanno riempiendo con la TUA acqua.'],
+   ['Sin la antena, nadie en la Tierra va a escucharlos.','Without the antenna, nobody on Earth will hear you.','Senza l\'antenna, nessuno sulla Terra vi sentirà.'],
+   ['Guau... digo... ¡bip! Ya no soy un perro, soy el sistema.','Woof... I mean... beep! I am no dog anymore, I am the system.','Bau... cioè... bip! Non sono più un cane, sono il sistema.'],
+   ['Cuenta regresiva final. Despídanse de sus provisiones.','Final countdown. Say goodbye to your supplies.','Conto alla rovescia finale. Salutate le vostre provviste.']]},
+ {arbol:{'LEEME.txt':['Sistema de la base Arcadia v2. El intruso movió los archivos: buscá con «ls» y «cd».','Arcadia base system v2. The intruder moved the files: search with «ls» and «cd».','Sistema della base Arcadia v2. L\'intruso ha spostato i file: cerca con «ls» e «cd».'],
+   usr:{bin:{'ls':EXE+'x','cd':EXE+'x'},compartido:{'mapa.txt':['Mapa de la base: control, esclusa, comunicaciones.','Base map: control, airlock, communications.','Mappa della base: controllo, camera stagna, comunicazioni.']}},
+   var:{log:{'hack.log':['El intruso dañó reset_rosario. Quedó una copia del script de arranque de los robots.','The intruder damaged reset_rosario. A copy of the robots\' boot script is left.','L\'intruso ha danneggiato reset_rosario. È rimasta una copia dello script di avvio dei robot.']},
+     robots:{'rx7.cfg':['Robot RX-7: MODO INVASOR.','Robot RX-7: INVADER MODE.','Robot RX-7: MODALITÀ INVASORE.'],rosario:{sensores:{'olfato.dat':['Olor detectado: galletitas.','Smell detected: cookies.','Odore rilevato: biscotti.']},arranque:{'reset_rosario.bak':['ARCHIVO DAÑADO POR EL INTRUSO. Usá el script de arranque.','FILE DAMAGED BY THE INTRUDER. Use the boot script.','FILE DANNEGGIATO DALL\'INTRUSO. Usa lo script di avvio.'],'reiniciar.sh':EXE}}}},
+   home:{cadete:{'tormenta.txt':['Si hay tormenta, no salgas: la terminal está adentro.','If there is a storm, do not go out: the terminal is inside.','Se c\'è tempesta, non uscire: il terminale è dentro.']}}},
+  prog:'reiniciar.sh',
+  amenazas:[['Volví. Esta vez escondí mejor el reinicio. 3 minutos.','I am back. This time I hid the reboot better. 3 minutes.','Sono tornato. Stavolta ho nascosto meglio il riavvio. 3 minuti.'],
+   ['La tormenta no me molesta: soy de metal.','The storm does not bother me: I am made of metal.','La tempesta non mi disturba: sono di metallo.'],
+   ['El cohete ya tiene cargado su oxígeno de reserva.','The rocket is already loaded with your spare oxygen.','Il razzo ha già caricato il vostro ossigeno di riserva.'],
+   ['Rosario ya no los reconoce. Bip.','Rosario no longer recognises you. Beep.','Rosario non vi riconosce più. Bip.'],
+   ['Diez segundos. Nueve. Ocho...','Ten seconds. Nine. Eight...','Dieci secondi. Nove. Otto...']]}];
+let robotHack=null,tm={cwd:[],clave:false,intentos:0,hist:[],hi:0};
+const Desesp=(function(){let timer=null,paso=0,gan=null;
+  function nota(c,f,t,d,tipo,v){const o=c.createOscillator(),g=c.createGain();o.type=tipo;o.frequency.value=f;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(gan);o.start(t);o.stop(t+d+.02)}
+  function tick(){const c=Sonido._ctx&&Sonido._ctx();if(!c||!gan)return;const t=c.currentTime+.03,sube=S.hack?Math.floor((180-S.hack.t)/45):0,N=n=>440*Math.pow(2,(n+sube-69)/12);
+    const bajo=[38,38,41,38,40,38,37,38][paso%8];nota(c,N(bajo),t,.11,'square',.07);if(paso%2===0)nota(c,N(bajo+12),t,.08,'sawtooth',.03);
+    if(paso%8===0){nota(c,70,t,.4,'sine',.3)}if(paso%16===4||paso%16===12)nota(c,N([62,65,68,67][(paso>>4)%4]),t,.22,'sawtooth',.045);
+    if(S.hack&&S.hack.t<30&&paso%4===2)nota(c,1760,t,.05,'square',.03);paso++}
+  return{iniciar(){const c=Sonido._ctx&&(Sonido.iniciar(),Sonido._ctx());if(!c||timer)return;gan=c.createGain();gan.gain.value=Ajustes.get('musica')/.5*.9;gan.connect(Sonido._salida());paso=0;timer=setInterval(tick,118)},
+    parar(){clearInterval(timer);timer=null;if(gan){const g=gan;setTimeout(()=>{try{g.disconnect()}catch(_){}},400)}gan=null}}})();
+function hackActivo(){return !!(S&&S.hack&&S.hack.activo)}
+function iniciarHack(){const H=S.hack;H.n++;H.activo=true;H.t=180;H.fallos=0;H.var=(H.n-1)%2;H.amen=0;tm={cwd:[],clave:false,intentos:0,hist:[],hi:0};$('#tmSalida').innerHTML='';
+  if(speed!==1)setSpeed(1);rocketT=-1;rocketBajan=0;rocket.visible=true;rocket.position.y=0;rocket.userData.flame.visible=false;rocketLight.intensity=0;
+  document.body.classList.add('rosario-hack');$('#hackBox').hidden=false;Desesp.iniciar();Sonido.efecto('alerta');
+  // el robot intruso: rojo, junto al cohete (la segunda vez trepado a la escalera del cohete)
+  if(window.Modelos3D){const b=Modelos3D.robot();b.g.traverse(o=>{if(o.isMesh){o.material=o.material.clone();if(o.material.color)o.material.color.lerp(new THREE.Color(0x8a1010),.6);if('emissive' in o.material){o.material.emissive=new THREE.Color(0x550000)}}});
+    const luz=new THREE.PointLight(0xff2020,2.4,8);luz.position.y=1.4;b.g.add(luz);b.g.scale.setScalar(1.15);const a=H.var?2.2:-.9;b.g.position.set(rocket.position.x+Math.cos(a)*1.6,0,rocket.position.z+Math.sin(a)*1.6);scene.add(b.g);robotHack=b}
+  avisoCentro('ROSARIO.EXE: '+L3(HACK_VAR[H.var].amenazas[0]));toast(L3(['Un robot intruso hackeó a Rosario desde el cohete. Tomá el control de tu cadete (tecla C) y andá a la computadora de Comunicaciones.','An intruder robot hacked Rosario from the rocket. Take control of your cadet (C key) and go to the Communications computer.','Un robot intruso ha hackerato Rosario dal razzo. Prendi il controllo del tuo cadetto (tasto C) e vai al computer delle Comunicazioni.']),'bad');pintarHack()}
+function pintarHack(){const H=S.hack;if(!H||!H.activo)return;const m=Math.max(0,Math.ceil(H.t));$('#hkReloj').textContent=Math.floor(m/60)+':'+String(m%60).padStart(2,'0');$('#hkTit').textContent=L3(['ROSARIO HACKEADA','ROSARIO HACKED','ROSARIO HACKERATA']);
+  const C=cadete(),cm=S.mods.find(x=>x.type==='comms');const dentro=C&&cm&&zonaDe(C.g.position).m===cm;
+  $('#hkTxt').textContent=modoCadete==='auto'?L3(['Tomá el control de tu cadete (tecla C o el botón del cadete) en primera o tercera persona.','Take control of your cadet (C key or the cadet button) in first or third person.','Prendi il controllo del tuo cadetto (tasto C o il pulsante del cadetto) in prima o terza persona.'])
+    :dentro?L3(['Estás en Comunicaciones: tocá F (o elegí la cúpula) y abrí la «Terminal de emergencia».','You are in Communications: press F (or select the dome) and open the «Emergency terminal».','Sei nelle Comunicazioni: premi F (o scegli la cupola) e apri il «Terminale di emergenza».'])
+    :L3(['Llevá a tu cadete hasta la cúpula de Comunicaciones.','Take your cadet to the Communications dome.','Porta il tuo cadetto alla cupola delle Comunicazioni.'])+(H.fallos?' · '+L3(['Misión reiniciada','Mission restarted','Missione riavviata']):'')}
+function updateHack(dt){if(!S||enIntro||S.over)return;S.hack=S.hack||{n:0,prox:1200,activo:false};const H=S.hack,v=dt*(speed||0);
+  if(robotHack){const B=robotHack;B.g.lookAt(rocket.position.x,0,rocket.position.z);B.bI.h.rotation.x=-1.2+Math.sin(clockT*14)*.25;B.bD.h.rotation.x=-1.2+Math.cos(clockT*13)*.25;B.g.position.y=Math.abs(Math.sin(clockT*3))*.03}
+  if(!H.activo){if(H.n>=2||!active('comms'))return;H.prox-=v;if(H.prox<=0&&rocketT<0&&!MJ&&!compuAbierta())iniciarHack();return}
+  if(!document.body.classList.contains('rosario-hack')){document.body.classList.add('rosario-hack');$('#hackBox').hidden=false;Desesp.iniciar();rocket.visible=true;rocket.position.y=0;pintarHack()}
+  if(!v)return;H.t-=v;
+  const umbrales=[150,110,70,35,10];for(let k=H.amen;k<umbrales.length;k++){if(H.t<=umbrales[k]){H.amen=k+1;const a=HACK_VAR[H.var].amenazas[Math.min(k+1,4)];avisoCentro('ROSARIO.EXE: '+L3(a));toast('ROSARIO.EXE: '+L3(a),'bad');Sonido.efecto('alerta');break}}
+  if(Math.floor(H.t*2)!==Math.floor((H.t+v)*2))pintarHack();
+  if(H.t<=0)falloHack()}
+function falloHack(){const H=S.hack;H.fallos=(H.fallos||0)+1;const R=S.res;
+  if(H.fallos===1){// el cohete se va a la Tierra con los recursos y la base queda sin comunicaciones
+    rocketT=9;rocketBajan=0;R.mat=Math.round(R.mat*.6);R.water*=.7;R.o2*=.7;R.food*=.7;R.supp*=.7;S.mods.filter(m=>m.type==='comms'||m.type==='antena').forEach(m=>{m.desinc=true;if(m.type==='antena')m.desalineada=true});S.sinCommsHack=true;
+    toast(L3(['El cohete despegó a la Tierra con parte de los recursos. La base quedó sin comunicaciones. La misión se reinicia: reiniciá a Rosario.','The rocket took off to Earth with part of the supplies. The base lost communications. The mission restarts: reboot Rosario.','Il razzo è partito per la Terra con parte delle risorse. La base è senza comunicazioni. La missione riparte: riavvia Rosario.']),'bad')}
+  else{R.mat=Math.round(R.mat*.85);R.water*=.85;R.food*=.85;toast(L3(['Rosario sigue hackeada y borró más datos. La misión vuelve a empezar.','Rosario is still hacked and deleted more data. The mission starts again.','Rosario è ancora hackerata e ha cancellato altri dati. La missione ricomincia.']),'bad')}
+  Sonido.efecto('error');H.t=180;H.amen=0;tm={cwd:[],clave:false,intentos:0,hist:[],hi:0};if(!$('#terminal').hidden)reiniciarTerminal();pintarHack();renderStats&&renderStats()}
+function finHack(){const H=S.hack;H.activo=false;H.prox=1200;document.body.classList.remove('rosario-hack');$('#hackBox').hidden=true;Desesp.parar();
+  if(robotHack){const B=robotHack;let k=0;const caer=setInterval(()=>{k+=.06;B.g.rotation.x=-Math.min(1.5,k*1.5);B.g.position.y=0;if(k>1.2){clearInterval(caer);scene.remove(B.g)}},30);robotHack=null}
+  S.mods.forEach(m=>{if(S.sinCommsHack&&(m.type==='comms'||m.type==='antena')){/* la antena queda por realinear: es una reparación */}});S.sinCommsHack=false;
+  if(H.fallos===0){S.res.mat+=60}S.hecho=S.hecho||{};S.hecho['hack'+H.n]=true;if(rocket.visible&&rocketT<0){rocketT=6;rocketBajan=0}
+  toast(L3(['¡Rosario volvió a ser Rosario! El robot intruso quedó apagado.','Rosario is Rosario again! The intruder robot is shut down.','Rosario è tornata Rosario! Il robot intruso è spento.'])+(H.fallos===0?L3([' Premio: +60 de presupuesto.',' Reward: +60 budget.',' Premio: +60 di budget.']):''),'good');Sonido.efecto('mision');checkMissions()}
+// ---- terminal Unix ----
+function nodoEn(ruta){let n=HACK_VAR[S.hack.var].arbol;for(const p of ruta){if(!n||typeof n!=='object'||Array.isArray(n))return null;n=n[p]}return n}
+const esDir=n=>n&&typeof n==='object'&&!Array.isArray(n);
+function tmEscribir(html){const o=$('#tmSalida');o.insertAdjacentHTML('beforeend',html+'\n');o.scrollTop=o.scrollHeight}
+const escH=t=>String(t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'})[c]);
+function tmPrompt(){$('#tmPrompt').textContent=tm.clave?L3(['Clave (8 caracteres):','Password (8 characters):','Password (8 caratteri):']):'cadete@arcadia:/'+tm.cwd.join('/')+'$';$('#tmIn').type=tm.clave?'password':'text'}
+function reiniciarTerminal(){$('#tmSalida').innerHTML='';tm.cwd=[];tm.clave=false;
+  tmEscribir('<span class="tm-av">ARCADIA OS · '+L3(['terminal de emergencia','emergency terminal','terminale di emergenza'])+'</span>');
+  tmEscribir('<span class="tm-rosa">ROSARIO.EXE: '+L3(['acceso denegado... guau... bip.','access denied... woof... beep.','accesso negato... bau... bip.'])+'</span>');
+  tmEscribir(L3(['Es un sistema Unix. Buscá el programa que reinicia a Rosario. Escribí «ayuda».','It is a Unix system. Find the program that reboots Rosario. Type «help».','È un sistema Unix. Trova il programma che riavvia Rosario. Scrivi «aiuto».']));tmPrompt()}
+function abrirTerminal(){const C=cadete(),cm=S.mods.find(x=>x.type==='comms');
+  if(modoCadete==='auto'){avisoCentro(L3(['Primero tomá el control de tu cadete (tecla C): primera o tercera persona.','First take control of your cadet (C key): first or third person.','Prima prendi il controllo del tuo cadetto (tasto C): prima o terza persona.']));return}
+  if(!C||!cm||zonaDe(C.g.position).m!==cm){avisoCentro(L3(['Tu cadete tiene que estar adentro de Comunicaciones.','Your cadet must be inside Communications.','Il tuo cadetto deve essere dentro le Comunicazioni.']));return}
+  $('#terminal').hidden=false;$('#tmTit').textContent=L3(['TERMINAL DE EMERGENCIA · COMUNICACIONES','EMERGENCY TERMINAL · COMMUNICATIONS','TERMINALE DI EMERGENZA · COMUNICAZIONI']);if(!$('#tmSalida').innerHTML)reiniciarTerminal();else tmPrompt();setTimeout(()=>$('#tmIn').focus(),30);Sonido.efecto('radio')}
+function cerrarTerminal(){$('#terminal').hidden=true;$('#tmIn').blur()}
+function tmComando(lin){const H=S.hack;
+  if(tm.clave){tmEscribir('<span class="tm-prompt">'+L3(['Clave (8 caracteres):','Password (8 characters):','Password (8 caratteri):'])+'</span> '+'*'.repeat(lin.length));
+    if(lin.trim().toLowerCase()==='tronador'){tm.clave=false;tmEscribir('<span class="tm-ok">'+L3(['Clave correcta. Reiniciando a Rosario','Password accepted. Rebooting Rosario','Password corretta. Riavvio di Rosario'])+'... ██████████ 100 %</span>');tmEscribir('<span class="tm-rosa">ROSARIO: ¡'+L3(['Guau! Gracias, cadete. Ya soy yo otra vez.','Woof! Thanks, cadet. I am myself again.','Bau! Grazie, cadetto. Sono di nuovo io.'])+'</span>');tmPrompt();setTimeout(()=>{cerrarTerminal();finHack()},1800);return}
+    tm.intentos++;if(tm.intentos>=3){tmEscribir('<span class="tm-err">'+L3(['SISTEMA BLOQUEADO tras 3 claves incorrectas. Se reinicia la terminal...','SYSTEM LOCKED after 3 wrong passwords. Restarting the terminal...','SISTEMA BLOCCATO dopo 3 password errate. Riavvio del terminale...'])+'</span>');tm.intentos=0;tm.clave=false;Sonido.efecto('error');setTimeout(reiniciarTerminal,1500);return}
+    tmEscribir('<span class="tm-err">'+L3(['Clave incorrecta','Wrong password','Password errata'])+' ('+tm.intentos+'/3). '+L3(['Tiene 8 caracteres.','It has 8 characters.','Ha 8 caratteri.'])+'</span>');tm.clave=false;tmPrompt();Sonido.efecto('error');return}
+  tmEscribir('<span class="tm-prompt">cadete@arcadia:/'+escH(tm.cwd.join('/'))+'$</span> '+escH(lin));
+  const[c0,...args]=lin.trim().split(/\s+/),cmd=(c0||'').toLowerCase(),arg=args.join(' ');if(!cmd){tmPrompt();return}
+  const aqui=nodoEn(tm.cwd),prog=HACK_VAR[H.var].prog;
+  const ejecutar=nom=>{const n=aqui&&aqui[nom];if(n===EXE){tmEscribir('<span class="tm-av">'+escH(nom)+': '+L3(['se necesita la clave de administrador.','administrator password required.','serve la password di amministratore.'])+'</span>');tm.clave=true;tmPrompt();Sonido.efecto('servo');return}
+    if(typeof n==='string'&&n.startsWith(EXE)){tmEscribir(escH(nom)+': '+L3(['programa del sistema.','system program.','programma di sistema.']));return}
+    if(n){tmEscribir('<span class="tm-err">'+escH(nom)+': '+L3(['no es un programa','is not a program','non è un programma'])+'</span>');return}
+    tmEscribir('<span class="tm-err">'+escH(nom)+': '+L3(['no existe acá. Buscalo con «ls» y «cd».','not found here. Look for it with «ls» and «cd».','non esiste qui. Cercalo con «ls» e «cd».'])+'</span>')};
+  if(['ayuda','help','aiuto'].includes(cmd)){tmEscribir(L3(['Comandos:\n  ls          ver lo que hay en esta carpeta\n  cd CARPETA  entrar a una carpeta (cd .. sube una)\n  pwd         dónde estoy\n  cat ARCHIVO leer un archivo\n  ./PROGRAMA  ejecutar un programa\n  clear       limpiar la pantalla','Commands:\n  ls          list this folder\n  cd FOLDER   enter a folder (cd .. goes up)\n  pwd         where am I\n  cat FILE    read a file\n  ./PROGRAM   run a program\n  clear       clear the screen','Comandi:\n  ls          elenca questa cartella\n  cd CARTELLA entra in una cartella (cd .. sale)\n  pwd         dove sono\n  cat FILE    leggi un file\n  ./PROGRAMMA esegui un programma\n  clear       pulisci lo schermo']))}
+  else if(cmd==='ls'||cmd==='dir'){const n=arg?nodoEn([...tm.cwd,...arg.split('/').filter(Boolean)]):aqui;if(!esDir(n)){tmEscribir('<span class="tm-err">ls: '+L3(['no existe','not found','non esiste'])+'</span>')}else tmEscribir(Object.keys(n).map(k=>esDir(n[k])?'<span class="tm-dir">'+k+'/</span>':n[k]===EXE?'<span class="tm-exe">'+k+'*</span>':escH(k)).join('   ')||'('+L3(['vacía','empty','vuota'])+')')}
+  else if(cmd==='pwd')tmEscribir('/'+tm.cwd.join('/'));
+  else if(cmd==='cd'){if(!arg||arg==='/'||arg==='~'){tm.cwd=arg==='~'?['home','cadete']:[]}else{let r=arg.startsWith('/')?[]:[...tm.cwd];for(const p of arg.split('/').filter(Boolean)){if(p==='..')r.pop();else if(p!=='.')r.push(p)}if(esDir(nodoEn(r)))tm.cwd=r;else tmEscribir('<span class="tm-err">cd: '+escH(arg)+': '+L3(['no es una carpeta','not a folder','non è una cartella'])+'</span>')}}
+  else if(cmd==='cat'||cmd==='leer'||cmd==='less'||cmd==='more'){const n=aqui&&aqui[arg];if(Array.isArray(n))tmEscribir(escH(L3(n)));else if(n===EXE)tmEscribir('<span class="tm-av">'+L3(['Es un programa: ejecutalo con ./','It is a program: run it with ./','È un programma: eseguilo con ./'])+escH(arg)+'</span>');else tmEscribir('<span class="tm-err">cat: '+escH(arg||'?')+': '+L3(['no existe','not found','non esiste'])+'</span>')}
+  else if(cmd==='clear'||cmd==='limpiar'){$('#tmSalida').innerHTML=''}
+  else if(cmd.startsWith('./'))ejecutar(c0.slice(2));
+  else if(['sh','bash','run','ejecutar','esegui'].includes(cmd))ejecutar(arg.replace(/^\.\//,''));
+  else if(cmd===prog.toLowerCase())ejecutar(prog);
+  else if(cmd==='sudo')tmEscribir('<span class="tm-rosa">ROSARIO.EXE: '+L3(['Buen intento. Bip.','Nice try. Beep.','Bel tentativo. Bip.'])+'</span>');
+  else tmEscribir('<span class="tm-err">'+escH(cmd)+': '+L3(['comando no encontrado (probá «ayuda»)','command not found (try «help»)','comando non trovato (prova «aiuto»)'])+'</span>');
+  tmPrompt()}
+function tmCompletar(){const v=$('#tmIn').value,p=v.split(' '),ult=p[p.length-1],aqui=nodoEn(tm.cwd);if(!esDir(aqui))return;const pre=ult.replace(/^\.\//,''),op=Object.keys(aqui).filter(k=>k.startsWith(pre));if(op.length===1){p[p.length-1]=(ult.startsWith('./')?'./':'')+op[0]+(esDir(aqui[op[0]])?'/':'');$('#tmIn').value=p.join(' ')}else if(op.length>1)tmEscribir(op.join('   '))}
+addEventListener('keydown',e=>{if($('#terminal').hidden)return;e.stopImmediatePropagation();const k=e.key;
+  if(k==='Escape'){cerrarTerminal();return}
+  if(k==='Enter'){e.preventDefault();const v=$('#tmIn').value;$('#tmIn').value='';if(!tm.clave&&v.trim()){tm.hist.push(v);tm.hi=tm.hist.length}tmComando(v);return}
+  if(k==='Tab'){e.preventDefault();if(!tm.clave)tmCompletar();return}
+  if(k==='ArrowUp'&&!tm.clave){e.preventDefault();tm.hi=Math.max(0,tm.hi-1);$('#tmIn').value=tm.hist[tm.hi]||''}
+  if(k==='ArrowDown'&&!tm.clave){e.preventDefault();tm.hi=Math.min(tm.hist.length,tm.hi+1);$('#tmIn').value=tm.hist[tm.hi]||''}
+  if(document.activeElement!==$('#tmIn'))$('#tmIn').focus()},true);
+addEventListener('keyup',e=>{if(!$('#terminal').hidden)e.stopImmediatePropagation()},true);
+$('#tmX').onclick=cerrarTerminal;$('#terminal').addEventListener('pointerdown',e=>{if(e.target.id==='terminal')cerrarTerminal();else setTimeout(()=>$('#tmIn').focus(),0)});
+// ===================== COMPUTADORA =====================
+let osApp=null,juegoNaves=null,osRaf=0;
+const compuAbierta=()=>!$('#compu').hidden;
+function abrirCompu(){$('#compu').hidden=false;cerrarAppOS();Sonido.efecto('radio');pintarOS();S.hecho=S.hecho||{};S.hecho.compu=true;checkMissions()}
+function cerrarCompu(){if(osApp==='naves')juegoNaves=null;$('#compu').hidden=true;osApp=null;cancelAnimationFrame(osRaf);Sonido.efecto('atras')}
+function pintarOS(){$('#osReloj').textContent='SOL '+S.sol+' · '+String(Math.floor(S.hour)).padStart(2,'0')+':'+String(Math.floor(S.hour%1*60)).padStart(2,'0');
+  $('#osRuta').textContent=osApp?({naves:L3(['Naves de Arcadia','Arcadia Ships','Navi di Arcadia']),papers:L3(['Papers','Papers','Articoli']),rover:'Rover'})[osApp]:L3(['Inicio','Home','Home']);
+  $('#osT1').textContent=L3(['Naves de Arcadia','Arcadia Ships','Navi di Arcadia']);$('#osS1').textContent=L3(['Juego: defendé la base de las naves invasoras','Game: defend the base from the invading ships','Gioco: difendi la base dalle navi invasori']);
+  $('#osT2').textContent=L3(['Papers de investigación','Research papers','Articoli di ricerca']);$('#osS2').textContent=L3(['Artículos científicos sobre Marte','Scientific articles about Mars','Articoli scientifici su Marte']);
+  $('#osT3').textContent=L3(['Control del rover','Rover control','Controllo del rover']);$('#osS3').textContent=L3(['Manejalo en primera persona desde su cámara','Drive it in first person from its camera','Guidalo in prima persona dalla sua telecamera'])}
+function cerrarAppOS(){osApp=null;juegoNaves=null;cancelAnimationFrame(osRaf);$('#osApp').hidden=true;$('#osApp').innerHTML='';$('#osCajas').hidden=false;pintarOS()}
+function abrirAppOS(app){osApp=app;$('#osCajas').hidden=true;const a=$('#osApp');a.hidden=false;Sonido.efecto('ok');pintarOS();
+  const salir='<button class="btn" id="osSalir">⟵ '+L3(['Salir','Exit','Esci'])+'</button>';
+  if(app==='naves'){a.innerHTML='<canvas id="navesCv" width="960" height="540"></canvas><div class="os-fila">'+salir+'<span style="opacity:.8;font-size:13px">'+(matchMedia('(pointer:coarse)').matches?L3(['Tocá y arrastrá para mover y disparar','Touch and drag to move and shoot','Tocca e trascina per muoverti e sparare']):L3(['W / S o ↑ ↓ mover · Espacio disparar · Enter reintentar','W / S or ↑ ↓ move · Space shoot · Enter retry','W / S o ↑ ↓ muovi · Spazio spara · Invio riprova']))+(usandoMando?' · '+L3(['Stick: mover · A: disparar · B: salir','Stick: move · A: shoot · B: exit','Stick: muovi · A: spara · B: esci']):'')+'</span></div>';
+    iniciarNaves();const cv=$('#navesCv');let tocando=null;
+    cv.addEventListener('pointerdown',e=>{const r=cv.getBoundingClientRect();tocando=(e.clientY-r.top)/r.height*540;if(juegoNaves){juegoNaves.disp=true;if(juegoNaves.fin)iniciarNaves()}});
+    cv.addEventListener('pointermove',e=>{if(tocando==null)return;const r=cv.getBoundingClientRect();tocando=(e.clientY-r.top)/r.height*540;if(juegoNaves)juegoNaves.objY=tocando});
+    const soltar=()=>{tocando=null;if(juegoNaves){juegoNaves.disp=false;juegoNaves.objY=null}};cv.addEventListener('pointerup',soltar);cv.addEventListener('pointercancel',soltar);cv.addEventListener('pointerleave',soltar);cv.style.touchAction='none';
+    let t0=performance.now();const loop=now=>{if(osApp!=='naves')return;const dt=Math.min(.05,(now-t0)/1000);t0=now;pasoNaves(dt);dibujarNaves(cv.getContext('2d'));osRaf=requestAnimationFrame(loop)};osRaf=requestAnimationFrame(loop)}
+  else if(app==='papers'){a.innerHTML='<div class="os-papers"><div class="os-paper"><b>'+L3(['Próximamente','Coming soon','Prossimamente'])+'</b><small>'+L3(['El equipo Tronador va a elegir los papers de investigación que aparecen en esta carpeta.','Team Tronador will choose the research papers that appear in this folder.','Il team Tronador sceglierà gli articoli di ricerca di questa cartella.'])+'</small></div>'+[1,2,3].map(k=>'<div class="os-paper" style="opacity:.45"><b>Paper '+k+'</b><small>'+L3(['Espacio reservado','Reserved slot','Spazio riservato'])+'</small></div>').join('')+'</div><div class="os-fila">'+salir+'</div>'}
+  else if(app==='rover'){a.innerHTML='<div class="os-papers"><div class="os-paper" style="border-color:#7c5cff"><b>'+L3(['Cámara delantera del rover','Rover front camera','Telecamera anteriore del rover'])+'</b><small>'+L3(['Vas a manejar el rover viendo lo mismo que su cámara. Su radar sigue buscando hielo bajo el suelo. Con tormenta no puede salir.','You will drive the rover seeing what its camera sees. Its radar keeps looking for ice under the ground. It cannot go out during a storm.','Guiderai il rover vedendo ciò che vede la sua telecamera. Il radar continua a cercare ghiaccio sotto il suolo. Con la tempesta non può uscire.'])+'</small></div></div><div class="os-fila">'+salir+'<button class="btn on" id="osRoverIr">'+L3(['Conectar con el rover','Connect to the rover','Collegati al rover'])+'</button></div>';
+    $('#osRoverIr').onclick=()=>{cerrarCompu();manejarRover(true,true)}}
+  $('#osSalir').onclick=()=>{cerrarAppOS();Sonido.efecto('atras')}}
+$('#osCajas').querySelectorAll('[data-app]').forEach(b=>b.onclick=()=>abrirAppOS(b.dataset.app));$('#osX').onclick=cerrarCompu;
+// ---- juego de naves: la nave queda a la izquierda, sube y baja; los enemigos llegan desde la derecha y disparan ----
+function iniciarNaves(){let rec=0;try{rec=+localStorage.getItem('arcadia-naves')||0}catch(_){}
+  juegoNaves={y:270,vidas:3,pts:0,rec,balas:[],enemigas:[],balasE:[],chispas:[],ola:0,espera:1,cad:0,inv:0,fin:false,arr:false,ab:false,disp:false,objY:null,t:0,est:[...Array(90)].map(()=>({x:Math.random()*960,y:Math.random()*540,v:20+Math.random()*120}))}}
+function olaNaves(j){j.ola++;const n=5+Math.min(10,j.ola*2),tipo=j.ola%3;for(let k=0;k<n;k++){const fila=k%5,col=Math.floor(k/5);
+  j.enemigas.push({x:1000+col*70,y:90+fila*85,y0:90+fila*85,fase:k*.7,vx:-(60+j.ola*8),tipo:(k+tipo)%3,vida:tipo===2&&k%4===0?2:1,cd:1+Math.random()*2.5})}}
+function sonNave(f,d,tipo){try{const c=Sonido._ctx();if(!c)return;const o=c.createOscillator(),g=c.createGain(),t=c.currentTime;o.type=tipo||'square';o.frequency.setValueAtTime(f,t);o.frequency.exponentialRampToValueAtTime(Math.max(40,f*.3),t+d);g.gain.setValueAtTime(.06,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(Sonido._salida());o.start(t);o.stop(t+d+.02)}catch(_){}}
+function pasoNaves(dt){const j=juegoNaves;if(!j)return;j.t+=dt;for(const e of j.est){e.x-=e.v*dt;if(e.x<0){e.x=960;e.y=Math.random()*540}}
+  if(j.fin)return;
+  const v=(j.ab?1:0)-(j.arr?1:0)+(usandoMando?mandoMov[1]:0);if(j.objY!=null)j.y+=(j.objY-j.y)*Math.min(1,dt*10);else j.y+=v*330*dt;j.y=Math.max(70,Math.min(500,j.y));
+  j.cad-=dt;if(j.disp&&j.cad<=0){j.cad=.22;j.balas.push({x:110,y:j.y});sonNave(1200,.08)}
+  for(const b of j.balas)b.x+=720*dt;j.balas=j.balas.filter(b=>b.x<980);
+  if(!j.enemigas.length){j.espera-=dt;if(j.espera<=0){olaNaves(j);j.espera=1.6}}
+  for(const e of j.enemigas){e.x+=e.vx*dt;if(e.x<820)e.vx=Math.min(e.vx*.985,-35);e.y=e.y0+Math.sin(j.t*1.6+e.fase)*(30+e.tipo*14);e.cd-=dt;
+    if(e.cd<=0&&e.x<930){e.cd=1.4+Math.random()*2.2-Math.min(.9,j.ola*.08);const a=Math.atan2(j.y-e.y,90-e.x);j.balasE.push({x:e.x,y:e.y,vx:Math.cos(a)*260,vy:Math.sin(a)*260});sonNave(300,.12,'sawtooth')}
+    if(e.x<-30){e.x=1000;e.vx=-(60+j.ola*8)}}
+  for(const b of j.balasE){b.x+=b.vx*dt;b.y+=b.vy*dt}j.balasE=j.balasE.filter(b=>b.x>-20&&b.y>-20&&b.y<560);
+  // choques
+  for(const b of j.balas)for(const e of j.enemigas){if(e.vida>0&&Math.abs(b.x-e.x)<26&&Math.abs(b.y-e.y)<20){b.x=2000;e.vida--;if(e.vida<=0){j.pts+=e.tipo===2?300:e.tipo===1?150:100;for(let k=0;k<14;k++)j.chispas.push({x:e.x,y:e.y,vx:(Math.random()-.5)*300,vy:(Math.random()-.5)*300,v:.6});sonNave(180,.25,'triangle')}}}
+  j.enemigas=j.enemigas.filter(e=>e.vida>0);
+  j.inv=Math.max(0,j.inv-dt);
+  if(j.inv<=0){const golpe=j.balasE.find(b=>Math.abs(b.x-80)<24&&Math.abs(b.y-j.y)<16)||j.enemigas.find(e=>Math.abs(e.x-80)<36&&Math.abs(e.y-j.y)<28);
+    if(golpe){golpe.x=-100;j.vidas--;j.inv=2;sonNave(90,.5,'sawtooth');for(let k=0;k<20;k++)j.chispas.push({x:80,y:j.y,vx:(Math.random()-.5)*260,vy:(Math.random()-.5)*260,v:.8});
+      if(j.vidas<=0){j.fin=true;if(j.pts>j.rec){j.rec=j.pts;try{localStorage.setItem('arcadia-naves',j.pts)}catch(_){}}}}}
+  for(const c of j.chispas){c.x+=c.vx*dt;c.y+=c.vy*dt;c.v-=dt}j.chispas=j.chispas.filter(c=>c.v>0)}
+function dibujarNaves(g){const j=juegoNaves;if(!j)return;g.fillStyle='#05060f';g.fillRect(0,0,960,540);
+  for(const e of j.est){g.fillStyle='rgba(255,255,255,'+(e.v/160)+')';g.fillRect(e.x,e.y,e.v>100?2:1,1)}
+  // planeta Marte de fondo
+  {const gr=g.createRadialGradient(80,640,40,80,640,260);gr.addColorStop(0,'#d0603a');gr.addColorStop(1,'#5a1e10');g.fillStyle=gr;g.beginPath();g.arc(80,640,250,0,7);g.fill()}
+  // nave del jugador
+  if(!j.fin&&(j.inv<=0||Math.floor(j.t*12)%2)){g.save();g.translate(80,j.y);g.fillStyle='#4ad3ff';g.beginPath();g.moveTo(34,0);g.lineTo(-22,-18);g.lineTo(-12,0);g.lineTo(-22,18);g.closePath();g.fill();g.fillStyle='#fff';g.beginPath();g.ellipse(6,0,9,5,0,0,7);g.fill();
+    g.fillStyle='#ffb14a';g.beginPath();g.moveTo(-14,-6);g.lineTo(-30-Math.random()*12,0);g.lineTo(-14,6);g.fill();g.restore()}
+  g.fillStyle='#ffe14a';for(const b of j.balas)g.fillRect(b.x,b.y-2,16,4);
+  for(const e of j.enemigas){g.save();g.translate(e.x,e.y);const col=['#ff5f8f','#7cff6b','#b07cff'][e.tipo];g.fillStyle=col;
+    if(e.tipo===0){g.beginPath();g.moveTo(-24,0);g.lineTo(10,-16);g.lineTo(22,-6);g.lineTo(22,6);g.lineTo(10,16);g.closePath();g.fill()}
+    else if(e.tipo===1){g.beginPath();g.ellipse(0,0,22,12,0,0,7);g.fill();g.fillStyle='#10121a';g.fillRect(-8,-3,16,6)}
+    else{g.beginPath();for(let k=0;k<6;k++){const a=k/6*Math.PI*2;g.lineTo(Math.cos(a)*22,Math.sin(a)*22)}g.closePath();g.fill();if(e.vida>1){g.strokeStyle='#fff';g.lineWidth=2;g.stroke()}}
+    g.fillStyle='#fff';g.beginPath();g.arc(-6,0,3,0,7);g.fill();g.restore()}
+  g.fillStyle='#ff4a4a';for(const b of j.balasE){g.beginPath();g.arc(b.x,b.y,5,0,7);g.fill()}
+  for(const c of j.chispas){g.fillStyle='rgba(255,'+(150+Math.random()*100|0)+',80,'+Math.min(1,c.v*1.6)+')';g.fillRect(c.x,c.y,3,3)}
+  // vidas arriba a la izquierda, puntaje abajo a la derecha
+  for(let k=0;k<3;k++){g.fillStyle=k<j.vidas?'#ff5f8f':'rgba(255,255,255,.15)';g.save();g.translate(28+k*30,28);g.beginPath();g.moveTo(0,6);g.bezierCurveTo(-14,-6,-6,-14,0,-6);g.bezierCurveTo(6,-14,14,-6,0,6);g.fill();g.restore()}
+  g.fillStyle='#fff';g.font='700 22px monospace';g.textAlign='right';g.fillText(String(j.pts).padStart(6,'0'),940,522);g.font='12px monospace';g.fillStyle='#ffb14a';g.fillText(L3(['RÉCORD ','BEST ','RECORD '])+String(j.rec).padStart(6,'0'),940,494);
+  g.textAlign='left';g.fillStyle='rgba(255,255,255,.6)';g.fillText(L3(['OLA ','WAVE ','ONDATA '])+j.ola,130,32);
+  if(j.fin){g.fillStyle='rgba(5,6,15,.7)';g.fillRect(0,0,960,540);g.textAlign='center';g.fillStyle='#ff5f8f';g.font='800 54px Helvetica,Arial';g.fillText('GAME OVER',480,250);g.fillStyle='#fff';g.font='18px Helvetica,Arial';g.fillText(L3(['Puntaje: ','Score: ','Punteggio: '])+j.pts+'   ·   '+L3(['Enter o tocá para jugar otra vez','Enter or tap to play again','Invio o tocca per rigiocare']),480,295)}}
+// teclado y control mientras la computadora está abierta (no mueve nada del juego de fondo)
+addEventListener('keydown',e=>{if(!compuAbierta())return;e.stopImmediatePropagation();const k=e.key.toLowerCase();
+  if(k==='escape'){if(osApp)cerrarAppOS();else cerrarCompu();return}
+  if(osApp==='naves'&&juegoNaves){if(['arrowup','arrowdown',' '].includes(k))e.preventDefault();if(k==='w'||k==='arrowup')juegoNaves.arr=true;if(k==='s'||k==='arrowdown')juegoNaves.ab=true;if(k===' ')juegoNaves.disp=true;if(k==='enter'&&juegoNaves.fin)iniciarNaves()}},true);
+addEventListener('keyup',e=>{if(!compuAbierta())return;e.stopImmediatePropagation();const k=e.key.toLowerCase();if(juegoNaves){if(k==='w'||k==='arrowup')juegoNaves.arr=false;if(k==='s'||k==='arrowdown')juegoNaves.ab=false;if(k===' ')juegoNaves.disp=false}},true);
+function mandoCompu(p){if(p.apretado(1)){if(osApp)cerrarAppOS();else cerrarCompu();return}if(juegoNaves){juegoNaves.disp=p.botones[0]>.5;if(juegoNaves.fin&&p.apretado(0))iniciarNaves()}
+  else if(!osApp){const bs=[...document.querySelectorAll('#osCajas .os-caja')];let i=bs.indexOf(document.activeElement);if(p.apretado(12)){i=Math.max(0,i-1);bs[i].focus()}if(p.apretado(13)){i=Math.min(bs.length-1,i+1);bs[i].focus()}if(p.apretado(0)&&i>=0)bs[i].click()}
+  else if(p.apretado(0)){const b=$('#osRoverIr');if(b)b.click()}}
 // ===================== TELESCOPIO =====================
 // capas: [nombre es/en/it, radio relativo, color]
 const CUERPOS={
@@ -5891,7 +6324,7 @@ function pintarTele(){const L=CUERPOS[teleTab];teleSel=Math.min(teleSel,L.length
   $('#teleLista').querySelectorAll('button').forEach(b=>b.onclick=()=>{teleSel=+b.dataset.k;pintarTele();Sonido.efecto('nav')});
   const c=L[teleSel],ix=IDX(),et=k=>ix<0?k:(D_ETQ[k]||[k,k])[ix];
   $('.tele-corte').style.display=c.capas?'':'none';$('#teleCorteTxt').textContent=L3(['Ver por dentro (estructura)','See inside (structure)','Vedi dentro (struttura)']);
-  $('#teleInfo').innerHTML='<h3>'+L3(c.n)+'</h3><div class="sub">'+(teleTab==='planetas'?L3(['Visto desde Arcadia Planitia, Marte','Seen from Arcadia Planitia, Mars','Visto da Arcadia Planitia, Marte']):L3(['Objeto que viene de otra estrella','Object from another star','Oggetto che arriva da un\'altra stella']))+'</div><dl>'+c.d.map(([k,v])=>'<dt>'+et(k)+'</dt><dd>'+v+'</dd>').join('')+'</dl><p>'+L3(c.t)+'</p>'+(c.capas&&$('#teleCorte').checked?'<p><b>'+L3(['Capas, de adentro hacia afuera:','Layers, from the inside out:','Strati, dall\'interno all\'esterno:'])+'</b> '+c.capas.map(x=>'<span style="color:'+x[2]+'">●</span> '+L3(x[0])).join(' · ')+'</p>':'')+(c.te?'<p class="teoria">'+L3(c.te)+'</p>':'')}
+  $('#teleInfo').innerHTML='<h3>'+L3(c.n)+'</h3><div class="sub">'+(teleTab==='planetas'?L3(['Visto desde Arcadia Planitia, Marte','Seen from Arcadia Planitia, Mars','Visto da Arcadia Planitia, Marte']):L3(['Objeto que viene de otra estrella','Object from another star','Oggetto che arriva da un\'altra stella']))+'</div><dl>'+c.d.map(([k,v])=>'<dt>'+et(k)+'</dt><dd>'+v+'</dd>').join('')+'</dl><p>'+L3(c.t)+'</p>'+(c.capas&&$('#teleCorte').checked?'<p><b>'+L3(['Capas, de adentro hacia afuera:','Layers, from the inside out:','Strati, dall\'interno all\'esterno:'])+'</b> '+c.capas.map((x,k)=>'<span style="color:'+x[2]+'">●</span> <b>'+(k+1)+'</b> '+L3(x[0])).join(' · ')+'</p>':'')+(c.te?'<p class="teoria">'+L3(c.te)+'</p>':'')}
 function dibujarTele(){const cv=$('#teleCv'),g=cv.getContext('2d'),W=420,c=CUERPOS[teleTab][teleSel],t=teleT;g.clearRect(0,0,W,W);
   // estrellas fijas con un poco de titileo
   for(let k=0;k<120;k++){const x=(k*97.13)%W,y=(k*57.71+k*k*.37)%W,a=.25+.5*Math.abs(Math.sin(k*3.1+t*(.5+k%3)));g.fillStyle='rgba(255,255,255,'+a+')';g.fillRect(x,y,k%11?1:2,k%11?1:2)}
@@ -5913,11 +6346,13 @@ function dibujarTele(){const cv=$('#teleCv'),g=cv.getContext('2d'),W=420,c=CUERP
     g.fillStyle='#cfe3ff';g.font='12px Helvetica,Arial';g.textAlign='center';g.fillText(corte?L3(['Roca porosa','Porous rock','Roccia porosa']):L3(['Fobos (grande) y Deimos','Phobos (big) and Deimos','Phobos (grande) e Deimos']),cx,W-24);return}
   const r=c.id==='mercurio'?80:c.id==='urano'||c.id==='neptuno'?100:R;
   if(c.id==='saturno'&&!corte){g.save();g.translate(cx,cy);g.scale(1,.32);for(const[a,b,col]of[[1.25,1.6,'rgba(220,200,150,.75)'],[1.65,2.05,'rgba(235,215,170,.85)'],[2.1,2.25,'rgba(200,180,140,.5)']]){g.strokeStyle=col;g.lineWidth=(b-a)*r;g.beginPath();g.arc(0,0,(a+b)/2*r,Math.PI,2*Math.PI);g.stroke()}g.restore()}
-  if(corte){// corte con las capas, como una torta
-    for(let k=c.capas.length-1;k>=0;k--){const[,f,col]=c.capas[k];esfera(cx,cy,r*f,col,col);if(k===c.capas.length-1){esfera(cx,cy,r,c.col[0],c.col[1])}}
-    g.save();g.beginPath();g.moveTo(cx,cy);g.arc(cx,cy,r+1,-Math.PI/2,0);g.closePath();g.clip();for(let k=c.capas.length-1;k>=0;k--){const[,f,col]=c.capas[k];g.fillStyle=col;g.beginPath();g.arc(cx,cy,r*f,0,7);g.fill()}g.restore();
-    g.font='11px Helvetica,Arial';g.textAlign='left';c.capas.forEach(([n,f,col],k)=>{const a=-Math.PI/4,rr=r*(k?(c.capas[k-1][1]+f)/2:f/2);const x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr;g.fillStyle='#fff';g.beginPath();g.arc(x,y,2.5,0,7);g.fill();g.strokeStyle='rgba(255,255,255,.6)';g.beginPath();g.moveTo(x,y);g.lineTo(cx+r+14,cy-r+20+k*22);g.stroke();g.fillText(L3(n),Math.min(W-150,cx+r+16),cy-r+24+k*22)});
-    return}
+  if(corte){// corte en cuña: se ve la superficie y un cuarto abierto con las capas numeradas
+    esfera(cx,cy,r,c.col[0],c.col[1]);sombra(cx,cy,r);
+    g.save();g.beginPath();g.moveTo(cx,cy);g.arc(cx,cy,r+1,-Math.PI/2,0);g.closePath();g.clip();for(let k=c.capas.length-1;k>=0;k--){const[,f,col]=c.capas[k];const gr=g.createRadialGradient(cx,cy,0,cx,cy,r*f);gr.addColorStop(0,col);gr.addColorStop(1,col);g.fillStyle=gr;g.beginPath();g.arc(cx,cy,r*f,0,7);g.fill();g.strokeStyle='rgba(0,0,0,.35)';g.lineWidth=1;g.stroke()}g.restore();
+    g.strokeStyle='rgba(255,255,255,.5)';g.lineWidth=1.5;g.beginPath();g.moveTo(cx,cy-r);g.lineTo(cx,cy);g.lineTo(cx+r,cy);g.stroke();
+    g.font='700 15px Helvetica,Arial';g.textAlign='center';g.textBaseline='middle';
+    c.capas.forEach(([,f],k)=>{const r0=k?c.capas[k-1][1]:0,rr=r*(r0+f)/2,a=-Math.PI/4,x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr;g.fillStyle='rgba(0,0,0,.65)';g.beginPath();g.arc(x,y,11,0,7);g.fill();g.fillStyle='#fff';g.fillText(String(k+1),x,y+1)});
+    g.textBaseline='alphabetic';return}
   esfera(cx,cy,r,c.col[0],c.col[1]);
   if(c.id==='jupiter')bandas(cx,cy,r,['#c9a57a','#e9d5b5','#a8774f','#f0e2c8'],true);
   if(c.id==='saturno')bandas(cx,cy,r,['#e6cf98','#d4b67a','#f2e3bd'],false);
@@ -5929,7 +6364,7 @@ function dibujarTele(){const cv=$('#teleCv'),g=cv.getContext('2d'),W=420,c=CUERP
   if(c.id==='neptuno'){g.fillStyle='rgba(20,30,90,.6)';g.beginPath();g.ellipse(cx-30,cy-20,26,14,0,0,7);g.fill();g.fillStyle='rgba(255,255,255,.6)';g.beginPath();g.ellipse(cx-10,cy-44,22,4,0,0,7);g.fill()}
   sombra(cx,cy,r);
   if(c.id==='saturno'){g.save();g.translate(cx,cy);g.scale(1,.32);for(const[a,b,col]of[[1.25,1.6,'rgba(220,200,150,.75)'],[1.65,2.05,'rgba(235,215,170,.85)'],[2.1,2.25,'rgba(200,180,140,.5)']]){g.strokeStyle=col;g.lineWidth=(b-a)*r;g.beginPath();g.arc(0,0,(a+b)/2*r,0,Math.PI);g.stroke()}g.restore()}
-  if(c.id==='jupiter'){const lunas=[[1.6,1.77],[2.1,3.55],[2.6,7.15],[3.1,16.7]];lunas.forEach(([d,p],k)=>{const a=t*2/p+k;const x=cx+Math.cos(a)*d*r*.62,z=Math.sin(a);if(Math.abs(x-cx)<r&&z<0)return;g.fillStyle=['#f1e07a','#e6d9c3','#bfb2a0','#8a7f72'][k];g.beginPath();g.arc(x,cy+Math.sin(a)*4,4,0,7);g.fill()})}
+  if(c.id==='jupiter'){const lunas=[[1.2,1.77],[1.37,3.55],[1.55,7.15],[1.72,16.7]];lunas.forEach(([d,p],k)=>{const a=t*2/p+k;const x=cx+Math.cos(a)*d*r,z=Math.sin(a);if(Math.abs(x-cx)<r&&z<0)return;g.fillStyle=['#f1e07a','#e6d9c3','#bfb2a0','#8a7f72'][k];g.beginPath();g.arc(x,cy+Math.sin(a)*4,4,0,7);g.fill()})}
 }
 document.querySelectorAll('#telescopio [data-tp]').forEach(b=>b.onclick=()=>{teleTab=b.dataset.tp;teleSel=0;pintarTele();Sonido.efecto('nav')});
 $('#teleX').onclick=cerrarTelescopio;$('#telescopio').onclick=e=>{if(e.target.id==='telescopio')cerrarTelescopio()};$('#teleCorte').onchange=()=>{pintarTele();Sonido.efecto('nav')};
@@ -6100,6 +6535,7 @@ function pickCentro(){mouse.set(0,0);ray.setFromCamera(mouse,camera);return pick
 window.manejarMandoJuego=function(p,dt){
   const B=acc=>p.apretado(Ajustes.boton(acc));
   if(MJ){modoMando(true);mandoMinijuego(p,dt);return}
+  if(compuAbierta()){modoMando(true);mandoCompu(p);return}
   if(enGranja){const bs=[...$('#granjaBtns').querySelectorAll('button')];granjaFoco=Math.max(0,Math.min(bs.length-1,granjaFoco));
     if(p.apretado(14))granjaFoco=(granjaFoco+bs.length-1)%bs.length;if(p.apretado(15))granjaFoco=(granjaFoco+1)%bs.length;bs.forEach((b,k)=>b.classList.toggle('foco-mando',k===granjaFoco));
     if(p.apretado(0))bs[granjaFoco]?.click();if(p.apretado(1))salirGranja();return}
@@ -6320,7 +6756,7 @@ function loop(now){
   if(enIntro)updateIntro(dt);
   else if(speed&&!S.over){let hrs=dt*speed/HOUR_SEC;while(hrs>0){const h=Math.min(.25,hrs);step(h);hrs-=h}}
   if(!camaraGranja()&&!(modoRover&&!hayModalAbierto()&&(updateRover(dt),true))&&!(modoCadete!=='auto'&&!enIntro&&!hayModalAbierto()&&cadeteManual(dt)))updateCamera(dt);
-  updateTormenta(dt);updateMinijuego(dt);updateHoldTecla(dt);updateMinimapa(dt);updateAudioBase(dt);
+  updateTormenta(dt);updateMinijuego(dt);updateHoldTecla(dt);updateMinimapa(dt);updateAudioBase(dt);updateHack(dt);updateExpedicion();
   if(usandoMando&&!enIntro){mouse.set(0,0);ray.setFromCamera(mouse,camera);hoverCell=groundCell()} // con el control se apunta con la mira del centro
   updateGhost();updateEnv();updateRemolinos(dt,clockT);updateInteriores(clockT);updateObras(dt);updatePuertas(dt);updateTripulacion(dt);if(enIntro)PJ.forEach(P=>P.g.visible=false);if(!enIntro&&speed&&!S.over)robotsRegolito(dt);
   // contorno del sector alrededor de la construcción seleccionada
@@ -6713,10 +7149,11 @@ function updateTripulacion(dt){
       else if(!k)P.enRadiacion=false}
     if(manual){continue}
     // tormenta: los que están afuera vuelven solos al hábitat
-    if((hayTormenta()||tormentaInminente())&&P.fuera&&(!P.dest||P.dest.ext)&&P.estado!=='dormir'&&ctrl){const r=rutaHacia(P,{m:ctrl});if(r&&r.length){P.ruta=r;P.dest={m:ctrl};P.estado='caminar';P.lugar=null;if(P.id==='cadete'&&modoCadete!=='auto'){P.forzado=true;avisoCentro('¡Tormenta! Tu cadete vuelve al hábitat por la esclusa.')}}}
+    if((hayTormenta()||tormentaInminente())&&P.fuera&&!P.expedicion&&(!P.dest||P.dest.ext)&&P.estado!=='dormir'&&ctrl){const r=rutaHacia(P,{m:ctrl});if(r&&r.length){P.ruta=r;P.dest={m:ctrl};P.estado='caminar';P.lugar=null;if(P.id==='cadete'&&modoCadete!=='auto'){P.forzado=true;avisoCentro('¡Tormenta! Tu cadete vuelve al hábitat por la esclusa.')}}}
     if(!P.fuera&&!zonaDe(P.g.position).tipo.match(/dom|tunel/)&&!P.ruta.length&&ctrl){const hb=hubLocal(ctrl);P.g.position.copy(aMundoDom(ctrl,hb.x,hb.z));P.g.position.y=PISO}
     if(P.estado==='dormir'){P.g.rotation.set(0,P.yaw,0);P.g.rotateZ(Math.PI/2);animarPersona(P,dt,'dormir');if(!(S.hour>=22||S.hour<6.5)&&!P.durmiendoForzado){P.estado='pensar';P.t=0;P.lugar=null;P.g.rotation.set(0,P.yaw,0);P.g.position.copy(P.antesDormir||P.g.position);P.g.position.y=PISO}continue}
     if(!dtj){animarPersona(P,dt,P.estado==='hacer'?(P.actividad==='cinta'?'correr':'trabajar'):'quieto');continue}
+    if(P.expedicion&&P.estado!=='caminar'){animarPersona(P,dtj,'quieto');continue}
     if(P.estado==='pensar'){P.t-=dtj;animarPersona(P,dtj,'quieto');if(P.t<=0){const d=elegirDestino(P);const r=d&&rutaHacia(P,d);if(r&&r.length){P.ruta=r;P.dest=d;P.estado='caminar';P.lugar=d.m?{m:d.m,L:d.k}:null}else P.t=2+Math.random()*3}continue}
     if(P.estado==='caminar'){
       const w=P.ruta[0];if(!w){P.estado='hacer';P.t=5+Math.random()*7;continue}
@@ -6793,12 +7230,15 @@ function ponerRoverEnBase(){
   if(!S.rover||S.rover.enBase!==false){const c=ESC.contenedor;S.rover={x:c.pos.x,z:c.pos.z,yaw:c.yaw+Math.PI,enBase:true}}
   roverObj.g.position.set(S.rover.x,0,S.rover.z);roverObj.g.rotation.y=S.rover.yaw;
 }
-function manejarRover(on){
+let roverFP=false;
+function manejarRover(on,fp){
   if(on){if(!roverObj||!ESC){avisoCentro('Hace falta una esclusa (el rover vive en su contenedor).');Sonido.efecto('error');return}
     if(hayTormenta()){avisoCentro('Con tormenta el rover se queda en su contenedor.');Sonido.efecto('error');return}
     if(modoConstruccion)setModoConstruccion(false);modoRover=true;S.rover.enBase=false;const c=ESC.contenedor;S.rover.x=c.boca.x;S.rover.z=c.boca.z;S.rover.yaw=c.yaw;camS.dist=16;camS.pitch=.72;
-    document.body.classList.add('manejando-rover');Sonido.efecto('servo');toast('Manejás el rover: recorré la zona para descubrir hielo bajo el suelo.');}
-  else{modoRover=false;document.body.classList.remove('manejando-rover');S.rover.enBase=true;ponerRoverEnBase();placeCamera();Sonido.efecto('atras');Sonido.motor(0)}
+    document.body.classList.add('manejando-rover');Sonido.efecto('servo');toast('Manejás el rover: recorré la zona para descubrir hielo bajo el suelo.');
+    roverFP=!!fp;document.body.classList.toggle('rover-fp',roverFP);$('#roverCam').hidden=!roverFP;if(roverFP){camera.near=.05;camera.updateProjectionMatrix();$('#rcTit').textContent=L3(['CÁMARA DEL ROVER','ROVER CAMERA','TELECAMERA DEL ROVER']);$('#rcAyuda').textContent=usandoMando?L3(['Stick: manejar · B: salir','Stick: drive · B: exit','Stick: guida · B: esci']):L3(['W / S avanzar · A / D girar · Esc salir','W / S drive · A / D turn · Esc exit','W / S avanti · A / D gira · Esc esci'])}}
+  else{if(roverFP){roverFP=false;document.body.classList.remove('rover-fp');$('#roverCam').hidden=true;camera.near=modoCadete==='fp'?.04:.5;camera.updateProjectionMatrix();if(roverObj)roverObj.g.visible=true}
+    modoRover=false;document.body.classList.remove('manejando-rover');S.rover.enBase=true;ponerRoverEnBase();placeCamera();Sonido.efecto('atras');Sonido.motor(0)}
 }
 let roverPing=0;
 function updateRover(dt){
@@ -6819,6 +7259,8 @@ function updateRover(dt){
   const k=Math.min(1,dt*4);camS.tx+=(R.x-camS.tx)*k;camS.tz+=(R.z-camS.tz)*k;
   if(tiene('girarIzq'))camS.yaw+=1.6*dt*sens;if(tiene('girarDer'))camS.yaw-=1.6*dt*sens;
   placeCamera();
+  if(roverFP){const fx=Math.sin(R.yaw),fz=Math.cos(R.yaw),bam=Math.sin(clockT*9)*.012*Math.min(1,Math.abs(f));camera.position.set(R.x+fx*.55,1.32+bam,R.z+fz*.55);camera.lookAt(R.x+fx*8,1.05,R.z+fz*8);
+    roverObj.g.visible=false}
 }
 // ---- cadete en manual ----
 const NOMBRE_MODO={auto:'AUTO',arriba:'MANUAL',fp:'1.ª PERS.'};
@@ -6948,7 +7390,7 @@ function ponerClima(on){S.climaOn=on;
   else{S.climaHoras=18+rnd()*24;programarTormenta();toast('Clima activado: vuelven las ventiscas, los tornados y las tormentas solares.','')}
   pintarClimaBtn();renderStats();renderInfo()}
 Ajustes.alCambiar(()=>{construirStats();renderStats();renderCats();if(panelTipo)renderPanelDer();if(misionVisible)renderMision();renderInfo();if(!$('#pausa').hidden)renderPausa();aplicarCalidad();pintarIconosHud()});
-window.__hab={rebuildConnectors:()=>rebuildConnectors(),get scene(){return scene},get camera(){return camera},get renderer(){return renderer},feedDe:m=>feedDe(m),ver:m=>{sel=m;showEnergy=false;renderInfo()},pasoTut:k=>{tutorial={k,alTerminar:null,prev:1};$('#tutorial').hidden=false;pasoTutorial()},get ESC(){return ESC},get PUERTAS(){return PUERTAS},manejarRover,hacerActividad,get modoRover(){return modoRover},cambiarModalidad,moverCadete,get PJ(){return PJ},setModoCadete,get modoCadete(){return modoCadete},get notifs(){return notifs},abrirNotifs,cerrarNotifs,get tuneles(){return tuneles},get S(){return S},get tutorial(){return tutorial},sigTutorial,finTutorial,abrirMinijuego,get MJ(){return MJ},verDentroGranja,salirGranja,dañosTormenta,camS,saltarIntro,get guia(){return guia},abrirPausa,construirConRobots,startRocket:b=>startRocket(b),Radio,irYJugar:(...a)=>irYJugar(...a),llamarTripulacion:(...a)=>llamarTripulacion(...a),addMod:(...a)=>{const m=addMod(...a);rebuildConnectors();return m},cellToClient:(x,y)=>{const[wx,wz]=cellToWorld(x,y);const v=new THREE.Vector3(wx,0,wz).project(camera);return[(v.x+1)/2*innerWidth,(1-v.y)/2*innerHeight]}};
+window.__hab={rebuildConnectors:()=>rebuildConnectors(),get scene(){return scene},get camera(){return camera},get renderer(){return renderer},feedDe:m=>feedDe(m),ver:m=>{sel=m;showEnergy=false;renderInfo()},pasoTut:k=>{tutorial={k,alTerminar:null,prev:1};$('#tutorial').hidden=false;pasoTutorial()},get ESC(){return ESC},get PUERTAS(){return PUERTAS},manejarRover,hacerActividad,get modoRover(){return modoRover},cambiarModalidad,moverCadete,get PJ(){return PJ},setModoCadete,get modoCadete(){return modoCadete},get notifs(){return notifs},abrirNotifs,cerrarNotifs,get tuneles(){return tuneles},get S(){return S},get tutorial(){return tutorial},sigTutorial,finTutorial,abrirMinijuego,get MJ(){return MJ},verDentroGranja,salirGranja,dañosTormenta,camS,saltarIntro,get guia(){return guia},abrirPausa,construirConRobots,startRocket:b=>startRocket(b),Radio,abrirCompu:()=>abrirCompu(),abrirAppOS:a=>abrirAppOS(a),abrirTelescopio:()=>abrirTelescopio(),iniciarHack:()=>iniciarHack(),abrirTerminal:()=>abrirTerminal(),tmComando:c=>tmComando(c),abrirExpedicion:()=>abrirExpedicion(),get juegoNaves(){return juegoNaves},irYJugar:(...a)=>irYJugar(...a),llamarTripulacion:(...a)=>llamarTripulacion(...a),addMod:(...a)=>{const m=addMod(...a);rebuildConnectors();return m},cellToClient:(x,y)=>{const[wx,wz]=cellToWorld(x,y);const v=new THREE.Vector3(wx,0,wz).project(camera);return[(v.x+1)/2*innerWidth,(1-v.y)/2*innerHeight]}};
 requestAnimationFrame(loop);
 }
 </script>
@@ -7675,6 +8117,7 @@ window.Opciones=Opciones;
 
 <section id="edl" hidden aria-label="Aterrizaje del rover">
   <button class="chip-btn edl-skip" id="edl-skip">Saltar aterrizaje →</button>
+  <div class="edl-orb"><span id="edl-orb-txt">Arrastrá para girar la cámara · rueda para acercar</span> <button class="chip-btn" id="edl-auto" hidden>Cámara automática</button></div>
   <div class="panel edl-tele mono">
     <span class="k">Altitud</span><span class="v" id="edl-alt">125 km</span>
     <span class="k">Velocidad</span><span class="v" id="edl-vel">19.500 km/h</span>
@@ -7733,9 +8176,10 @@ const mix = (a, b, t) => a + (b - a) * t;
 function terrace(t, steps, sharp) { const v = t * steps; const fl = Math.floor(v); return (fl + smooth(sharp, 1, v - fl)) / steps; }
 function crater(x, z, cx, cz, r, depth) { const d = Math.hypot(x - cx, z - cz) / r; if (d > 1.8) return 0; const bowl = d < 1 ? -depth * (1 - d * d) : 0; return bowl + depth * 0.35 * Math.exp(-(((d - 1) / 0.2) ** 2)); }
 function rng(seed) { let s = seed >>> 0; return () => { s = (s + 0x6D2B79F5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
-const fmt1 = (n) => n.toFixed(1).replace('.', ',');
+const idiomaExp = () => { try { return typeof Ajustes !== 'undefined' ? Ajustes.get('idioma') : 'es'; } catch (_) { return 'es'; } };
+const fmt1 = (n) => idiomaExp() === 'en' ? n.toFixed(1) : n.toFixed(1).replace('.', ',');
 const fmtLat = (l) => `${fmt1(Math.abs(l))}° ${l >= 0 ? 'N' : 'S'}`;
-const fmtLon = (l) => `${fmt1(Math.abs(l))}° ${l >= 0 ? 'E' : 'O'}`;
+const fmtLon = (l) => `${fmt1(Math.abs(l))}° ${l >= 0 ? 'E' : idiomaExp() === 'en' ? 'W' : 'O'}`;
 
 /* ================= Terrenos por lugar ================= */
 /* ================= Terreno real =================
@@ -9211,7 +9655,21 @@ function buildEDL() {
   plasmaM.vertexColors = true; plasmaM.color.set('#ffffff');
   const plasma = new THREE.Mesh(pgeo, plasmaM); plasma.position.y = 3.6;
   const core = new THREE.Mesh(new THREE.SphereGeometry(2.6, 24, 12), coreM); core.scale.y = 0.35; core.position.y = -0.8;
-  cap.add(cone, top, heat, plasma, core); shadow(cap); g.add(cap);
+  cap.add(cone, top, heat, plasma, core);
+  {const det = M('#9a958c', { metalness: 0.5 }), oscM = M('#2b2a28', { metalness: 0.6 });
+   const banda = new THREE.Mesh(new THREE.CylinderGeometry(1.62, 1.66, 0.14, 40, 1, true), M('#b9b2a5', { side: THREE.DoubleSide })); banda.position.y = 1.3; cap.add(banda);
+   const borde = new THREE.Mesh(new THREE.TorusGeometry(2.24, 0.07, 8, 48), oscM); borde.rotation.x = Math.PI / 2; borde.position.y = 0.02; cap.add(borde);
+   for (let i = 0; i < 4; i++) { const a = i * Math.PI / 2 + Math.PI / 4, rcs = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.28, 0.16), oscM); rcs.position.set(Math.cos(a) * 1.25, 2.05, Math.sin(a) * 1.25); rcs.rotation.y = -a; cap.add(rcs);
+     const tob = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.07, 0.12, 8), det); tob.position.set(Math.cos(a) * 1.38, 2.0, Math.sin(a) * 1.38); tob.rotation.z = Math.PI / 2; tob.rotation.y = -a; cap.add(tob); }
+   const ant = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 0.35, 12), det); ant.position.set(0.6, 3.05, 0.2); cap.add(ant);
+   const ant2 = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.3, 12), det); ant2.position.set(-0.5, 3.15, -0.25); cap.add(ant2);
+   for (let i = 0; i < 24; i++) { const a = i / 24 * Math.PI * 2, rib = new THREE.Mesh(new THREE.BoxGeometry(0.03, 2.4, 0.03), det); rib.position.set(Math.cos(a) * 1.62, 1.2, Math.sin(a) * 1.62); rib.rotation.z = Math.cos(a) * -0.47; rib.rotation.x = Math.sin(a) * 0.47; cap.add(rib); } }
+  shadow(cap); g.add(cap);
+  // chispas y plasma que se desprenden del escudo durante la entrada
+  const SPN = 260, spPos = new Float32Array(SPN * 3), spSeed = new Float32Array(SPN * 3);
+  for (let i = 0; i < SPN; i++) { spSeed[i * 3] = Math.random() * Math.PI * 2; spSeed[i * 3 + 1] = 0.6 + Math.random() * 1.7; spSeed[i * 3 + 2] = Math.random(); }
+  const spG = new THREE.BufferGeometry(); spG.setAttribute('position', new THREE.BufferAttribute(spPos, 3));
+  const chispas = new THREE.Points(spG, new THREE.PointsMaterial({ color: '#ffb070', size: 0.55, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, fog: false })); chispas.frustumCulled = false; g.add(chispas);
 
   // Paracaídas de 21,5 m con gajos blancos y naranjas
   const cc = document.createElement('canvas'); cc.width = 512; cc.height = 128; const cx = cc.getContext('2d');
@@ -9231,6 +9689,10 @@ function buildEDL() {
   const ds = new THREE.Group(); ds.rotation.order = 'YXZ'; ds.visible = false;
   const foil = M('#c6a04c', { metalness: 0.85, roughness: 0.35 }), dark = M('#2f2d2b', { metalness: 0.5 }), white = M('#e6e2da');
   ds.add(new THREE.Mesh(new THREE.BoxGeometry(1.9, 0.5, 1.9), foil));
+  { const radar = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.38, 0.16, 16), dark); radar.position.set(0, -0.32, 0.55); ds.add(radar);
+    const lente = new THREE.Mesh(new THREE.CircleGeometry(0.22, 16), M('#1a2a3a', { metalness: 0.9, roughness: 0.1 })); lente.rotation.x = Math.PI / 2; lente.position.set(0, -0.41, 0.55); ds.add(lente);
+    const caja = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.25, 0.5), white); caja.position.set(0, 0.36, -0.55); ds.add(caja);
+    for (const sx of [-1, 1]) { const pan = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.4, 1.4), M('#8a6a2a', { metalness: 0.9, roughness: 0.3 })); pan.position.set(sx * 0.97, 0.05, 0); ds.add(pan); } }
   const flames = [];
   [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach(([sx, sz]) => {
     const tank = new THREE.Mesh(new THREE.SphereGeometry(0.36, 16, 12), white); tank.position.set(sx * 0.62, 0.42, sz * 0.62); ds.add(tank);
@@ -9260,7 +9722,7 @@ function buildEDL() {
   const fdir = new THREE.Vector3(Math.sin(st.yaw), 0, Math.cos(st.yaw));
   const side = new THREE.Vector3(Math.cos(st.yaw), 0, -Math.sin(st.yaw));
   const L = new THREE.Vector3(st.x, H(st.x, st.z), st.z);
-  cur.edl = { T: 0, g, cap, heat, plasmaM, coreM, chute, ds, flames, cables, dpts, dvel: new Float32Array(DN * 3), dlife: new Float32Array(DN), dNext: 0, emitAcc: 0,
+  cur.edl = { T: 0, g, cap, heat, plasmaM, coreM, chute, ds, flames, cables, dpts, chispas, spSeed, orb: { yaw: 0, pitch: 0, zoom: 1, usado: false }, dvel: new Float32Array(DN * 3), dlife: new Float32Array(DN), dNext: 0, emitAcc: 0,
     fdir, side, L, heatV: 0, heatFree: false, phase: -1, crashed: false, crashPos: null, camPos: null, camLook: new THREE.Vector3() };
 }
 
@@ -9312,6 +9774,9 @@ function updateEDL(dt) {
   }
   const heatGlow = T < 5 ? smooth(0, 1.2, T) * (1 - smooth(3.6, 4.9, T)) : 0;
   e.plasmaM.opacity = heatGlow * (0.38 + 0.12 * Math.sin(T * 37)); e.coreM.opacity = heatGlow * 0.55;
+  { const sp = e.chispas, pa = sp.geometry.attributes.position.array, sd0 = e.spSeed; sp.material.opacity = heatGlow * 0.9; sp.visible = heatGlow > 0.02;
+    if (sp.visible) for (let i = 0; i < sd0.length / 3; i++) { const a = sd0[i * 3], r = sd0[i * 3 + 1], f0 = (T * 1.8 + sd0[i * 3 + 2]) % 1; pa[i * 3] = e.cap.position.x + Math.cos(a) * r * (1 + f0 * 1.6); pa[i * 3 + 1] = e.cap.position.y + 0.2 + f0 * 22; pa[i * 3 + 2] = e.cap.position.z + Math.sin(a) * r * (1 + f0 * 1.6); }
+    sp.geometry.attributes.position.needsUpdate = true; }
 
   // Paracaídas
   if (T >= 5) {
@@ -9395,6 +9860,9 @@ function updateEDL(dt) {
   e.camPos.lerp(_cpos, k); e.camLook.lerp(_clook, k);
   const cam = cur.camera;
   cam.position.copy(e.camPos);
+  if (e.orb.usado) { const o = e.orb, off = e.camPos.clone().sub(e.camLook), up = new THREE.Vector3(0, 1, 0);
+    off.applyAxisAngle(up, o.yaw); const lado = new THREE.Vector3().crossVectors(off, up).normalize(); if (lado.lengthSq() > 0) off.applyAxisAngle(lado, -o.pitch);
+    off.multiplyScalar(o.zoom); cam.position.copy(e.camLook).add(off); }
   cam.position.y = Math.max(cam.position.y, H(cam.position.x, cam.position.z) + 1.5);
   if (!reduceMotion) {
     const shake = heatGlow * 0.35 + (T > 10 && T < 20 ? 0.03 : 0);
@@ -9411,6 +9879,8 @@ function resetRoverToStart() {
   Object.assign(st, { x: s.start.x, z: s.start.z, yaw: s.start.yaw, speed: 0, hc: s.height(s.start.x, s.start.z), pitch: 0, roll: 0 });
   cur.rover.g.visible = true; cur.camPos = null;
 }
+(function () { const st = document.createElement('style'); st.textContent = '.edl-orb{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);display:flex;gap:8px;align-items:center;font-size:12px;color:#fff;background:rgba(0,0,0,.45);padding:5px 10px;border-radius:8px;pointer-events:auto;white-space:nowrap}@media (max-width:700px){.edl-orb{bottom:auto;top:56px}}'; document.head.appendChild(st);
+  const b = document.getElementById('edl-auto'); if (b) b.onclick = () => { if (cur && cur.edl) { Object.assign(cur.edl.orb, { yaw: 0, pitch: 0, zoom: 1, usado: false }); b.hidden = true; } }; })();
 function startEDL() {
   if (cur.edl) { disposeScene(cur.edl.g); cur.scene.remove(cur.edl.g); cur.edl = null; }
   closeModal(); $('#warn').hidden = true;
@@ -9418,7 +9888,7 @@ function startEDL() {
   resetRoverToStart();
   stowHeli(); $('#heli-msg').hidden = true; updateModeUi();
   buildEDL();
-  $('#hud').hidden = true; $('#edl').hidden = false;
+  $('#hud').hidden = true; $('#edl').hidden = false; $('#edl-auto').hidden = true;
 }
 function endEDL() {
   try { if (window.Sonido && window.Sonido.edl) window.Sonido.edl(null); } catch (_) {}
@@ -9627,6 +10097,7 @@ cvs.addEventListener('pointermove', (e) => {
   if (!drag) return;
   const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.x = e.clientX; drag.y = e.clientY; drag.moved += Math.abs(dx) + Math.abs(dy);
   if (mode === 'menu') { autoRot = false; gTY += dx * 0.006; gTX = clamp(gTX + dy * 0.004, -1, 1); }
+  else if (cur && cur.edl) { const o = cur.edl.orb; o.usado = true; o.yaw -= dx * 0.007; o.pitch = clamp(o.pitch + dy * 0.005, -0.7, 1.1); $('#edl-auto').hidden = false; }
   else if (cur) { if (cur.ctrl === 'heli') cur.heli.camOff -= dx * 0.006; else cur.camOff -= dx * 0.006; }
 });
 cvs.addEventListener('pointerup', (e) => {
@@ -9639,10 +10110,13 @@ cvs.addEventListener('pointerup', (e) => {
   drag = null;
 });
 cvs.addEventListener('wheel', (e) => {
+  if (cur && cur.edl) { const o = cur.edl.orb; o.usado = true; o.zoom = clamp(o.zoom * (1 + e.deltaY * 0.0012), 0.3, 3.2); $('#edl-auto').hidden = false; e.preventDefault(); return; }
   if (mode !== 'site' || !cur) return;
   if (cur.ctrl === 'heli') { if (cur.heli.camMode === 'chase') { cur.heli.camDist = clamp(cur.heli.camDist + e.deltaY * 0.005, 2.5, 15); e.preventDefault(); } }
   else if (cur.camMode === 'chase') { cur.camDist = clamp(cur.camDist + e.deltaY * 0.01, 5, 28); e.preventDefault(); }
 }, { passive: false });
+// en pantallas táctiles: dos dedos para acercar
+{ let dd = null; cvs.addEventListener('touchmove', (e) => { if (!cur || !cur.edl || e.touches.length !== 2) return; const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); if (dd) { const o = cur.edl.orb; o.usado = true; o.zoom = clamp(o.zoom * dd / d, 0.3, 3.2); $('#edl-auto').hidden = false; } dd = d; e.preventDefault(); }, { passive: false }); cvs.addEventListener('touchend', () => dd = null); }
 
 /* ---------- Bucle ---------- */
 function resize() {
