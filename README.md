@@ -46,8 +46,8 @@ One sol (Martian day) lasts 10 minutes of play at ×1 speed. When each mission f
 
 ## PROMPT 8 changes
 
-- **Phones:** the game adapts to phone screens and is played in landscape only (portrait shows «Turn your phone»). On touch screens an emulator-style overlay appears: a D-pad on the left (move), **A** (use / interact), **B** (cancel), **C** (switch view: auto → third person → first person), **■** pause and **▶** objectives; pinch to zoom and drag to look. It also works in Explore.
-- **Minimap** in third and first person, with an icon for each room (🖥 control, 🛏 dormitory, 🔬 research, 💧 water, 🍳 kitchen, 🌱 farm, ☢ KRUSTY…), the crew and north. In first person it turns with your cadet.
+- **Phones:** the game adapts to phone screens and is played in landscape only (portrait shows «Turn your phone»). While you control your cadet (third or first person) on a touch screen, an emulator-style overlay appears: a D-pad on the left (move), **A** (use / interact), **B** (cancel), **C** (switch view: auto → third person → first person), **■** pause and **▶** objectives; pinch to zoom and drag to look. It also works in Explore.
+- **Minimap** only while you control your cadet (third or first person), with an icon for each room (🖥 control, 🛏 dormitory, 🔬 research, 💧 water, 🍳 kitchen, 🌱 farm, ☢ KRUSTY…), the crew and north. In first person it turns with your cadet.
 - **Storm alarm:** when a storm is about to hit, a shelter-style siren sounds and a flashing alert shows how many astronauts are still outside; they run back into the habitat and the alert stops once everyone is inside.
 - **KRUSTY:** a visible **radiation field** (yellow ring with radiation signs, 4.5 m) with a warning when your cadet walks in, and its **own minigame**: lower the control rods until the temperature stays in the green band. Solar panels keep the cleaning minigame, now with a relaxing cloth sound.
 - **More astronauts:** with the Communications antenna and at least 2 free beds, Earth sends a crew ship with 2 astronauts within a few hours; the newcomers appear and live in the base.
