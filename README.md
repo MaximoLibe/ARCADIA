@@ -44,6 +44,19 @@ One sol (Martian day) lasts 10 minutes of play at ×1 speed. When each mission f
 
 **Building:** every structure can be up to 3 squares away from the base; domes that are lined up are joined automatically by long tunnels. Everything (including the starting base) can be moved, rotated or dismantled. Before building, «Are you sure?» appears. In Free mode building costs no budget. The statistics at the top are grouped into **HOUSING** (water, oxygen, food, energy, protection and budget) and the **player's name** (sanity, wellbeing and health). The build panel slides in from the left and the white **BUILD MODE** tab drops from the box at the top right. Every build order is carried out by three humanoid robots that assemble it in 5 seconds. Also included: a **Research habitat** (desks, ergonomic chairs, lights and computers), **huge methane tanks** (they replace batteries: spare energy is stored as methane) and **5 gas tanks** of 0.6 × 1.90 m (O₂, N₂, CH₄, CO₂ and CO). The Control Module has no beds (the base starts with a dormitory). Every module has a security camera outside and, at the same height inside, a screen that shows the outside in real time. The KRUSTY reactor, the ice drill (auger with tripod), the furniture and the cameras are the team's 3D models.
 
+## PROMPT 8 changes
+
+- **Phones:** the game adapts to phone screens and is played in landscape only (portrait shows «Turn your phone»). On touch screens an emulator-style overlay appears: a D-pad on the left (move), **A** (use / interact), **B** (cancel), **C** (switch view: auto → third person → first person), **■** pause and **▶** objectives; pinch to zoom and drag to look. It also works in Explore.
+- **Minimap** in third and first person, with an icon for each room (🖥 control, 🛏 dormitory, 🔬 research, 💧 water, 🍳 kitchen, 🌱 farm, ☢ KRUSTY…), the crew and north. In first person it turns with your cadet.
+- **Storm alarm:** when a storm is about to hit, a shelter-style siren sounds and a flashing alert shows how many astronauts are still outside; they run back into the habitat and the alert stops once everyone is inside.
+- **KRUSTY:** a visible **radiation field** (yellow ring with radiation signs, 4.5 m) with a warning when your cadet walks in, and its **own minigame**: lower the control rods until the temperature stays in the green band. Solar panels keep the cleaning minigame, now with a relaxing cloth sound.
+- **More astronauts:** with the Communications antenna and at least 2 free beds, Earth sends a crew ship with 2 astronauts within a few hours; the newcomers appear and live in the base.
+- **Treadmill:** the runner now runs on the belt, facing the console.
+- **Rotation:** every structure (floodlights included) rotates in 4 directions.
+- **Spherical airlock:** stairs and an outer door at the end of its short entrance tunnel.
+- **Tunnels** have an interior lining, so the outside regolith no longer shows around the doors.
+- **Explore:** the hidden football is bigger, has a golden light beam visible from afar and appears on the minimap; the terrain outside the playable area uses the same texture scale (no more pixelated look).
+
 ## Latest changes
 
 - **English by default** for new players.

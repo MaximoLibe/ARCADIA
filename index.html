@@ -682,6 +682,53 @@ button.tecla .bi{pointer-events:none}
 .mj-cab{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}.mj-cab b{font-size:17px;letter-spacing:.06em;text-transform:uppercase}.mj-cab span{font-size:12.5px;color:var(--muted)}
 #mjCv{display:block;width:100%;height:auto;border-radius:8px;background:#06101e;touch-action:none;cursor:crosshair}
 .mj-pie{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;font-size:12.5px;color:#cfe3ff}
+#minimapa{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(92px + env(safe-area-inset-bottom,0px));width:170px;height:170px;border-radius:50%;z-index:6;pointer-events:none;
+  background:rgba(10,14,22,.78);border:3px solid rgba(255,255,255,.85);box-shadow:0 6px 18px rgba(0,0,0,.45)}
+body.en-intro #minimapa,body.en-granja #minimapa{display:none}
+@media (max-width:900px){#minimapa{width:128px;height:128px;bottom:calc(178px + env(safe-area-inset-bottom,0px))}}
+/* ===== Celular (PROMPT 8): controles en pantalla como un emulador y HUD más compacto ===== */
+#tactil,#girarCel{display:none}
+body.tactil:has(#juego.visible:not([hidden]):not(.desenfocado)) #tactil,body.tactil.explorando #tactil{display:block}
+body.tactil.en-intro #tactil,body.tactil:has(#minijuego:not([hidden])) #tactil,body.tactil:has(#pausa:not([hidden])) #tactil,body.tactil:has(.gc-ov) #tactil,body.tactil:has(#opciones:not([hidden])) #tactil{display:none!important}
+#tactil{position:fixed;inset:0;z-index:30;pointer-events:none;font-family:Helvetica,Arial,sans-serif}
+#tactil button{pointer-events:auto;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;border:2.5px solid rgba(255,255,255,.75);background:rgba(20,24,30,.38);color:rgba(255,255,255,.92);font-weight:700;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+#tactil button.on{background:rgba(255,255,255,.35)}
+.tc-cruz,.tc-abc{position:absolute;width:168px;height:168px;border-radius:50%;border:2px solid rgba(255,255,255,.35);background:rgba(10,12,16,.18)}
+.tc-cruz{left:max(18px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.tc-abc{right:max(18px,env(safe-area-inset-right,0px));bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+.tc-cruz button,.tc-abc button{position:absolute;width:56px;height:56px;font-size:20px}
+.tc-cruz .arr{left:56px;top:2px}.tc-cruz .aba{left:56px;bottom:2px}.tc-cruz .izq{left:2px;top:56px}.tc-cruz .der{right:2px;top:56px}
+.tc-abc button{font-size:26px}.tc-abc .b{left:20px;top:14px}.tc-abc .c{right:6px;top:52px}.tc-abc .a{left:30px;bottom:6px}
+.tc-pto{position:absolute;width:12px;height:12px;border-radius:50%;border:2px solid rgba(255,255,255,.35)}
+.tc-pto.p1{left:30px;top:30px}.tc-pto.p2{right:30px;top:30px}.tc-pto.p3{left:30px;bottom:30px}.tc-pto.p4{right:30px;bottom:30px}
+.tc-chico{position:absolute;width:52px;height:52px;font-size:20px}
+.tc-pausa{left:max(32px,env(safe-area-inset-left,0px));bottom:calc(196px + env(safe-area-inset-bottom,0px))}
+.tc-obj{right:calc(max(12px,env(safe-area-inset-right,0px)) + 104px);top:calc(70px + env(safe-area-inset-top,0px))}
+/* HUD compacto en pantallas bajas (celular en horizontal) */
+body.tactil #btnsIzq{right:auto;bottom:auto;top:calc(72px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));gap:8px;zoom:.72}
+body.tactil #hint{display:none!important}
+body.tactil #minimapa{width:92px;height:92px;top:calc(58px + env(safe-area-inset-top,0px));bottom:auto;right:max(12px,env(safe-area-inset-right,0px))}
+@media (max-height:520px){
+  body.tactil #stats{zoom:.62}
+  body.tactil #clockbox{top:calc(6px + env(safe-area-inset-top,0px))!important;bottom:auto!important;zoom:.62}
+  body.tactil #cats{zoom:.7;max-width:none}
+  body.tactil #info,body.tactil #panelDer{zoom:.78}
+  body.tactil #mision,body.tactil #alertaRoja,body.tactil #avisoTormenta{zoom:.72}
+  .tc-cruz,.tc-abc{width:140px;height:140px}.tc-cruz button,.tc-abc button{width:46px;height:46px}
+  .tc-cruz .arr{left:47px}.tc-cruz .aba{left:47px}.tc-cruz .izq{top:47px}.tc-cruz .der{top:47px}
+  .tc-abc .c{top:44px}.tc-abc .a{left:24px}.tc-pausa{bottom:calc(166px + env(safe-area-inset-bottom,0px))}.tc-abc{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+}
+/* sólo se juega en horizontal */
+#girarCel{position:fixed;inset:0;z-index:300;background:#05070b;color:#fff;place-items:center;text-align:center;font-family:Helvetica,Arial,sans-serif;font-weight:700}
+#girarCel b{display:block;font-size:56px;animation:girar 1.6s ease-in-out infinite}#girarCel p{font-size:22px;margin:14px 0 6px}#girarCel small{color:#b9c4d2;font-size:15px}
+@keyframes girar{0%,30%{transform:rotate(0)}60%,100%{transform:rotate(90deg)}}
+@media (orientation:portrait){body.tactil #girarCel{display:grid}}
+#alertaRoja{left:50%;top:calc(150px + env(safe-area-inset-top,0px));transform:translateX(-50%);display:flex;align-items:center;gap:14px;padding:10px 20px;border-radius:12px;background:repeating-linear-gradient(-45deg,rgba(150,10,10,.95) 0 14px,rgba(40,0,0,.95) 14px 28px);border:3px solid #ffd23f;color:#fff;z-index:12;animation:alertaLatido 1s ease-in-out infinite;text-shadow:0 2px 4px #000}
+#alertaRoja i{font-style:normal;font-size:30px;color:#ffd23f}#alertaRoja b{display:block;font-size:20px;letter-spacing:.12em}#alertaRoja span{font-size:14px}
+#alertaRoja[hidden]{display:none}
+@keyframes alertaLatido{0%,100%{box-shadow:0 0 0 0 rgba(255,40,40,.7)}50%{box-shadow:0 0 30px 8px rgba(255,40,40,.75)}}
+body.alerta-tormenta #view::after{content:'';position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 120px 30px rgba(255,0,0,.45);animation:alertaBorde 1.25s ease-in-out infinite}
+@keyframes alertaBorde{0%,100%{opacity:.25}50%{opacity:1}}
 #avisoTormenta{left:50%;top:calc(96px + env(safe-area-inset-top,0px));transform:translateX(-50%);padding:12px 22px;border-radius:12px;background:rgba(120,40,10,.92);border:2px solid #ffb066;color:#fff;font-size:20px;letter-spacing:.06em;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:tin .3s ease-out;z-index:11}
 #granjaUI{left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:var(--capsula);border:1px solid var(--capsula-borde);z-index:9}
 #granjaUI b{font-size:13px;letter-spacing:.08em;text-transform:uppercase}
@@ -912,6 +959,8 @@ button.tecla{font-size:11px;min-width:44px}
 <div id="anilloHold" hidden aria-hidden="true"></div>
 <div id="tutorial" hidden><div class="tu-foco" id="tuFoco"></div><div class="tu-caja" id="tuCaja"></div></div>
 <div id="avisoTormenta" class="hud" hidden role="alert">¡Una tormenta se acerca!</div>
+<canvas id="minimapa" class="hud" width="340" height="340" aria-label="Minimapa"></canvas>
+<div id="alertaRoja" class="hud" hidden role="alert"><i>⚠</i><div><b>¡ALERTA DE TORMENTA!</b><span></span></div><i>⚠</i></div>
 <div id="avisoCentro" class="hud" hidden role="alert"></div>
 <button class="btn" id="vrSalir">Salir del modo VR</button>
 <div id="suenoOv" hidden><div><b>Durmiendo…</b><span>Pasa la noche marciana</span></div></div>
@@ -2691,7 +2740,7 @@ function distribuidor(){
 /* ---------- Puerta de esclusa (marco octogonal de estación, dos hojas corredizas) ----------
    «puerta-esclusa.html» usa un archivo «puerta-esclusa.js» que no venía en la carpeta: esta puerta está hecha
    siguiendo la página (sección octogonal, paneles de pared, rieles y luces) con hojas que se abren hacia los lados. */
-const texPared=()=>una('texPared',()=>{const t=ctex(256,256,(g,w,h)=>{g.fillStyle='#cfccc4';g.fillRect(0,0,w,h);g.strokeStyle='#a19d94';g.lineWidth=3;g.strokeRect(3,3,w-6,h-6);g.strokeStyle='#b8b4ab';g.lineWidth=1.5;g.beginPath();g.moveTo(0,h*.5);g.lineTo(w,h*.5);g.stroke();
+const texPared=()=>una('texPared',()=>{const t=ctex(256,256,(g,w,h)=>{g.fillStyle='#cfccc4';g.fillRect(0,0,w,h);g.strokeStyle='#bab6ad';g.lineWidth=2;g.strokeRect(2,2,w-4,h-4);g.strokeStyle='#b8b4ab';g.lineWidth=1.5;g.beginPath();g.moveTo(0,h*.5);g.lineTo(w,h*.5);g.stroke();
   g.fillStyle='#8c887f';[[10,10],[w-10,10],[10,h-10],[w-10,h-10],[10,h/2-7],[w-10,h/2-7]].forEach(p=>{g.beginPath();g.arc(p[0],p[1],3,0,7);g.fill()});g.fillStyle='#ece9e2';g.fillRect(30,30,70,13);g.fillStyle='#c9c5bd';g.fillRect(w-85,h-60,55,35)});t.wrapS=t.wrapT=T.RepeatWrapping;return t});
 const texTecho=()=>una('texTecho',()=>{const t=ctex(128,128,(g,w,h)=>{g.fillStyle='#d8d3cb';g.fillRect(0,0,w,h);for(let i=0;i<9;i++){g.fillStyle=i%2?'#9a5844':'#a96a55';g.fillRect(8+i*12.5,9,8,h-18)}g.strokeStyle='#9a958c';g.lineWidth=2;g.strokeRect(4,4,w-8,h-8)});t.wrapS=t.wrapT=T.RepeatWrapping;return t});
 const texPiso=()=>una('texPiso',()=>{const t=ctex(128,128,(g,w,h)=>{g.fillStyle='#c4c0b8';g.fillRect(0,0,w,h);g.fillStyle='#7b776f';for(let y=0;y<8;y++)for(let x=0;x<6;x++)g.fillRect(7+x*20,6+y*15.5,13,3.5);g.strokeStyle='#8f8b83';g.lineWidth=2;g.strokeRect(1,1,w-2,h-2)});t.wrapS=t.wrapT=T.RepeatWrapping;return t});
@@ -2919,6 +2968,12 @@ function ruido(t0,dur,vol,tipo,f,q){if(!ruidoBuf){ruidoBuf=ctx.createBuffer(1,ct
 const EF={
   // navegación de menús: bip corto de computadora de a bordo
   nav:t=>{osc('square',1320,t,.045,.09,null,['lowpass',3200]);osc('sine',2640,t+.012,.03,.04)},
+  // trapo sobre el vidrio: susurro suave (ASMR) con un brillo cristalino de vez en cuando
+  trapo:t=>{ruido(t,.42,.055,'bandpass',2300+Math.random()*1200,.7);ruido(t+.06,.34,.03,'highpass',6200,.6);if(Math.random()<.25)osc('sine',[1568,1760,2093][Math.floor(Math.random()*3)],t+.1,.9,.018)},
+  // alarma de tormenta: sirena de dos tonos que sube, como la de un refugio
+  alarma:t=>{for(let k=0;k<2;k++){osc('sawtooth',300,t+k*.6,.55,.11,620,['lowpass',1700,1.5]);osc('square',150,t+k*.6,.55,.05,310,['lowpass',900])}},
+  // reactor: contador Geiger
+  geiger:t=>{osc('square',3200+Math.random()*1800,t,.012,.08,null,['highpass',1500])},
   // confirmar: dos tonos que suben, como un robot que acepta una orden
   ok:t=>{osc('square',660,t,.07,.1,null,['lowpass',2600]);osc('square',990,t+.07,.09,.1,null,['lowpass',2600]);osc('sine',1980,t+.07,.12,.04)},
   // volver: tono que baja
@@ -3119,7 +3174,7 @@ const D=[
 ['Cadete: automático o manual (tecla C) · mantener O / Y: primera o tercera persona','Cadet: automatic or manual (C key) · hold O / Y: first or third person','Cadetto: automatico o manuale (tasto C) · tieni premuto O / Y: prima o terza persona'],
 ['Mantén','Hold','Tieni'],['para cambiar de modalidad','to switch view','per cambiare visuale'],['Hábitat','Habitat','Habitat'],
 ['¡Una tormenta se acerca!','A storm is coming!','Sta arrivando una tempesta!'],['Ventisca','Blizzard','Bufera'],['Tornado','Tornado','Tornado'],['Templado','Mild','Mite'],
-['Salir del modo VR','Exit VR mode','Esci dalla modalità VR'],['Próximamente','Coming soon','Prossimamente'],['El modo VR llega próximamente.','VR mode is coming soon.','La modalità VR arriva prossimamente.'],['Modo VR (celular)','VR mode (phone)','Modalità VR (telefono)'],['Durmiendo…','Sleeping…','Dormendo…'],['Pasa la noche marciana','The Martian night goes by','Passa la notte marziana'],
+['Salir del modo VR','Exit VR mode','Esci dalla modalità VR'],['Fase 1 de 6','Phase 1 of 6','Fase 1 di 6'],['Fase 2 de 6','Phase 2 of 6','Fase 2 di 6'],['Fase 3 de 6','Phase 3 of 6','Fase 3 di 6'],['Fase 4 de 6','Phase 4 of 6','Fase 4 di 6'],['Fase 5 de 6','Phase 5 of 6','Fase 5 di 6'],['Fase 6 de 6','Phase 6 of 6','Fase 6 di 6'],['Enfriar el reactor KRUSTY','Cool down the KRUSTY reactor','Raffredda il reattore KRUSTY'],['Enfriar el reactor','Cool the reactor','Raffredda il reattore'],[' % recalentado)',' % overheated)',' % surriscaldato)'],['Mové las barras de control hasta que la temperatura quede en la franja verde','Move the control rods until the temperature sits in the green band','Muovi le barre di controllo finché la temperatura resta nella fascia verde'],['Stick izquierdo ↑ ↓: barras de control · B salir','Left stick ↑ ↓: control rods · B exit','Stick sinistro ↑ ↓: barre di controllo · B esci'],['↑ ↓ o W / S: barras de control · o arrastrá las barras con el mouse','↑ ↓ or W / S: control rods · or drag the rods with the mouse','↑ ↓ o W / S: barre di controllo · o trascina le barre con il mouse'],['BARRAS DE CONTROL','CONTROL RODS','BARRE DI CONTROLLO'],['TEMPERATURA','TEMPERATURE','TEMPERATURA'],['¡CALIENTE!','HOT!','CALDO!'],['FRÍO','COLD','FREDDO'],['ESTABLE','STABLE','STABILE'],['Reactor estable: el radiador vuelve a enfriar al KRUSTY.','Reactor stable: the radiator cools the KRUSTY again.','Reattore stabile: il radiatore raffredda di nuovo il KRUSTY.'],['Aterrizó la nave de tripulación: llegan 2 astronautas nuevos (','The crew ship landed: 2 new astronauts arrive (','La nave dell\'equipaggio è atterrata: arrivano 2 nuovi astronauti ('],[' en la base).',' in the base).',' nella base).'],['La Tierra vio camas libres: una nave con 2 astronautas aterriza en unas horas.','Earth saw free beds: a ship with 2 astronauts lands in a few hours.','La Terra ha visto letti liberi: una nave con 2 astronauti atterra tra poche ore.'],['Hay camas libres, pero sin antena de Comunicaciones la Tierra no puede mandar astronautas.','There are free beds, but without the Communications antenna Earth cannot send astronauts.','Ci sono letti liberi, ma senza l\'antenna delle Comunicazioni la Terra non può mandare astronauti.'],['Girá el celular','Turn your phone','Ruota il telefono'],['ARCADIA se juega en horizontal.','ARCADIA is played in landscape.','ARCADIA si gioca in orizzontale.'],['Controles del rover y del dron','Rover and drone controls','Comandi del rover e del drone'],['Avanzar / retroceder','Forward / back','Avanti / indietro'],['Girar','Turn','Girare'],['Mirar alrededor','Look around','Guardarsi intorno'],['Analizar objetivo','Analyse target','Analizza obiettivo'],['Cambiar cámara','Switch camera','Cambia telecamera'],['Desplegar / pilotar Ingenuity','Deploy / fly Ingenuity','Fai decollare / pilota Ingenuity'],['Subir / bajar (dron)','Up / down (drone)','Su / giù (drone)'],['Repetir aterrizaje','Replay landing','Ripeti atterraggio'],['Arrastrar','Drag','Trascina'],['La cápsula entra a unos 19.500 km/h. El escudo térmico soporta cerca de 1.300 °C mientras el roce con el aire la frena.','The capsule enters at about 19,500 km/h. The heat shield withstands about 1,300 °C while friction with the air slows it down.','La capsula entra a circa 19.500 km/h. Lo scudo termico sopporta circa 1.300 °C mentre l\'attrito con l\'aria la frena.'],['A unos 11 km de altura se abre un paracaídas de 21,5 m de diámetro, cuando la cápsula todavía va a casi 1.500 km/h.','About 11 km up, a 21.5 m parachute opens while the capsule is still moving at almost 1,500 km/h.','A circa 11 km di quota si apre un paracadute di 21,5 m, quando la capsula va ancora a quasi 1.500 km/h.'],['Se suelta el escudo. El radar y las cámaras miran el suelo y la navegación por terreno (TRN) elige un punto seguro para bajar.','The shield drops. The radar and cameras look at the ground and terrain-relative navigation (TRN) picks a safe spot to land.','Lo scudo si stacca. Radar e telecamere guardano il suolo e la navigazione sul terreno (TRN) sceglie un punto sicuro.'],['A unos 2 km del suelo, la etapa de descenso se separa de la cubierta y del paracaídas y enciende sus 8 motores.','About 2 km above the ground, the descent stage separates from the backshell and parachute and fires its 8 engines.','A circa 2 km dal suolo, lo stadio di discesa si separa dal guscio e dal paracadute e accende i suoi 8 motori.'],['A unos 20 m del suelo, el rover baja colgado de tres cables de 6,4 m mientras la etapa sigue frenando a menos de 3 km/h.','About 20 m above the ground, the rover is lowered on three 6.4 m cables while the stage keeps braking below 3 km/h.','A circa 20 m dal suolo, il rover scende appeso a tre cavi di 6,4 m mentre lo stadio frena sotto i 3 km/h.'],['Las ruedas tocan el suelo, se cortan los cables y la etapa de descenso se aleja para caer lejos del rover. Todo ocurre sin ayuda desde la Tierra: la señal tarda varios minutos en llegar.','The wheels touch the ground, the cables are cut and the descent stage flies away to crash far from the rover. It all happens without help from Earth: the signal takes several minutes to arrive.','Le ruote toccano il suolo, i cavi vengono tagliati e lo stadio di discesa si allontana per cadere lontano dal rover. Tutto avviene senza aiuto dalla Terra: il segnale impiega diversi minuti.'],['Coleccionable oculto','Hidden collectible','Oggetto nascosto'],['¡Encontraste una pelota de fútbol!','You found a football!','Hai trovato un pallone da calcio!'],['Estaba medio enterrada en el polvo rojo de ','It was half-buried in the red dust of ','Era mezzo sepolta nella polvere rossa di '],[' Llevás ',' You have ',' Ne hai '],['Próximamente','Coming soon','Prossimamente'],['El modo VR llega próximamente.','VR mode is coming soon.','La modalità VR arriva prossimamente.'],['Modo VR (celular)','VR mode (phone)','Modalità VR (telefono)'],['Durmiendo…','Sleeping…','Dormendo…'],['Pasa la noche marciana','The Martian night goes by','Passa la notte marziana'],
 ['Granja hidropónica · vista desde la puerta','Hydroponic farm · view from the door','Serra idroponica · vista dalla porta'],
 ['Primera persona','First person','Prima persona'],['Tercera persona (vista de arriba)','Third person (top view)','Terza persona (vista dall\'alto)'],['Cadete manual','Manual cadet','Cadetto manuale'],
 ['moverse','move','muoversi'],['arrastrá para mirar','drag to look','trascina per guardare'],['cambiar vista','switch view','cambia visuale'],['Stick izq. moverse','Left stick move','Stick sin. muoversi'],['Stick der. mirar','Right stick look','Stick des. guardare'],['Stick der. girar','Right stick turn','Stick des. ruotare'],['botón del cadete','cadet button','pulsante del cadetto'],
@@ -3439,7 +3494,7 @@ const MISSIONS=[
  {cat:'salud',t:['Duerme en tu cama hasta el sol siguiente','Sleep in your bed until the next sol','Dormi fino al sol successivo'],h:['En el corazón, tocá «Dormir»: el tiempo pasa hasta la mañana del día marciano siguiente.','In the heart bar, press «Sleep»: time skips to the next morning.','Nel cuore, scegli «Dormire».'],c:()=>S.hecho&&S.hecho.dormir},
  {cat:'habitat',t:['Construye un hábitat de investigación','Build a research habitat','Costruisci un habitat di ricerca'],h:['Un laboratorio con escritorios y computadoras: la tripulación trabaja mejor y sube la cordura.','A lab with desks and computers: the crew works better and sanity goes up.','Un laboratorio con scrivanie e computer: l\'equipaggio lavora meglio e la mente sta meglio.'],c:()=>has('investigacion')},
  {cat:'salud',t:['Activa los 5 pilares de bienestar','Turn on the 5 wellbeing pillars','Attiva i 5 pilastri del benessere'],h:['Tocá el corazón abajo a la izquierda: ejercicio, nutrición, control médico, sueño y apoyo psicológico.','Click the heart at the bottom left: exercise, nutrition, medical checks, sleep and mental support.','Tocca il cuore in basso a sinistra: esercizio, nutrizione, controlli medici, sonno e supporto psicologico.'],c:()=>pilaresActivos()===5},
- {cat:'habitat',t:['Llega a 6 astronautas','Reach 6 astronauts','Arriva a 6 astronauti'],h:['Llegan de a 2 por cohete si hay camas libres.','They arrive 2 per rocket if there are free beds.','Arrivano 2 per razzo se ci sono letti liberi.'],c:()=>S.crew>=6},
+ {cat:'habitat',t:['Llega a 6 astronautas','Reach 6 astronauts','Arriva a 6 astronauti'],h:['Con la antena de Comunicaciones y 2 camas libres, la Tierra manda una nave con 2 astronautas en unas horas.','With the Communications antenna and 2 free beds, Earth sends a ship with 2 astronauts within a few hours.','Con l\'antenna delle Comunicazioni e 2 letti liberi, la Terra manda una nave con 2 astronauti in poche ore.'],c:()=>S.crew>=6},
  {cat:'habitat',t:['Sobrevive 30 soles','Survive 30 sols','Sopravvivi 30 sol'],h:['Un sol es un día marciano: 24 h y 37 min.','A sol is a Martian day: 24 h 37 min.','Un sol è un giorno marziano: 24 h e 37 min.'],c:()=>S.sol>=30},
 ];
 const cubiertas=t=>{const l=S.mods.filter(m=>m.type===t);return l.length>0&&l.every(m=>m.shield)};
@@ -3465,7 +3520,7 @@ const MISIONES_CADETE=[
  {cat:'oxigeno',t:['Haz el mantenimiento del MOXIE','Service the MOXIE','Fai la manutenzione del MOXIE'],h:['Elegí el MOXIE y ajustá las tres tuercas hasta que coincidan con la marca.','Select MOXIE and turn the three nuts until they match the mark.','Seleziona il MOXIE e regola i tre dadi.'],c:()=>S.hecho&&S.hecho.moxie},
  {cat:'comms',t:['Sincroniza la señal con la Tierra','Sync the signal with Earth','Sincronizza il segnale con la Terra'],h:['Elegí comunicaciones y hacé coincidir la onda roja con la blanca.','Select communications and match the red wave with the white one.','Seleziona le comunicazioni e fai coincidere le onde.'],c:()=>S.hecho&&S.hecho.señal},
  {cat:'salud',t:['Activa los 5 pilares de bienestar','Turn on the 5 wellbeing pillars','Attiva i 5 pilastri del benessere'],h:['Tocá el corazón abajo a la izquierda.','Click the heart at the bottom left.','Tocca il cuore in basso a sinistra.'],c:()=>pilaresActivos()===5},
- {cat:'habitat',t:['Llega a 6 astronautas','Reach 6 astronauts','Arriva a 6 astronauti'],h:['Llegan de a 2 por cohete si hay camas libres.','They arrive 2 per rocket if there are free beds.','Arrivano 2 per razzo se ci sono letti liberi.'],c:()=>S.crew>=6},
+ {cat:'habitat',t:['Llega a 6 astronautas','Reach 6 astronauts','Arriva a 6 astronauti'],h:['Con la antena de Comunicaciones y 2 camas libres, la Tierra manda una nave con 2 astronautas en unas horas.','With the Communications antenna and 2 free beds, Earth sends a ship with 2 astronauts within a few hours.','Con l\'antenna delle Comunicazioni e 2 letti liberi, la Terra manda una nave con 2 astronauti in poche ore.'],c:()=>S.crew>=6},
  {cat:'habitat',t:['Sobrevive 30 soles','Survive 30 sols','Sopravvivi 30 sol'],h:['Un sol es un día marciano: 24 h y 37 min.','A sol is a Martian day: 24 h 37 min.','Un sol è un giorno marziano.'],c:()=>S.sol>=30},
 ];
 if(OPC.dificultad==='cadete')MISSIONS.splice(0,MISSIONS.length,...MISIONES_CADETE);
@@ -3618,7 +3673,7 @@ function exportarPartida(){
   return{S:s,dificultad:OPC.dificultad,nombre:NOMBRE,libre:OPC.libre,perfil:OPC.perfil||null,fecha:Date.now(),cam:{...camS}};
 }
 // ======================= REGLAS =======================
-function fp(type,sh,r){if(type==='metano'||type==='sofc')return[2,2];if(type==='solar')return r?[3,5]:[5,3];if(DEF[type].kind==='ext')return[1,1];if(sh==='esfera')return[2,2];return r?[2,3]:[3,2]}
+function fp(type,sh,r){if(type==='metano'||type==='sofc')return[2,2];r=(+r||0)%2;if(type==='solar')return r?[3,5]:[5,3];if(DEF[type].kind==='ext')return[1,1];if(sh==='esfera')return[2,2];return r?[2,3]:[3,2]}
 function addMod(type,sh,i,j,r,silent){
   const[w,h]=fp(type,sh,r);
   const m={id:S.nid++,type,shape:DEF[type].kind==='dome'?sh:null,i,j,w,h,rot:r,on:true,powered:true,shield:false,cold:false,born:silent?-99:clockT,status:''};
@@ -3675,6 +3730,7 @@ function domesConnected(ex){
 const sunElev=h=>Math.sin((h-6)/24*Math.PI*2);
 const PAUSE_IN_SHELTER=['granja','cocina','ocio','agua','taladro'];
 function step(h){
+  revisarNaveTripulacion(h);
   const R=S.res,dif=DIFICULTAD[OPC.dificultad],day=S.hour>=6&&S.hour<18;
   const vent=S.clima==='ventisca',torn=S.clima==='tornado';
   // Clima: la ventisca tapa el sol; un tornado reciente deja los paneles limpios (+10 %)
@@ -3773,7 +3829,7 @@ function newSol(){
   if(S.sol%3===0)for(const g of S.mods)if(g.type==='granja'){g.cosechaLista=true;g.necesitaAgua=true}
   S.rocketIn--;
   if(S.rocketIn<=0){
-    if(active('comms')){S.rocketIn=8;startRocket();let extra='';if(beds()-S.crew>=2){S.crew+=2;extra=' Llegan 2 astronautas nuevos.'}
+    if(active('comms')){S.rocketIn=8;startRocket();let extra='';
       S.res.mat+=50;S.res.supp+=30;S.res.food+=10;if(S.gas)S.gas.n2=Math.min(capGas('n2'),S.gas.n2+15);toast('Aterrizó un cohete de la Tierra: +50 de presupuesto, +30 suplementos, +10 kg de comida.'+extra,'good')}
     else{S.rocketIn=2;toast('Un cohete de suministros no encontró la base: falta la antena de Comunicaciones.','bad')}
   }
@@ -3906,6 +3962,12 @@ const accentCache={};const accent=c=>accentCache[c]||(accentCache[c]=new THREE.M
 function mesh(geo,mat,cast=true){const m=new THREE.Mesh(geo,mat);m.castShadow=cast;m.receiveShadow=true;return m}
 // Agujeros de los túneles: la cubierta de cada cúpula se recorta donde entra un túnel (así se ve y se camina de una a otra)
 const TUN_MAX=24,uTun={uTa:{value:[...Array(TUN_MAX)].map(()=>new THREE.Vector3())},uTb:{value:[...Array(TUN_MAX)].map(()=>new THREE.Vector3())},uTn:{value:0}};
+// Campo de radiación del KRUSTY (materiales compartidos: el brillo late en updateEnv)
+const CAMPO_RAD=(()=>{const cv=document.createElement('canvas');cv.width=cv.height=128;const g=cv.getContext('2d');g.fillStyle='#f2c232';g.beginPath();g.arc(64,64,62,0,7);g.fill();g.fillStyle='#111';g.beginPath();g.arc(64,64,11,0,7);g.fill();
+  for(let k=0;k<3;k++){const a=-Math.PI/2+k*Math.PI*2/3;g.beginPath();g.moveTo(64,64);g.arc(64,64,52,a-.52,a+.52);g.closePath();g.fill()}g.fillStyle='#f2c232';g.beginPath();g.arc(64,64,17,0,7);g.fill();g.fillStyle='#111';g.beginPath();g.arc(64,64,10,0,7);g.fill();
+  const tx=new THREE.CanvasTexture(cv);
+  return{anillo:new THREE.MeshBasicMaterial({color:0xffd23f,transparent:true,opacity:.6,depthWrite:false}),piso:new THREE.MeshBasicMaterial({color:0xffc400,transparent:true,opacity:.06,depthWrite:false}),
+    cupula:new THREE.MeshBasicMaterial({color:0xfff07a,transparent:true,opacity:.05,depthWrite:false,side:THREE.DoubleSide}),signo:new THREE.MeshBasicMaterial({map:tx,transparent:true,depthWrite:false})}})();
 function agujerear(mat){
   mat.onBeforeCompile=sh=>{Object.assign(sh.uniforms,uTun);
     sh.vertexShader='varying vec3 vWPosT;\n'+sh.vertexShader.replace('#include <project_vertex>','#include <project_vertex>\nvWPosT=(modelMatrix*vec4(transformed,1.0)).xyz;');
@@ -4357,6 +4419,12 @@ function extModel(type,opt){
     // cada reactor tiene su propio radiador para poder abrirlo y cerrarlo
     const c=Modelos3D.krusty(80*Math.PI/180);c.scale.setScalar(1.3);c.position.y=.3+.1*1.3;g.add(c);g.userData.krusty=c.userData.setAlpha;g.userData.caja=new THREE.Vector3(0,.15,.9);
     const l=mesh(new THREE.SphereGeometry(.05,8,6),M.red,false);l.position.y=.3+1.32*1.3;g.add(l);
+    // campo de radiación: anillo amarillo en el suelo y una cúpula muy tenue (radio de exclusión de 4,5 m)
+    {const campo=new THREE.Group();const anillo=new THREE.Mesh(new THREE.RingGeometry(4.3,4.5,64).rotateX(-Math.PI/2),CAMPO_RAD.anillo);anillo.position.y=.04;campo.add(anillo);
+     const piso=new THREE.Mesh(new THREE.CircleGeometry(4.3,48).rotateX(-Math.PI/2),CAMPO_RAD.piso);piso.position.y=.03;campo.add(piso);
+     const cup=new THREE.Mesh(new THREE.SphereGeometry(4.5,32,12,0,Math.PI*2,0,Math.PI/2),CAMPO_RAD.cupula);campo.add(cup);
+     for(let k=0;k<8;k++){const a=k/8*Math.PI*2,sg=new THREE.Mesh(new THREE.PlaneGeometry(.5,.5),CAMPO_RAD.signo);sg.rotation.x=-Math.PI/2;sg.rotation.z=-a;sg.position.set(Math.sin(a)*4.85,.05,Math.cos(a)*4.85);campo.add(sg)}
+     campo.traverse(o=>{o.raycast=()=>{}});g.add(campo);g.userData.campo=campo}
   }else if(type==='metano'&&window.Modelos3D){
     g.add(Modelos3D.tanquesMetano());g.userData.caja=new THREE.Vector3(1.2,.15,1.65);
   }else if(type==='taladro'&&window.Modelos3D){
@@ -4399,7 +4467,7 @@ function extModel(type,opt){
   }
   return g;
 }
-function buildModel(type,sh,r,opt){const g=DEF[type].kind==='dome'?domeModel(type,sh,opt):extModel(type,opt);if(type==='solar'&&r)g.rotation.y=Math.PI/2;if(DEF[type].kind==='dome'&&sh==='cilindro'&&r)g.rotation.y=Math.PI/2;return g}
+function buildModel(type,sh,r,opt){const g=DEF[type].kind==='dome'?domeModel(type,sh,opt):extModel(type,opt);g.rotation.y=((+r||0)%4)*Math.PI/2;return g}
 // ======================= OBJETOS DEL MUNDO =======================
 const modRoot=new THREE.Group();scene.add(modRoot);
 const connRoot=new THREE.Group();scene.add(connRoot);
@@ -4448,7 +4516,7 @@ const tuneles=[];
 const matTunel=new THREE.MeshStandardMaterial({color:0xcfcac3,roughness:.55,metalness:.2,side:THREE.DoubleSide,transparent:true});
 function updateTuneles(){
   const fp=typeof modoCadete!=='undefined'&&modoCadete==='fp';
-  for(const tu of tuneles){const d=camera.position.distanceTo(tu.t.position),vis=fp?0:d<15?1:d<24?(24-d)/9:0,o=1-.8*vis;
+  for(const tu of tuneles){if(tu.forro)tu.forro.visible=fp;const d=camera.position.distanceTo(tu.t.position),vis=fp?0:d<15?1:d<24?(24-d)/9:0,o=1-.8*vis;
     if(Math.abs(tu.mt.opacity-o)>.01){tu.mt.opacity=o;tu.mt.depthWrite=o>.95}if(tu.mt.transparent!==(o<.99)){tu.mt.transparent=o<.99;tu.mt.needsUpdate=true}}
 }
 function rebuildConnectors(){try{rebuildConnectors0()}finally{try{armarPuertas()}catch(e){console.warn(e)}}}
@@ -4467,10 +4535,12 @@ function rebuildConnectors0(){
     const piso=mesh(new THREE.BoxGeometry(L,.03,.62),MI.piso,false);piso.position.y=-.45;t.add(piso);
     for(const s of[-1,1]){const pa=mesh(new THREE.BoxGeometry(L,.02,.04),M.metal,false);pa.position.set(0,-.43,s*.3);t.add(pa)}
     const luz=mesh(new THREE.BoxGeometry(L*.8,.02,.06),MI.luz,false);luz.position.y=.52;t.add(luz);
+    // forro interior: por dentro el túnel se ve como la pared del módulo (no el regolito de afuera)
+    let forroT=null;if(window.Modelos7){const tx=Modelos7.texPared().clone();tx.needsUpdate=true;tx.repeat.set(Math.max(1,L/1.2),1.4);forroT=new THREE.Mesh(new THREE.CylinderGeometry(.545,.545,L,24,1,true).rotateZ(Math.PI/2),new THREE.MeshStandardMaterial({map:tx,roughness:.75,side:THREE.BackSide}));forroT.visible=false;t.add(forroT)}
     let a,b;
     if(e.eje==='x'){const[x,z]=cellToWorld(e.x0+e.largo/2,e.fc);t.position.set(x,.75,z);for(let k=0;k<e.largo;k++)celdasTunel.add(e.fila*GRID+e.x0+k);a=new THREE.Vector3(x-L/2,0,z);b=new THREE.Vector3(x+L/2,0,z)}
     else{const[x,z]=cellToWorld(e.cc,e.z0+e.largo/2);t.rotation.y=Math.PI/2;t.position.set(x,.75,z);for(let k=0;k<e.largo;k++)celdasTunel.add((e.z0+k)*GRID+e.col);a=new THREE.Vector3(x,0,z-L/2);b=new THREE.Vector3(x,0,z+L/2)}
-    connRoot.add(t);tuneles.push({t,mt,a,b,da:domes[a0],db:domes[b0],eje:e.eje});
+    connRoot.add(t);tuneles.push({t,mt,a,b,da:domes[a0],db:domes[b0],eje:e.eje,forro:forroT});
     if(tuneles.length<=TUN_MAX){const k=tuneles.length-1;uTun.uTa.value[k].set(a.x,.75,a.z);uTun.uTb.value[k].set(b.x,.75,b.z);uTun.uTn.value=tuneles.length}
     if(e.largo>0)for(let k=0;k<=e.largo;k++){const ar=mesh(new THREE.TorusGeometry(.58,.05,6,20),M.metal);ar.rotation.y=Math.PI/2;ar.position.set((k/e.largo-.5)*e.largo*CELL,0,0);
       const g=new THREE.Group();g.position.copy(t.position);g.rotation.y=t.rotation.y;g.add(ar);connRoot.add(g)}}
@@ -4539,7 +4609,7 @@ addEventListener('keydown',e=>{
   if(!acc&&k==='y'){foco={z:'sup',k:iPausa()};marcarFoco();Sonido.efecto('nav');return}
   if(!acc&&(k==='o'||k==='n')){if(!holdTecla)holdTecla={k,t:0,hecho:false};return}
   if(!acc&&k==='f'&&(modoCadete!=='auto'||modoRover)){interactuarCadete();return}
-  if(acc==='rotar'){rot^=1;rebuildGhost();Sonido.efecto('clic')}
+  if(acc==='rotar'){rot=(rot+1)%4;rebuildGhost();Sonido.efecto('clic')}
   else if(acc==='detalle'){if(tool&&tool!=='demoler'){fichaVisible=!fichaVisible;renderInfo();Sonido.efecto('nav')}}
   else if(acc==='mover'){if(sel)iniciarMover(sel)}
   else if(k==='enter'&&tool&&tool!=='demoler'){pedirConstruir()}
@@ -4731,7 +4801,7 @@ const MINIJUEGOS={
   ayuda:()=>usandoMando?'Stick izquierdo: mover el trapo · B salir':'Arrastrá el trapo con el mouse · o mové con las flechas',
   iniciar(j){j.N=24;j.polvo=new Float32Array(j.N*14).fill(1);for(let k=0;k<j.polvo.length;k++)j.polvo[k]=.6+Math.random()*.4},
   frotar(j,x,y){let n=0;for(let gy=0;gy<14;gy++)for(let gx=0;gx<j.N;gx++){const cx=60+gx*25+12,cy=50+gy*23+11;if(Math.hypot(cx-x,cy-y)<50&&j.polvo[gy*j.N+gx]>0){j.polvo[gy*j.N+gx]=Math.max(0,j.polvo[gy*j.N+gx]-.3);n++}}
-   if(n&&Math.random()<.15)sonTarea('soldar');const sucio=j.polvo.reduce((a,v)=>a+v,0)/j.polvo.length;if(sucio<.06)mjGanar('Paneles limpios: producen al máximo otra vez.')},
+   if(n){const ah=performance.now();if(!j.ts||ah-j.ts>150){j.ts=ah;Sonido.efecto('trapo')}}const sucio=j.polvo.reduce((a,v)=>a+v,0)/j.polvo.length;if(sucio<.06)mjGanar('Paneles limpios: producen al máximo otra vez.')},
   mover(j,p){if(j.raton.abajo)this.frotar(j,p.x,p.y)},
   paso(j,dt,ej){if(ej){j.cur.x=Math.max(40,Math.min(680,j.cur.x+ej[0]*420*dt));j.cur.y=Math.max(40,Math.min(380,j.cur.y+ej[1]*420*dt));if(Math.abs(ej[0])+Math.abs(ej[1])>.2)this.frotar(j,j.cur.x,j.cur.y)}},
   tecla(j,k){const d={arrowleft:[-1,0],arrowright:[1,0],arrowup:[0,-1],arrowdown:[0,1],a:[-1,0],d:[1,0],w:[0,-1],s:[0,1]}[k];if(d){j.cur.x+=d[0]*24;j.cur.y+=d[1]*24;this.frotar(j,j.cur.x,j.cur.y)}},
@@ -4779,6 +4849,28 @@ const MINIJUEGOS={
    c.fillStyle='#cfe3ff';c.font='700 15px Helvetica,Arial';c.textAlign='left';c.fillText('Frecuencia',40,325);c.fillText('Amplitud',40,375);
    for(const[y,v]of[[320,(j.f-.5)/4.5],[370,(j.a-.2)/.8]]){c.fillStyle='#163552';c.fillRect(160,y-6,400,12);c.fillStyle='#4cc3ff';c.fillRect(160,y-6,400*Math.max(0,Math.min(1,v)),12);c.fillStyle='#fff';c.fillRect(160+400*Math.max(0,Math.min(1,v))-3,y-11,6,22)}
    c.fillStyle=this.coincide(j)?'#5fd38d':'#ffb066';c.fillText(this.coincide(j)?'¡COINCIDEN!':'Ritmo objetivo: '+j.fo.toFixed(1)+' por segundo',580,345)}},
+ reactor:{titulo:'Enfriar el reactor KRUSTY',sub:'Mové las barras de control hasta que la temperatura quede en la franja verde',
+  ayuda:()=>usandoMando?'Stick izquierdo ↑ ↓: barras de control · B salir':'↑ ↓ o W / S: barras de control · o arrastrá las barras con el mouse',
+  iniciar(j){j.barra=.12;j.temp=.9;j.ok=0;j.tt=0;j.arr=false;j.ab=false},
+  paso(j,dt,ej){j.tt+=dt;if(ej&&Math.abs(ej[1])>.15)j.barra=Math.max(0,Math.min(1,j.barra+ej[1]*dt*.6));if(j.arr)j.barra=Math.max(0,j.barra-dt*.45);if(j.ab)j.barra=Math.min(1,j.barra+dt*.45);
+   const obj=.98-.86*j.barra+.09*Math.sin(j.tt*1.4)+.04*Math.sin(j.tt*3.7);j.temp+=(obj-j.temp)*Math.min(1,dt*1.5);
+   const enZona=j.temp>.42&&j.temp<.6;j.ok=enZona?j.ok+dt:Math.max(0,j.ok-dt*.6);if(Math.random()<dt*j.temp*14)Sonido.efecto('geiger');
+   if(j.ok>=3)mjGanar('Reactor estable: el radiador vuelve a enfriar al KRUSTY.')},
+  mover(j,p){if(j.raton.abajo&&p.x<330)j.barra=Math.max(0,Math.min(1,(p.y-90)/250))},
+  abajo(j,p){if(p.x<330)j.barra=Math.max(0,Math.min(1,(p.y-90)/250))},
+  tecla(j,k,arriba){if(k==='arrowup'||k==='w')j.arr=!arriba;if(k==='arrowdown'||k==='s')j.ab=!arriba},
+  dibujar(j,c){c.fillStyle='#0b0f16';c.fillRect(0,0,720,420);
+   // núcleo del reactor con las barras de control que bajan
+   const cx=200,top=90,h=250,brillo=Math.min(1,j.temp);const g=c.createRadialGradient(cx,top+h*.62,10,cx,top+h*.62,120);g.addColorStop(0,'rgba(255,'+Math.round(220-150*brillo)+',60,'+(.35+.55*brillo)+')');g.addColorStop(1,'rgba(40,20,10,0)');
+   c.fillStyle=g;c.fillRect(60,top,280,h+40);c.strokeStyle='#8f9aa8';c.lineWidth=4;c.strokeRect(110,top+40,180,h-20);
+   c.fillStyle='#6b7480';for(let k=0;k<4;k++){const x=135+k*42;c.fillRect(x,top-30,16,40+j.barra*(h-50));c.fillStyle='#f2c232';c.fillRect(x,top-30+40+j.barra*(h-50)-8,16,8);c.fillStyle='#6b7480'}
+   c.fillStyle='#cfe3ff';c.font='700 15px Helvetica,Arial';c.textAlign='center';c.fillText('BARRAS DE CONTROL',cx,top+h+50);
+   // termómetro con la franja verde
+   const tx=470,ty=70,th=290;c.strokeStyle='#cfe3ff';c.lineWidth=3;c.strokeRect(tx,ty,46,th);c.fillStyle='rgba(95,211,141,.4)';c.fillRect(tx-6,ty+th*(1-.6),58,th*.18);
+   const v=Math.max(0,Math.min(1,j.temp));c.fillStyle=v>.6?'#ff5a3c':v<.42?'#4fb3ff':'#5fd38d';c.fillRect(tx+5,ty+th*(1-v),36,th*v-4);
+   c.fillStyle='#cfe3ff';c.fillText('TEMPERATURA',tx+23,ty+th+28);c.textAlign='left';c.fillText(v>.6?'¡CALIENTE!':v<.42?'FRÍO':'ESTABLE',tx+70,ty+th*(1-v)+5);
+   // progreso: 3 segundos en la franja verde
+   c.fillStyle='#24324a';c.fillRect(560,380,130,10);c.fillStyle='#5fd38d';c.fillRect(560,380,130*Math.min(1,j.ok/3),10)}},
  agua:{titulo:'Recolectar agua',sub:'Llená el tanque de la granja y soltá en la franja verde',
   ayuda:()=>usandoMando?'Mantené A para llenar · soltá en la franja verde':'Mantené ESPACIO o el clic para llenar · soltá en la franja verde',
   iniciar(j){j.niv=0;j.lleno=false;j.z0=.72;j.z1=.86},
@@ -4867,7 +4959,7 @@ function mandoMinijuego(p,dt){
   if(D.mando)D.mando(MJ,p);if(D.paso){MJ.tMando=performance.now();D.paso(MJ,dt,ej,p)}
 }
 addEventListener('keydown',e=>{if(!MJ)return;e.stopImmediatePropagation();const k=e.key.toLowerCase();if(k==='escape'){cerrarMinijuego(MJ.hecho);return}if([' ','arrowup','arrowdown','arrowleft','arrowright'].includes(k))e.preventDefault();const D=MINIJUEGOS[MJ.tipo];if(e.repeat&&k===' '&&MJ.tipo==='señal')return;D.tecla&&D.tecla(MJ,k,false)},true);
-addEventListener('keyup',e=>{if(!MJ||(MJ.tipo!=='agua'&&MJ.tipo!=='taladro'))return;const D=MINIJUEGOS[MJ.tipo];D.tecla&&D.tecla(MJ,e.key.toLowerCase(),true)},true);
+addEventListener('keyup',e=>{if(!MJ||(MJ.tipo!=='agua'&&MJ.tipo!=='taladro'&&MJ.tipo!=='reactor'))return;const D=MINIJUEGOS[MJ.tipo];D.tecla&&D.tecla(MJ,e.key.toLowerCase(),true)},true);
 
 /* ===================== GRANJA POR DENTRO =====================
    «Ver dentro»: cámara fija arriba de la puerta mirando hacia adentro, con las tres tareas de cultivo. */
@@ -4895,7 +4987,7 @@ function camaraGranja(){
    cables cortados, paneles sucios, antenas desincronizadas y regolito caído de una cúpula. */
 function programarTormenta(){S.tormenta={en:150+Math.random()*180,activa:false,avisada:false,dura:0}}
 function updateTormenta(dt){
-  if(enIntro||S.over||S.climaOn===false)return;if(!S.tormenta)programarTormenta();const T=S.tormenta;const v=dt*(speed||0);if(!v)return;
+  if(enIntro||S.over)return;if(S.climaOn===false){alertaTormenta(dt);return}if(!S.tormenta)programarTormenta();const T=S.tormenta;const v=dt*(speed||0);if(!v){return}alertaTormenta(dt);
   if(!T.activa){T.en-=v;
     if(!T.avisada&&T.en<=30){T.avisada=true;const a=$('#avisoTormenta');a.hidden=false;Sonido.efecto('alerta');clearTimeout(a._t);a._t=setTimeout(()=>a.hidden=true,5000)}
     if(T.en<=0){T.activa=true;T.dura=45+Math.random()*20;T.clima0=S.clima;S.clima='ventisca';S.climaHoras=99;Sonido.tormenta(true);toast('Ventisca: los paneles se repliegan. Esperá adentro a que pase.','bad')}}
@@ -4933,7 +5025,7 @@ const REPARACIONES={
   puede:()=>false,aplicar(){},listo:()=>!S.mods.some(m=>m.type==='taladro'&&m.perforado===false)},
  antena:{cat:'comms',t:['Vuelve a alinear la antena parabólica','Re-align the dish antenna','Riallinea l\'antenna parabolica'],h:['El viento movió el plato. Elegí la antena parabólica y tocá «Alinear antena» para apuntarla a la Tierra.','The wind moved the dish. Select it and press «Align antenna».','Il vento ha spostato il piatto.'],
   puede:()=>deTipo('antena').length>0,aplicar(){uno(deTipo('antena')).desalineada=true},listo:()=>!S.mods.some(m=>m.desalineada)},
- radiador:{cat:'energia',t:['Limpia el radiador del reactor KRUSTY','Clean the KRUSTY reactor radiator','Pulisci il radiatore del KRUSTY'],h:['El radiador del reactor quedó cubierto de polvo y se enfría peor: da menos energía. Elegí un KRUSTY y tocá «Limpiar radiador».','The reactor radiator is covered in dust and cools worse. Select a KRUSTY and press «Clean radiator».','Il radiatore è coperto di polvere.'],
+ radiador:{cat:'energia',t:['Enfría el reactor KRUSTY','Cool down the KRUSTY reactor','Raffredda il reattore KRUSTY'],h:['El polvo tapó el radiador y el reactor se recalienta: da menos energía. Elegí un KRUSTY, tocá «Enfriar el reactor» y bajá las barras de control hasta la franja verde.','Dust covered the radiator and the reactor is overheating. Select a KRUSTY, press «Cool the reactor» and lower the control rods into the green band.','Il radiatore è coperto di polvere.'],
   puede:()=>deTipo('krusty').length>0,aplicar(){uno(deTipo('krusty')).sucio=.5},listo:()=>!S.mods.some(m=>m.type==='krusty'&&m.sucio>.05)},
 };
 function dañosTormenta(){
@@ -5192,9 +5284,9 @@ function renderInfo(){
    ${d.kind==='dome'?powerRows(m.shape,d.w):d.prod?`<div class="row"><span>${m.type==='solar'?'Pico al mediodía':'Produce'}</span><span>+${fmt(d.prod)} W</span></div>`:d.w?`<div class="row"><span>Consume</span><span>${fmt(d.w)} W</span></div>`:''}
    ${m.shield?'<p>Cubierta con regolito: la radiación adentro baja a la mitad.</p>':''}
    <div class="fact">${d.fact}</div>
-   <div class="btns">${m.dañado?`<button class="btn" id="rep" ${S.res.mat<COSTO_REPARAR()?'disabled':''}>Reparar${COSTO_REPARAR()?' · 5':''}</button>`:''}${canT?`<button class="btn" id="tgl">${m.type==='krusty'?(m.on?'Cerrar y apagar':'Abrir y encender'):m.on?'Apagar':'Encender'}</button>`:''}${(d.kind==='dome'||m.type==='taladro')&&!m.shield?`<button class="btn" id="shd" ${S.res.mat<COSTO_REGOLITO()?'disabled':''}>Cubrir con regolito${COSTO_REGOLITO()?' · 10':''}</button>`:''}${d.kind==='ext'||m.cableCortado?`<button class="btn${m.cableCortado?' on':''}" id="mjCab">${m.cableCortado?'Cambiar cable cortado':'Revisar cableado'}</button>`:''}${m.type==='solar'?`<button class="btn${m.sucio>.05?' on':''}" id="mjLim">Limpiar paneles${m.sucio>.05?' ('+Math.round(m.sucio*100)+' % sucio)':''}</button>`:''}${m.type==='krusty'?`<button class="btn${m.sucio>.05?' on':''}" id="mjLim">Limpiar radiador${m.sucio>.05?' ('+Math.round(m.sucio*100)+' % sucio)':''}</button>`:''}${m.type==='moxie'?`<button class="btn${m.desajustado?' on':''}" id="mjMox">${m.desajustado?'Mantenimiento urgente':'Mantenimiento'}</button>`:''}${m.type==='taladro'?`<button class="btn${m.trabado?' on':''}" id="mjTal">${m.trabado?'Destrabar: perforar':'Perforar hasta el hielo'}</button>`:''}${m.type==='comms'?`<button class="btn${m.desinc?' on':''}" id="mjSen">${m.desinc?'Sincronizar antena':'Sincronizar señal'}</button>`:''}${m.type==='granja'?`<button class="btn" id="mjGra">Ver dentro</button>`:''}<button class="btn" id="mov">${t('mover')}</button>${m.type!=='control'?`<button class="btn" id="dem">${demolishArm?'¿Seguro? Confirmar':t('desarmar')}</button>`:''}</div></div>`;
+   <div class="btns">${m.dañado?`<button class="btn" id="rep" ${S.res.mat<COSTO_REPARAR()?'disabled':''}>Reparar${COSTO_REPARAR()?' · 5':''}</button>`:''}${canT?`<button class="btn" id="tgl">${m.type==='krusty'?(m.on?'Cerrar y apagar':'Abrir y encender'):m.on?'Apagar':'Encender'}</button>`:''}${(d.kind==='dome'||m.type==='taladro')&&!m.shield?`<button class="btn" id="shd" ${S.res.mat<COSTO_REGOLITO()?'disabled':''}>Cubrir con regolito${COSTO_REGOLITO()?' · 10':''}</button>`:''}${d.kind==='ext'||m.cableCortado?`<button class="btn${m.cableCortado?' on':''}" id="mjCab">${m.cableCortado?'Cambiar cable cortado':'Revisar cableado'}</button>`:''}${m.type==='solar'?`<button class="btn${m.sucio>.05?' on':''}" id="mjLim">Limpiar paneles${m.sucio>.05?' ('+Math.round(m.sucio*100)+' % sucio)':''}</button>`:''}${m.type==='krusty'?`<button class="btn${m.sucio>.05?' on':''}" id="mjKru">Enfriar el reactor${m.sucio>.05?' ('+Math.round(m.sucio*100)+' % recalentado)':''}</button>`:''}${m.type==='moxie'?`<button class="btn${m.desajustado?' on':''}" id="mjMox">${m.desajustado?'Mantenimiento urgente':'Mantenimiento'}</button>`:''}${m.type==='taladro'?`<button class="btn${m.trabado?' on':''}" id="mjTal">${m.trabado?'Destrabar: perforar':'Perforar hasta el hielo'}</button>`:''}${m.type==='comms'?`<button class="btn${m.desinc?' on':''}" id="mjSen">${m.desinc?'Sincronizar antena':'Sincronizar señal'}</button>`:''}${m.type==='granja'?`<button class="btn" id="mjGra">Ver dentro</button>`:''}<button class="btn" id="mov">${t('mover')}</button>${m.type!=='control'?`<button class="btn" id="dem">${demolishArm?'¿Seguro? Confirmar':t('desarmar')}</button>`:''}</div></div>`;
   p.hidden=false;$('#cx').onclick=()=>{sel=null;renderInfo()};setTimeout(marcarFoco,0);
-  {const habil={mjCab:m.cableCortado,mjLim:m.sucio>.05,mjMox:m.desajustado,mjSen:m.desinc,mjTal:m.trabado||m.perforado===false,mjAnt:m.desalineada};
+  {const habil={mjCab:m.cableCortado,mjLim:m.sucio>.05,mjKru:m.sucio>.05,mjMox:m.desajustado,mjSen:m.desinc,mjTal:m.trabado||m.perforado===false,mjAnt:m.desalineada};
    for(const id in habil){const b=$('#'+id);if(b&&!habil[id]){b.disabled=true;b.title='Sólo cuando una misión lo pide: ahora no hace falta.'}}}
   {const x=$('#info .btns'),bt=(id,txt)=>{const b=document.createElement('button');b.className='btn';b.id=id;b.textContent=txt;x.insertBefore(b,$('#mov'));return b};
    if(m.type==='esclusa')bt('btRover',modoRover?'Volver al contenedor':'Manejar el rover').onclick=()=>manejarRover(!modoRover);
@@ -5209,6 +5301,7 @@ function renderInfo(){
   const hacer=k=>{S.hecho=S.hecho||{};S.hecho[k]=true};
   if($('#mjCab'))$('#mjCab').onclick=()=>abrirMinijuego('cableado',m,()=>{m.cableCortado=false;hacer('cableado');rebuildConnectors()});
   if($('#mjLim'))$('#mjLim').onclick=()=>abrirMinijuego('limpiar',m,()=>{m.sucio=0;hacer('limpiar')});
+  if($('#mjKru'))$('#mjKru').onclick=()=>abrirMinijuego('reactor',m,()=>{m.sucio=0;hacer('reactor')});
   if($('#mjMox'))$('#mjMox').onclick=()=>abrirMinijuego('moxie',m,()=>{m.ajustado=S.sol;m.desajustado=false;hacer('moxie')});
   if($('#mjTal'))$('#mjTal').onclick=()=>abrirMinijuego('taladro',m,()=>{m.trabado=false;m.perforado=true;hacer('taladro')});
   if($('#mjSen'))$('#mjSen').onclick=()=>abrirMinijuego('señal',m,()=>{m.desinc=false;hacer('señal')});
@@ -5266,6 +5359,63 @@ function misionCumplida(k){
 let modoConstruccion=false,panelTipo=null,padDock=-1,padItem=-1;
 const hayDeficit=()=>!!S&&S.pw&&S.pw.prod-S.pw.need<0&&!S.sofcActiva;
 const hayTormenta=()=>!!S&&(S.clima!=='templado'||!!(S.tormenta&&S.tormenta.activa));
+// la tormenta todavía no llegó pero ya sonó el aviso: todos tienen que volver
+// Minimapa: la base vista desde arriba con un ícono por habitación. En tercera persona gira con la cámara;
+// en primera persona se centra en el cadete y su frente queda arriba.
+const ICONO_MAPA={control:'🖥',dormitorio:'🛏',investigacion:'🔬',esclusa:'🚪',agua:'💧',moxie:'O₂',cocina:'🍳',granja:'🌱',comms:'📡',medico:'✚',ocio:'🏃',bano:'🚿',refugio:'☢',
+  krusty:'☢',solar:'☀',metano:'CH₄',taladro:'⛏',reflector:'💡',antena:'📡',distribuidor:'⚡',sofc:'🔋',plasticos:'♻',tanqueCO:'CO'};
+let mmT=0;
+function updateMinimapa(dt){
+  const cv=$('#minimapa');if(!cv||!S)return;mmT-=dt;if(mmT>0)return;mmT=.08;
+  const ver=!enIntro&&!MJ&&!S.over;cv.style.display=ver?'':'none';if(!ver)return;
+  const c=cv.getContext('2d'),R=170; // 4,2 píxeles (de 340) por metro: ~40 m de diámetro
+  const C=cadete(),fp=modoCadete==='fp'&&C;let cx,cz,ang;
+  if(modoRover&&S.rover){cx=S.rover.x;cz=S.rover.z;ang=(S.rover.yaw||0)+Math.PI}
+  else if(fp){cx=C.g.position.x;cz=C.g.position.z;ang=C.yaw+Math.PI}
+  else{cx=camS.tx;cz=camS.tz;ang=camS.yaw}
+  const E=fp?11:modoRover?6:8.5; // píxeles (de 340) por metro
+  c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,340,340);c.save();c.beginPath();c.arc(R,R,R-2,0,Math.PI*2);c.clip();
+  c.fillStyle='#3a2216';c.fillRect(0,0,340,340);
+  c.translate(R,R);c.rotate(ang);c.scale(E,E);c.translate(-cx,-cz);
+  // túneles
+  c.strokeStyle='#b9c4d2';c.lineCap='round';c.lineWidth=1.1;for(const tu of tuneles){c.beginPath();c.moveTo(tu.a.x,tu.a.z);c.lineTo(tu.b.x,tu.b.z);c.stroke()}
+  // módulos y estructuras
+  const iconos=[];
+  for(const m of S.mods){if(m.obj.visible===false)continue;const p=m.obj.position,d=DEF[m.type],col='#'+(d.tint||0x8899aa).toString(16).padStart(6,'0');
+    if(d.kind==='dome'){c.fillStyle=col;c.strokeStyle='rgba(255,255,255,.85)';c.lineWidth=.3;
+      if(m.shape==='esfera'){c.beginPath();c.arc(p.x,p.z,2,0,Math.PI*2);c.fill();c.stroke()}
+      else{const largo=!((+m.rot||0)%2);const w=largo?6:4,h=largo?4:6;c.beginPath();c.roundRect?c.roundRect(p.x-w/2,p.z-h/2,w,h,1.6):c.rect(p.x-w/2,p.z-h/2,w,h);c.fill();c.stroke()}}
+    else{c.fillStyle=m.type==='krusty'?'rgba(255,210,63,.25)':col;if(m.type==='krusty'){c.beginPath();c.arc(p.x,p.z,4.5,0,Math.PI*2);c.fill();c.fillStyle='#ffd23f'}
+      c.beginPath();c.arc(p.x,p.z,m.type==='solar'?2.4:1,0,Math.PI*2);c.fill()}
+    iconos.push([p.x,p.z,ICONO_MAPA[m.type]||'•',d.kind==='dome'])}
+  // tripulación
+  for(const P of PJ){if(P.id==='cadete'&&fp)continue;const q=P.g.position;c.fillStyle=P.id==='cadete'?'#ff8a1e':'#7fe0ff';c.beginPath();c.arc(q.x,q.z,P.id==='cadete'?.75:.55,0,Math.PI*2);c.fill()}
+  // íconos derechos (no giran)
+  c.restore();c.save();c.beginPath();c.arc(R,R,R-2,0,Math.PI*2);c.clip();c.textAlign='center';c.textBaseline='middle';
+  const co=Math.cos(ang),si=Math.sin(ang);
+  for(const[x,z,ic,dom]of iconos){const dx=(x-cx)*E,dz=(z-cz)*E,sx=R+dx*co-dz*si,sy=R+dx*si+dz*co;if(Math.hypot(sx-R,sy-R)>R-10)continue;
+    c.font=(dom?'700 22px':'700 15px')+' "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",Helvetica,Arial';c.fillStyle='#fff';c.shadowColor='rgba(0,0,0,.9)';c.shadowBlur=4;c.fillText(ic,sx,sy)}
+  c.shadowBlur=0;
+  // vos: flecha en el centro (en tercera persona, la mira de la cámara)
+  c.translate(R,R);c.fillStyle='#ff8a1e';c.strokeStyle='#fff';c.lineWidth=2;
+  if(fp||modoRover){c.beginPath();c.moveTo(0,-14);c.lineTo(9,10);c.lineTo(0,5);c.lineTo(-9,10);c.closePath();c.fill();c.stroke()}
+  else{c.strokeStyle='rgba(255,255,255,.8)';c.beginPath();c.moveTo(-8,0);c.lineTo(8,0);c.moveTo(0,-8);c.lineTo(0,8);c.stroke()}
+  c.restore();
+  // norte
+  const nx=R+Math.sin(ang)*(R-16),ny=R-Math.cos(ang)*(R-16);c.font='700 18px Helvetica,Arial';c.fillStyle='#ff5a3c';c.textAlign='center';c.textBaseline='middle';c.fillText('N',nx,ny);
+}
+const tormentaInminente=()=>!!S&&!!S.tormenta&&!S.tormenta.activa&&!!S.tormenta.avisada&&S.tormenta.en>0&&S.climaOn!==false;
+let alarmaT=0,alarmaOn=false;
+function alertaTormenta(dt){
+  const afuera=PJ.filter(P=>P.fuera).length,on=(tormentaInminente()||hayTormenta()&&afuera>0)&&!enIntro;
+  const el=$('#alertaRoja');if(!el)return;
+  if(on){el.hidden=false;document.body.classList.add('alerta-tormenta');
+    el.querySelector('b').textContent=L3(['¡ALERTA DE TORMENTA!','STORM ALERT!','ALLERTA TEMPESTA!']);
+    el.querySelector('span').textContent=afuera?L3([afuera+(afuera>1?' astronautas afuera: ¡todos al hábitat!':' astronauta afuera: ¡al hábitat!'),afuera+(afuera>1?' astronauts outside: everyone inside!':' astronaut outside: get inside!'),afuera+(afuera>1?' astronauti fuori: tutti dentro!':' astronauta fuori: dentro!')]):L3(['Todos adentro. La tormenta está por llegar.','Everyone is inside. The storm is about to hit.','Tutti dentro. La tempesta sta arrivando.']);
+    alarmaT-=dt;if(alarmaT<=0){alarmaT=1.25;Sonido.efecto('alarma')}
+    if(!alarmaOn){alarmaOn=true}}
+  else if(alarmaOn){alarmaOn=false;el.hidden=true;document.body.classList.remove('alerta-tormenta');if(hayTormenta())toast(L3(['Todos a salvo dentro del hábitat.','Everyone is safe inside the habitat.','Tutti al sicuro nell\'habitat.']),'good')}
+}
 function avisoNoConstruir(){avisoCentro('No se puede construir durante la tormenta. Esperá a que pase.');Sonido.efecto('error')}
 function setModoConstruccion(on){
   if(on&&hayTormenta()){avisoNoConstruir();on=false;if(!modoConstruccion)return}
@@ -5576,7 +5726,7 @@ window.manejarMandoJuego=function(p,dt){
   // X = Modo Corazón (no puede estar abierto junto con Construcción)
   if(B('bienestar')){alternarCorazon();foco=corazonAbierto?{z:'dock',k:0}:null;marcarFoco();if(corazonAbierto){const e=elementosZona('dock')[0];e&&e.onfocus&&e.onfocus()}}
   // LB / RB: rotar el objeto nuevo o el que se está moviendo
-  if(B('rotarIzq')||B('rotarDer')){if(tool||moverM){rot^=1;rebuildGhost();Sonido.efecto('servo')}
+  if(B('rotarIzq')||B('rotarDer')){if(tool||moverM){rot=(rot+1)%4;rebuildGhost();Sonido.efecto('servo')}
     else{foco=B('rotarIzq')?{z:'sup',k:0}:{z:'sup',k:iPausa()};marcarFoco();Sonido.efecto('nav')}}
   if(B('pausa'))alternarPausa();
   const bBack=Ajustes.boton('mision');
@@ -5702,7 +5852,9 @@ function updateEnv(){
   renderer.toneMappingExposure=.8+.15*day;
   dustMat.opacity=V?.85:TO?.3:0;dustMat.size=V?.6:.35;
   const night=1-day;
-  for(const m of S.mods){const w=m.obj.userData.model.userData.win;if(w)w.emissiveIntensity=(m.powered&&!m.cold&&m.on!==false)?.15+2.4*night:0}
+  for(const m of S.mods){const w=m.obj.userData.model.userData.win;if(w)w.emissiveIntensity=(m.powered&&!m.cold&&m.on!==false)?.15+2.4*night:0;
+    if(m.type==='krusty'){const c=m.obj.userData.model.userData.campo;if(c)c.visible=m.on!==false&&!m.dañado&&m.obj.visible!==false}}
+  {const p=.5+.5*Math.sin(clockT*2.4);CAMPO_RAD.anillo.opacity=.35+.4*p;CAMPO_RAD.cupula.opacity=.03+.04*p;CAMPO_RAD.piso.opacity=.04+.05*p}
   Sonido.viento(V?1:TO?.7:0);
 }
 // Interiores: al acercar la cámara la cubierta se vuelve casi transparente
@@ -5737,7 +5889,7 @@ function loop(now){
   if(enIntro)updateIntro(dt);
   else if(speed&&!S.over){let hrs=dt*speed/HOUR_SEC;while(hrs>0){const h=Math.min(.25,hrs);step(h);hrs-=h}}
   if(!camaraGranja()&&!(modoRover&&!hayModalAbierto()&&(updateRover(dt),true))&&!(modoCadete!=='auto'&&!enIntro&&!hayModalAbierto()&&cadeteManual(dt)))updateCamera(dt);
-  updateTormenta(dt);updateMinijuego(dt);updateHoldTecla(dt);
+  updateTormenta(dt);updateMinijuego(dt);updateHoldTecla(dt);updateMinimapa(dt);
   if(usandoMando&&!enIntro){mouse.set(0,0);ray.setFromCamera(mouse,camera);hoverCell=groundCell()} // con el control se apunta con la mira del centro
   updateGhost();updateEnv();updateRemolinos(dt,clockT);updateInteriores(clockT);updateObras(dt);updatePuertas(dt);updateTripulacion(dt);if(enIntro)PJ.forEach(P=>P.g.visible=false);if(!enIntro&&speed&&!S.over)robotsRegolito(dt);
   // contorno del sector alrededor de la construcción seleccionada
@@ -5888,7 +6040,7 @@ function escaleraEsclusa(pu){
     const tx=new THREE.CanvasTexture(cv);tx.wrapS=THREE.RepeatWrapping;tx.repeat.set(2,1);escMat.franja=new THREE.MeshStandardMaterial({map:tx,roughness:.6});
     escMat.riel=new THREE.MeshStandardMaterial({color:0xf2c232,roughness:.4,metalness:.3});
     escMat.luz=new THREE.MeshStandardMaterial({color:0x103018,emissive:0x35ff7a,emissiveIntensity:1.6})}
-  const g=new THREE.Group(),v=pu.v,base=pu.half+.02,ANCHO=.9,PROF=.24,N=3,ALTO=PISO;
+  const g=new THREE.Group(),v=pu.v,base=pu.half+(pu.curva?.42:.02),ANCHO=.9,PROF=.24,N=3,ALTO=PISO;
   g.position.copy(pu.c);g.rotation.y=Math.atan2(v.x,v.z);connRoot.add(g);
   const caja=(w,h,d,mat,x,y,z)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;g.add(m);return m};
   // descanso pegado a la cubierta y escalones bajando hacia afuera (en el grupo, +z es hacia afuera)
@@ -5899,7 +6051,7 @@ function escaleraEsclusa(pu){
   for(const sx of[-1,1]){const x=sx*(ANCHO/2+.03);caja(.04,y0,.04,escMat.riel,x,y0/2,z0);caja(.04,y1,.04,escMat.riel,x,y1/2,z1);
     const L=Math.hypot(z1-z0,y0-y1),r=new THREE.Mesh(new THREE.CylinderGeometry(.022,.022,L,8),escMat.riel);r.position.set(x,(y0+y1)/2,(z0+z1)/2);r.rotation.x=Math.atan2(z1-z0,y1-y0);r.castShadow=true;g.add(r)}
   // baliza verde arriba de la entrada
-  const yL=pu.curva?1.25:1.75,zL=pu.curva?Math.sqrt(1.9*1.9-(yL-.24)**2)+.04:base-.12;caja(.22,.06,.06,escMat.luz,0,yL,zL);
+  const yL=pu.curva?1.42:1.75,zL=base-.12;caja(.22,.06,.06,escMat.luz,0,yL,zL);
 }
 /* ---------- Esclusa: puerta exterior, cámara de despresurización, puerta interior y vestuario ---------- */
 let ESC=null; // geometría y estado de la esclusa activa
@@ -5909,7 +6061,7 @@ function puertaEsclusa(){
   const ocupados=tuneles.filter(tu=>tu.da===e||tu.db===e).map(tu=>{const p=tu.a.distanceTo(c)<tu.b.distanceTo(c)?tu.b:tu.a;return p.clone().sub(c).normalize()});
   let mejor=null;for(const d of[[1,0],[-1,0],[0,1],[0,-1]]){const v=new THREE.Vector3(d[0],0,d[1]);if(ocupados.some(o=>o.dot(v)>.7))continue;const s=v.dot(c.clone().sub(cb))+(d[0]*.001+d[1]*.0007);if(!mejor||s>mejor.s)mejor={v,s}}
   if(!mejor)mejor={v:new THREE.Vector3(1,0,0)};
-  const v=mejor.v,largoX=e.shape!=='esfera'&&!e.rot,largo=e.shape!=='esfera'&&(Math.abs(v.x)>.5?largoX:!largoX);
+  const v=mejor.v,largoX=e.shape!=='esfera'&&!((+e.rot||0)%2),largo=e.shape!=='esfera'&&(Math.abs(v.x)>.5?largoX:!largoX);
   const half=e.shape==='esfera'?1.9:largo?2.9:1.9,curva=!largo;
   const sExt=curva?1.5:2.84,sInt=sExt-1.15;
   const P=s=>c.clone().addScaledVector(v,s);
@@ -5984,13 +6136,17 @@ function armarPuertas(){
     const n=eje==='x'?new THREE.Vector3(1,0,0):new THREE.Vector3(0,0,1);const P={d,pos:pos.clone(),n,tipo,ultimo:0,...extra};PUERTAS.push(P);return P};
   for(const tu of tuneles){for(const m of[tu.da,tu.db]){const c=m.obj.position,ax=tu.eje==='x'?new THREE.Vector3(1,0,0):new THREE.Vector3(0,0,1);
     const fin=tu.a.distanceTo(c)<tu.b.distanceTo(c)?tu.a:tu.b,sg=Math.sign(fin.clone().sub(c).dot(ax))||1;
-    const larga=m.shape!=='esfera'&&(tu.eje==='x'?!m.rot:!!m.rot);const s=larga?2.84:1.62;
+    const larga=m.shape!=='esfera'&&(tu.eje==='x'?!((+m.rot||0)%2):!!((+m.rot||0)%2));const s=larga?2.84:1.62;
     const pos=fin.clone();if(tu.eje==='x')pos.x=c.x+sg*s;else pos.z=c.z+sg*s;pon(pos,tu.eje,'tunel',{m})}}
   const pu=puertaEsclusa();if(!pu)return;
   const eje=Math.abs(pu.v.x)>.5?'x':'z';
   const ext=pon(pu.pExt,eje,'ext',{m:pu.e}),int=pon(pu.pInt,eje,'int',{m:pu.e});
   ESC={pu,ext,int,estado:'pres',t:0,aviso:''};
   escaleraEsclusa(pu);
+  // en la cúpula esférica el vestíbulo corto termina en una segunda puerta exterior (se abre junto con la de la cámara) y una tapa con hueco
+  if(pu.curva){const pos=pu.c.clone().addScaledVector(pu.v,pu.half+.4);ESC.ext2=pon(pos,eje,'ext2',{m:pu.e});
+    const sh=new THREE.Shape();sh.absarc(0,0,.55,0,Math.PI*2,false);const hueco=new THREE.Path();hueco.moveTo(-.34,-.47);hueco.lineTo(.34,-.47);hueco.lineTo(.34,.53);hueco.lineTo(-.34,.53);hueco.lineTo(-.34,-.47);sh.holes.push(hueco);
+    const tapa=new THREE.Mesh(new THREE.ShapeGeometry(sh,24),new THREE.MeshStandardMaterial({color:0xd2d6da,roughness:.5,side:THREE.DoubleSide}));tapa.position.set(pos.x,.75,pos.z);tapa.rotation.y=Math.atan2(pu.v.x,pu.v.z);connRoot.add(tapa)}
   // tabique con hueco de puerta entre la cámara y el vestuario
   const m7=window.Modelos7,tex=m7.texPared().clone();tex.needsUpdate=true;tex.repeat.set(1.2,1);const mat=new THREE.MeshStandardMaterial({map:tex,roughness:.75,side:THREE.DoubleSide});
   const tabique=(s)=>{const sh=new THREE.Shape();let W,H;
@@ -6036,6 +6192,7 @@ function updatePuertas(dt){
     if(E.estado==='pres'){E.int.d.abrir(quiereInt);E.ext.d.abrir(false);if(quiereExt&&!quiereInt&&!intAbierta){E.estado='bajando';E.t=3;Sonido.efecto('despresurizar');E.aviso='Sacando el aire de la cámara…'}}
     else if(E.estado==='vac'){E.ext.d.abrir(quiereExt);E.int.d.abrir(false);if(quiereInt&&!quiereExt&&!extAbierta){E.estado='subiendo';E.t=3;Sonido.efecto('presurizar');E.aviso='Presurizando la cámara…'}}
     else{E.ext.d.abrir(false);E.int.d.abrir(false);E.t-=dt;if(E.t<=0){E.estado=E.estado==='bajando'?'vac':'pres';E.aviso=''}}
+    if(E.ext2)E.ext2.d.abrir(E.ext.d.objetivo>0);
     if(E.luz)E.luz.material.emissive.setHex(E.estado==='pres'?0x40ff70:E.estado==='vac'?0xff3a2a:0xffb020)}
   const cam=camera.position;
   for(const D of PUERTAS){const a0=D.d.apertura;D.d.actualizar(dt);const ob=D.d.objetivo;
@@ -6053,6 +6210,23 @@ function crearTripulacion(){
     ['cadete',NOMBRE,{gender:pf.sexo==='mujer'?'female':'male',hair:{negro:'black',marron:'brown',rubio:'blonde'}[pf.pelo]||'brown'},COLOR_TRAJE[pf.traje]||COLOR_TRAJE.blanco]];
   datos.forEach(([id,nombre,look,col],k)=>{const mo=personaModelo(look,col);const hb=hubLocal(ctrl);mo.g.position.copy(aMundoDom(ctrl,hb.x+(k-1)*.35,hb.z+.3));mo.g.position.y=PISO;scene.add(mo.g);
     PJ.push({id,nombre,...mo,ruta:[],estado:'pensar',t:Math.random()*2,fuera:false,yaw:Math.PI,fase:Math.random()*6,lugar:null,anim:'quieto',ta:0})});
+  // los astronautas que llegaron después (S.crew cuenta a todos menos al cadete)
+  for(let k=2;k<Math.min(S.crew,12);k++)sumarTripulante(true);
+}
+const NOMBRES_NUEVOS=['Lucía','Mateo','Sofía','Tomás','Valentina','Joaquín','Camila','Bruno','Julieta','Lautaro'];
+function sumarTripulante(silencio){
+  const ctrl=S.mods.find(m=>m.type==='control');if(!ctrl||!window.Personas3D)return;const k=PJ.filter(P=>P.nuevo).length;
+  const look={gender:k%2?'female':'male',hair:['black','brown','blonde'][k%3]},col=[COLOR_TRAJE.azul,COLOR_TRAJE.rosa,COLOR_TRAJE.rojo,COLOR_TRAJE.gris,COLOR_TRAJE.blanco][k%5];
+  const mo=personaModelo(look,col),hb=hubLocal(ctrl);mo.g.position.copy(aMundoDom(ctrl,hb.x+(Math.random()-.5)*.8,hb.z+(Math.random()-.5)*.8));mo.g.position.y=PISO;scene.add(mo.g);
+  PJ.push({id:'tripulante'+k,nuevo:true,nombre:NOMBRES_NUEVOS[k%NOMBRES_NUEVOS.length],...mo,ruta:[],estado:'pensar',t:Math.random()*2,fuera:false,yaw:Math.PI,fase:Math.random()*6,lugar:null,anim:'quieto',ta:0});
+}
+// Nave de tripulación: si hay al menos 2 camas libres y antena de Comunicaciones, llegan 2 astronautas en unas horas
+function revisarNaveTripulacion(h){
+  if(S.over)return;const libres=beds()-S.crew;
+  if(S.naveCrewH!=null){S.naveCrewH-=h;if(S.naveCrewH<=0){S.naveCrewH=null;if(beds()-S.crew>=2){S.crew+=2;sumarTripulante();sumarTripulante();startRocket();Sonido.efecto('ok');
+      toast('Aterrizó la nave de tripulación: llegan 2 astronautas nuevos ('+S.crew+' en la base).','good');checkMissions()}}return}
+  if(libres>=2&&S.crew<12){if(active('comms')){S.naveCrewH=4;toast('La Tierra vio camas libres: una nave con 2 astronautas aterriza en unas horas.','good')}
+    else if(!S.avisoCommsCrew){S.avisoCommsCrew=true;toast('Hay camas libres, pero sin antena de Comunicaciones la Tierra no puede mandar astronautas.','bad')}}
 }
 const cadete=()=>PJ.find(P=>P.id==='cadete');
 const ocupado=(m,L)=>PJ.some(P=>P.lugar&&P.lugar.m===m&&P.lugar.L===L);
@@ -6093,9 +6267,12 @@ function updateTripulacion(dt){
     const manual=P.id==='cadete'&&modoCadete!=='auto'&&!P.forzado&&!P.actividad;
     P.g.visible=!(P.id==='cadete'&&modoCadete==='fp'&&!P.actividad)&&!(P.id==='cadete'&&modoRover)&&!(modoCadete==='fp'&&P.id!=='cadete'&&Math.hypot(P.g.position.x-camera.position.x,P.g.position.z-camera.position.z)<.5);
     revisarTraje(P,dt);
+    if(P.id==='cadete'){const k=S.mods.find(m=>m.type==='krusty'&&m.on!==false&&!m.dañado&&Math.hypot(m.obj.position.x-P.g.position.x,m.obj.position.z-P.g.position.z)<4.5);
+      if(k&&!P.enRadiacion){P.enRadiacion=true;avisoCentro(L3(['☢ Campo de radiación del KRUSTY: alejate del reactor.','☢ KRUSTY radiation field: move away from the reactor.','☢ Campo di radiazioni del KRUSTY: allontanati dal reattore.']));Sonido.efecto('alerta')}
+      else if(!k)P.enRadiacion=false}
     if(manual){continue}
     // tormenta: los que están afuera vuelven solos al hábitat
-    if(hayTormenta()&&P.fuera&&(!P.dest||P.dest.ext)&&P.estado!=='dormir'&&ctrl){const r=rutaHacia(P,{m:ctrl});if(r&&r.length){P.ruta=r;P.dest={m:ctrl};P.estado='caminar';P.lugar=null;if(P.id==='cadete'&&modoCadete!=='auto'){P.forzado=true;avisoCentro('¡Tormenta! Tu cadete vuelve al hábitat por la esclusa.')}}}
+    if((hayTormenta()||tormentaInminente())&&P.fuera&&(!P.dest||P.dest.ext)&&P.estado!=='dormir'&&ctrl){const r=rutaHacia(P,{m:ctrl});if(r&&r.length){P.ruta=r;P.dest={m:ctrl};P.estado='caminar';P.lugar=null;if(P.id==='cadete'&&modoCadete!=='auto'){P.forzado=true;avisoCentro('¡Tormenta! Tu cadete vuelve al hábitat por la esclusa.')}}}
     if(!P.fuera&&!zonaDe(P.g.position).tipo.match(/dom|tunel/)&&!P.ruta.length&&ctrl){const hb=hubLocal(ctrl);P.g.position.copy(aMundoDom(ctrl,hb.x,hb.z));P.g.position.y=PISO}
     if(P.estado==='dormir'){P.g.rotation.set(0,P.yaw,0);P.g.rotateZ(Math.PI/2);animarPersona(P,dt,'dormir');if(!(S.hour>=22||S.hour<6.5)&&!P.durmiendoForzado){P.estado='pensar';P.t=0;P.lugar=null;P.g.rotation.set(0,P.yaw,0);P.g.position.copy(P.antesDormir||P.g.position);P.g.position.y=PISO}continue}
     if(!dtj){animarPersona(P,dt,P.estado==='hacer'?(P.actividad==='cinta'?'correr':'trabajar'):'quieto');continue}
@@ -6104,7 +6281,7 @@ function updateTripulacion(dt){
       const w=P.ruta[0];if(!w){P.estado='hacer';P.t=5+Math.random()*7;continue}
       // espera en el vestuario hasta tener el traje, y en la cámara hasta que se abra la otra puerta
       if(w.vestirse&&zonaEsclusa(P.g.position)==='vestuario'&&!P.trajePuesto&&P.g.position.distanceTo(w.p)<.2){animarPersona(P,dtj,'trabajar');continue}
-      const to=w.p.clone().sub(P.g.position);to.y=0;const dist=to.length(),paso=(P.fuera?.7:.8)*dtj;
+      const to=w.p.clone().sub(P.g.position);to.y=0;const corre=(hayTormenta()||tormentaInminente())&&(P.fuera||!!zonaEsclusa(P.g.position)),dist=to.length(),paso=(P.fuera?.7:.8)*dtj*(corre?2.4:1);
       const sig=P.g.position.clone().addScaledVector(to.clone().normalize(),Math.min(dist,paso+.3));
       if(dist>.05&&puertaCerrada(P.g.position,sig)){animarPersona(P,dtj,'quieto');continue}
       if(dist<=paso+.01){P.g.position.set(w.p.x,sueloDe(P),w.p.z);P.ruta.shift();
@@ -6114,7 +6291,7 @@ function updateTripulacion(dt){
           else if(P.dest&&P.dest.dormir){P.estado='dormir';P.antesDormir=P.g.position.clone();const m=P.dest.m,L=P.dest.lugar,c=aMundoDom(m,L.cx,L.cz),ryb=m.obj.userData.model.rotation.y+(lugaresBase(m)[P.dest.k]||0);
             P.yaw=ryb;P.g.position.set(c.x,PISO+.3,c.z).add(new THREE.Vector3(Math.cos(ryb),0,-Math.sin(ryb)).multiplyScalar(.32))}}}
       else{to.normalize();P.g.position.addScaledVector(to,paso);P.g.position.y=sueloDe(P);const yo=Math.atan2(to.x,to.z);let d=yo-P.yaw;d=Math.atan2(Math.sin(d),Math.cos(d));P.yaw+=d*Math.min(1,dtj*8)}
-      P.g.rotation.set(0,P.yaw,0);animarPersona(P,dtj,'caminar');continue}
+      P.g.rotation.set(0,P.yaw,0);animarPersona(P,dtj,corre?'correr':'caminar');continue}
     if(P.estado==='hacer'){P.t-=dtj;P.g.rotation.set(0,P.yaw,0);animarPersona(P,dtj,P.actividad==='cinta'?'correr':P.fuera?'muestra':'trabajar');
       if(P.t<=0){if(P.actividad)terminarActividad(P);P.estado='pensar';P.t=.5+Math.random()*2;P.lugar=null}}
   }
@@ -6143,11 +6320,14 @@ function hacerActividad(tipo){
   if(C.fuera){avisoCentro('Primero entrá al hábitat por la esclusa.');Sonido.efecto('error');return false}
   const ls=lugaresDom(m),L=ls[A.k%ls.length];
   const r=rutaHacia(C,{m,lugar:L,k:A.k});if(!r){Sonido.efecto('error');return false}
-  C.ruta=r;C.estado='caminar';C.actividad=tipo;C.lugar={m,L:A.k};C.dest={m,lugar:L,k:A.k,alLlegar:P=>{P.estado='hacer';P.t=A.dur}};
+  C.ruta=r;C.estado='caminar';C.actividad=tipo;C.lugar={m,L:A.k};C.dest={m,lugar:L,k:A.k,alLlegar:P=>{P.estado='hacer';P.t=A.dur;if(tipo==='cinta')subirACinta(P)}};
   if(tipo==='cinta'){const md=m.obj.userData.model.userData;C.cintaDe=md.interior&&md.interior.userData.cinta}
   toast(NOMBRE+' '+A.txt+'.');Sonido.efecto('ok');return true;
 }
-function terminarActividad(P){const A=ACTIVIDADES[P.actividad];S.hecho=S.hecho||{};S.hecho[P.actividad]=true;if(A){A.ef();if(A.msg)toast(A.msg,'good')}P.actividad=null;P.cintaDe=null;checkMissions();if(modoCadete!=='auto'&&P.id==='cadete')P.estado='manual'}
+// La persona corre sobre la banda de la cinta (no al lado) mirando hacia la consola
+function subirACinta(P){const ci=P.cintaDe;if(!ci||!ci.g)return;ci.g.updateMatrixWorld(true);const w=new THREE.Vector3(),q=new THREE.Quaternion();ci.g.getWorldPosition(w);ci.g.getWorldQuaternion(q);
+  const f=new THREE.Vector3(1,0,0).applyQuaternion(q);f.y=0;f.normalize();P.g.position.set(w.x-f.x*.05,w.y+.055,w.z-f.z*.05);P.yaw=Math.atan2(f.x,f.z);P.g.rotation.set(0,P.yaw,0);P.enCinta=true}
+function terminarActividad(P){const A=ACTIVIDADES[P.actividad];S.hecho=S.hecho||{};S.hecho[P.actividad]=true;if(A){A.ef();if(A.msg)toast(A.msg,'good')}if(P.enCinta){P.enCinta=false;P.g.position.y=sueloDe(P)}P.actividad=null;P.cintaDe=null;checkMissions();if(modoCadete!=='auto'&&P.id==='cadete')P.estado='manual'}
 // dormir en la cama: pasa el tiempo hasta la mañana del sol siguiente
 function dormirHastaManana(){
   const C=cadete(),ov=$('#suenoOv');ov.hidden=false;ov.classList.add('ver');const sol0=S.sol,prev=speed;setSpeed(0);
@@ -6311,7 +6491,7 @@ function ponerClima(on){S.climaOn=on;
   else{S.climaHoras=18+rnd()*24;programarTormenta();toast('Clima activado: vuelven las ventiscas, los tornados y las tormentas solares.','')}
   pintarClimaBtn();renderStats();renderInfo()}
 Ajustes.alCambiar(()=>{construirStats();renderStats();renderCats();if(panelTipo)renderPanelDer();if(misionVisible)renderMision();renderInfo();if(!$('#pausa').hidden)renderPausa();aplicarCalidad();pintarIconosHud()});
-window.__hab={get scene(){return scene},get camera(){return camera},get renderer(){return renderer},feedDe:m=>feedDe(m),ver:m=>{sel=m;showEnergy=false;renderInfo()},pasoTut:k=>{tutorial={k,alTerminar:null,prev:1};$('#tutorial').hidden=false;pasoTutorial()},get ESC(){return ESC},get PUERTAS(){return PUERTAS},manejarRover,hacerActividad,get modoRover(){return modoRover},cambiarModalidad,moverCadete,get PJ(){return PJ},setModoCadete,get modoCadete(){return modoCadete},get notifs(){return notifs},abrirNotifs,cerrarNotifs,get tuneles(){return tuneles},get S(){return S},get tutorial(){return tutorial},sigTutorial,finTutorial,abrirMinijuego,get MJ(){return MJ},verDentroGranja,salirGranja,dañosTormenta,camS,saltarIntro,get guia(){return guia},abrirPausa,construirConRobots,addMod:(...a)=>{const m=addMod(...a);rebuildConnectors();return m},cellToClient:(x,y)=>{const[wx,wz]=cellToWorld(x,y);const v=new THREE.Vector3(wx,0,wz).project(camera);return[(v.x+1)/2*innerWidth,(1-v.y)/2*innerHeight]}};
+window.__hab={rebuildConnectors:()=>rebuildConnectors(),get scene(){return scene},get camera(){return camera},get renderer(){return renderer},feedDe:m=>feedDe(m),ver:m=>{sel=m;showEnergy=false;renderInfo()},pasoTut:k=>{tutorial={k,alTerminar:null,prev:1};$('#tutorial').hidden=false;pasoTutorial()},get ESC(){return ESC},get PUERTAS(){return PUERTAS},manejarRover,hacerActividad,get modoRover(){return modoRover},cambiarModalidad,moverCadete,get PJ(){return PJ},setModoCadete,get modoCadete(){return modoCadete},get notifs(){return notifs},abrirNotifs,cerrarNotifs,get tuneles(){return tuneles},get S(){return S},get tutorial(){return tutorial},sigTutorial,finTutorial,abrirMinijuego,get MJ(){return MJ},verDentroGranja,salirGranja,dañosTormenta,camS,saltarIntro,get guia(){return guia},abrirPausa,construirConRobots,addMod:(...a)=>{const m=addMod(...a);rebuildConnectors();return m},cellToClient:(x,y)=>{const[wx,wz]=cellToWorld(x,y);const v=new THREE.Vector3(wx,0,wz).project(camera);return[(v.x+1)/2*innerWidth,(1-v.y)/2*innerHeight]}};
 requestAnimationFrame(loop);
 }
 </script>
@@ -7794,8 +7974,9 @@ function buildSite(site) {
   const grain = makeGrainTex(); grain.repeat.set(150, 150);
   const terrain = new THREE.Mesh(heightGeo(site, SZ, SEG, false), new THREE.MeshStandardMaterial({ vertexColors: true, map: grain, roughness: 0.96, metalness: 0 }));
   terrain.receiveShadow = true; scene.add(terrain);
-  const grainFar = grain.clone(); grainFar.repeat.set(300, 300); grainFar.needsUpdate = true;
-  scene.add(new THREE.Mesh(heightGeo(site, 12000, 220, true), new THREE.MeshStandardMaterial({ vertexColors: true, map: grainFar, roughness: 1, metalness: 0 })));
+  const aniso = renderer.capabilities.getMaxAnisotropy ? Math.min(8, renderer.capabilities.getMaxAnisotropy()) : 4; grain.anisotropy = aniso;
+  const grainFar = grain.clone(); grainFar.repeat.set(3000, 3000); grainFar.anisotropy = aniso; grainFar.needsUpdate = true;  // mismo tamaño de grano que el terreno jugable (4 m por repetición)
+  scene.add(new THREE.Mesh(heightGeo(site, 12000, 400, true), new THREE.MeshStandardMaterial({ vertexColors: true, map: grainFar, roughness: 0.98, metalness: 0 })));
   const horiz = Math.max(...TERRENO[site.id].grillas.map(g => g.lado));
   if (horiz > 20000) scene.add(new THREE.Mesh(heightGeo(site, horiz, 240, 12000), new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1, metalness: 0 })));  // horizonte real del cañón
 
@@ -7889,16 +8070,23 @@ function crearPelota(site) {
   bola.castShadow = true; bola.rotation.set(.6, 1.1, .3); g.add(bola);
   const monticulo = new THREE.Mesh(new THREE.CylinderGeometry(R * 1.7, R * 2.4, R * .5, 18), new THREE.MeshStandardMaterial({ color: new THREE.Color(...site.rock).multiplyScalar(1.35), roughness: 1 }));
   monticulo.position.y = -R * .15; g.add(monticulo);
-  g.position.set(x, site.height(x, z) - R * .35, z);  // hundida un tercio en la tierra
-  return { g, x, z, hallada: false };
+  g.scale.setScalar(2.6);  // más grande que una real para que se pueda encontrar
+  // haz de luz dorado que sube desde la pelota (se ve desde lejos) y un brillo a ras del suelo
+  const haz = new THREE.Mesh(new THREE.CylinderGeometry(.05, .45, 14, 16, 1, true), new THREE.MeshBasicMaterial({ color: 0xffd36b, transparent: true, opacity: .35, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide }));
+  haz.position.y = 7 / 2.6; haz.scale.setScalar(1 / 2.6); g.add(haz);
+  const halo = new THREE.Mesh(new THREE.RingGeometry(.25, .55, 32).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0xffe08a, transparent: true, opacity: .55, depthWrite: false, blending: THREE.AdditiveBlending }));
+  halo.position.y = .02; g.add(halo);
+  g.position.set(x, site.height(x, z) - R * .35 * 2.6, z);  // hundida un tercio en la tierra
+  return { g, x, z, hallada: false, haz, halo };
 }
 function revisarPelota() {
   const p = cur && cur.pelota; if (!p || p.hallada) return;
+  { const k = .5 + .5 * Math.sin(performance.now() / 400); if (p.haz) p.haz.material.opacity = .22 + .25 * k; if (p.halo) { p.halo.material.opacity = .3 + .4 * k; p.halo.scale.setScalar(1 + .25 * k); } }
   const ox = cur.ctrl === 'heli' && cur.heli ? null : cur.st;
   if (!ox || Math.hypot(ox.x - p.x, ox.z - p.z) > 4) return;
-  p.hallada = true;
+  p.hallada = true; if (p.haz) p.haz.visible = false; if (p.halo) p.halo.visible = false;
   let n = 0; try { const k = 'tronador-pelotas', s = new Set(JSON.parse(localStorage.getItem(k) || '[]')); s.add(cur.site.id); localStorage.setItem(k, JSON.stringify([...s])); n = s.size; } catch (_) {}
-  showMsg('Coleccionable oculto', '¡Encontraste una pelota de fútbol!', 'Estaba medio enterrada en el polvo rojo de ' + cur.site.name + '.' + (n ? ' Llevás ' + n + ' de 3.' : ''), 7);
+  showMsg('Coleccionable oculto', '¡Encontraste una pelota de fútbol!', 'Estaba medio enterrada en el polvo rojo de ' + cur.site.name + '.' + (n ? ' Llevás ' + n + ' de ' + SITES.length + '.' : ''), 7);
 }
 
 /* Partículas de polvo reutilizables (aterrizaje y viento de los rotores) */
@@ -8442,6 +8630,7 @@ function updateHud(dt) {
     ctx.beginPath(); ctx.arc(toM(p.x), toM(p.z), 5, 0, Math.PI * 2); ctx.lineWidth = 2; ctx.strokeStyle = p.done ? '#a8e08f' : '#86e0d0'; ctx.stroke();
     if (p.aerialDone) { ctx.beginPath(); ctx.arc(toM(p.x), toM(p.z), 2, 0, Math.PI * 2); ctx.fillStyle = '#ffcd6b'; ctx.fill(); }
   });
+  if (cur.pelota && !cur.pelota.hallada) { ctx.font = '13px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('⚽', toM(cur.pelota.x), toM(cur.pelota.z)); ctx.textAlign = 'start'; ctx.textBaseline = 'alphabetic'; }
   ctx.save(); ctx.translate(toM(st.x), toM(st.z)); ctx.rotate(-st.yaw + Math.PI);
   ctx.beginPath(); ctx.moveTo(0, -7); ctx.lineTo(5, 5); ctx.lineTo(-5, 5); ctx.closePath(); ctx.fillStyle = flying ? 'rgba(242,231,218,.55)' : '#f2e7da'; ctx.fill(); ctx.restore();
   if (!hl.attached) {
@@ -9050,6 +9239,44 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 pintarIconos();
+</script>
+<div id="tactil" aria-label="Controles táctiles">
+  <button class="tc-chico tc-pausa" data-acc="pausa" aria-label="Pausa">■</button>
+  <div class="tc-cruz"><span class="tc-pto p1"></span><span class="tc-pto p2"></span><span class="tc-pto p3"></span><span class="tc-pto p4"></span>
+    <button data-k="w" class="arr" aria-label="Arriba">▲</button><button data-k="a" class="izq" aria-label="Izquierda">◀</button><button data-k="d" class="der" aria-label="Derecha">▶</button><button data-k="s" class="aba" aria-label="Abajo">▼</button></div>
+  <button class="tc-chico tc-obj" data-acc="obj" aria-label="Objetivos">▶</button>
+  <div class="tc-abc"><span class="tc-pto p1"></span><span class="tc-pto p2"></span><span class="tc-pto p3"></span><span class="tc-pto p4"></span>
+    <button data-acc="b" class="b" aria-label="B: cancelar">B</button><button data-acc="c" class="c" aria-label="C: cambiar vista">C</button><button data-acc="a" class="a" aria-label="A: usar">A</button></div>
+</div>
+<div id="girarCel"><div><b>📱 ↻</b><p>Girá el celular</p><small>ARCADIA se juega en horizontal.</small></div></div>
+<script>
+// ---------- Controles táctiles (celular) ----------
+((f)=>document.readyState==='loading'?addEventListener('DOMContentLoaded',f):f())(function(){
+  if(window.__tactilListo)return;window.__tactilListo=true;
+  const tactil=matchMedia('(pointer:coarse)').matches||('ontouchstart' in window&&navigator.maxTouchPoints>0);
+  if(!tactil)return;document.body.classList.add('tactil');
+  const ev=(tipo,key,code)=>{const e=new KeyboardEvent(tipo,{key,code,bubbles:true,cancelable:true});document.dispatchEvent(e)};
+  const CODIGO={w:'KeyW',a:'KeyA',s:'KeyS',d:'KeyD',f:'KeyF',e:'KeyE',c:'KeyC',p:'KeyP',j:'KeyJ',Enter:'Enter',Escape:'Escape'};
+  const pulsar=(k,abajo)=>ev(abajo?'keydown':'keyup',k,CODIGO[k]||k);
+  // A: usar (F con el cadete a mano, Enter en el resto; E en Explorar) · B: cancelar · C: cambiar vista
+  const accion=a=>{const exp=!!window.__explorarActivo;
+    if(a==='a')return exp?'e':(window.__hab&&window.__hab.modoCadete&&window.__hab.modoCadete!=='auto'?'f':'Enter');
+    if(a==='b')return'Escape';if(a==='c')return exp?'c':'c';if(a==='pausa')return exp?'p':'p';if(a==='obj')return exp?'i':'j'};
+  const pantalla=document.getElementById('tactil');
+  pantalla.querySelectorAll('button').forEach(b=>{let tecla=null;
+    const abajo=e=>{e.preventDefault();if(b.dataset.acc==='c'&&!window.__explorarActivo&&window.__hab&&window.__hab.setModoCadete){const orden=['auto','arriba','fp'],ah=window.__hab.modoCadete,sig=orden[(orden.indexOf(ah)+1)%3];window.__hab.setModoCadete(sig);b.classList.add('on');setTimeout(()=>b.classList.remove('on'),150);if(navigator.vibrate)navigator.vibrate(8);return}try{b.setPointerCapture(e.pointerId)}catch(_){}b.classList.add('on');tecla=b.dataset.k||accion(b.dataset.acc);pulsar(tecla,true);if(navigator.vibrate)navigator.vibrate(8)};
+    const arriba=e=>{if(!tecla)return;b.classList.remove('on');pulsar(tecla,false);tecla=null};
+    b.addEventListener('pointerdown',abajo);b.addEventListener('pointerup',arriba);b.addEventListener('pointercancel',arriba);b.addEventListener('lostpointercapture',arriba)});
+  // en Explorar también se muestran (el juego marca la clase explorando)
+  setInterval(()=>document.body.classList.toggle('explorando',!!window.__explorarActivo&&!document.getElementById('explorar-app').hidden),500);
+  // pellizcar para acercar o alejar la cámara
+  let d0=null;addEventListener('touchmove',e=>{if(e.touches.length!==2)return;const t=e.touches,d=Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
+    if(d0!=null){const dif=d0-d;if(Math.abs(dif)>4){const c=document.querySelector('#view canvas')||document.querySelector('#explorar-app canvas');if(c)c.dispatchEvent(new WheelEvent('wheel',{deltaY:dif*3,bubbles:true,cancelable:true,clientX:(t[0].clientX+t[1].clientX)/2,clientY:(t[0].clientY+t[1].clientY)/2}));d0=d}}else d0=d},{passive:true});
+  addEventListener('touchend',()=>{d0=null},{passive:true});
+  // al primer toque: pantalla completa y orientación horizontal (si el navegador lo permite)
+  addEventListener('pointerdown',function f(){removeEventListener('pointerdown',f);try{const el=document.documentElement;const p=el.requestFullscreen?el.requestFullscreen({navigationUI:'hide'}):null;
+    (p&&p.then?p:Promise.resolve()).then(()=>screen.orientation&&screen.orientation.lock&&screen.orientation.lock('landscape')).catch(()=>{})}catch(_){}},{once:false});
+});
 </script>
 </body>
 </html>
