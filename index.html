@@ -696,6 +696,8 @@ button.tecla .bi{pointer-events:none}
 .aviso-breve{background:rgba(10,14,22,.9);border:1px solid rgba(255,255,255,.25);border-left:4px solid #7fe0ff;color:#fff;padding:8px 14px;border-radius:8px;font-size:13px;box-shadow:0 6px 18px rgba(0,0,0,.45);animation:tin .3s ease-out;transition:opacity .5s,transform .5s}
 .aviso-breve.good{border-left-color:#5fd38d}.aviso-breve.bad{border-left-color:#ff5a5a}.aviso-breve.rad{border-left-color:#ffd23f}.aviso-breve.fuera{opacity:0;transform:translateY(-8px)}
 .pd-cab{position:relative}.pd-x{position:absolute;right:10px;top:10px;background:rgba(255,255,255,.1);border:1px solid var(--line);color:#fff;border-radius:6px;padding:3px 7px;font-weight:700;cursor:pointer;display:flex;gap:6px;align-items:center}
+#radioBtns{display:flex;align-items:center;gap:4px;padding-left:6px;border-left:1px solid var(--line)}#radioBtns[hidden]{display:none}#radioBtns .btn{padding:4px 8px;min-width:30px}.rd-nota{font-size:11px;letter-spacing:.06em;color:#ffd36b;white-space:nowrap}
+#radioBtns.pausada .rd-nota{opacity:.5}
 #minimapa{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(92px + env(safe-area-inset-bottom,0px));width:170px;height:170px;border-radius:50%;z-index:6;pointer-events:none;
   background:rgba(10,14,22,.78);border:3px solid rgba(255,255,255,.85);box-shadow:0 6px 18px rgba(0,0,0,.45)}
 body.en-intro #minimapa,body.en-granja #minimapa,body:not(.controlando) #minimapa{display:none!important}
@@ -958,6 +960,7 @@ button.tecla{font-size:11px;min-width:44px}
   <div id="pestanaConstruccion" data-i18n="modoConstruccion">MODO CONSTRUCCIÓN</div>
   <button class="btn" id="momentoBtn" hidden title="Momento del día (modo libre)">☀ Soleado</button>
   <button class="btn" id="climaBtn" hidden title="Clima: tormentas activadas o desactivadas (modo libre)">⛈ Clima: activado</button>
+  <div id="radioBtns" hidden><span class="rd-nota">♪ Wagner</span><button class="btn" id="radioPausa" title="Pausar / seguir">❚❚</button><button class="btn" id="radioReini" title="Reiniciar">⟲</button></div>
   <span class="hud-badge" id="badgeReloj"></span>
 </div>
 <aside id="info" class="hud glass" hidden></aside>
@@ -3513,6 +3516,10 @@ const MISSIONS=[
  {cat:'habitat',t:['Construye un hábitat de investigación','Build a research habitat','Costruisci un habitat di ricerca'],h:['Un laboratorio con escritorios y computadoras: la tripulación trabaja mejor y sube la cordura.','A lab with desks and computers: the crew works better and sanity goes up.','Un laboratorio con scrivanie e computer: l\'equipaggio lavora meglio e la mente sta meglio.'],c:()=>has('investigacion')},
  {cat:'salud',t:['Activa los 5 pilares de bienestar','Turn on the 5 wellbeing pillars','Attiva i 5 pilastri del benessere'],h:['Tocá el corazón abajo a la izquierda: ejercicio, nutrición, control médico, sueño y apoyo psicológico.','Click the heart at the bottom left: exercise, nutrition, medical checks, sleep and mental support.','Tocca il cuore in basso a sinistra: esercizio, nutrizione, controlli medici, sonno e supporto psicologico.'],c:()=>pilaresActivos()===5},
  {cat:'habitat',t:['Llega a 6 astronautas','Reach 6 astronauts','Arriva a 6 astronauti'],h:['Con la antena de Comunicaciones y 2 camas libres, la Tierra manda una nave con 2 astronautas en unas horas.','With the Communications antenna and 2 free beds, Earth sends a ship with 2 astronauts within a few hours.','Con l\'antenna delle Comunicazioni e 2 letti liberi, la Terra manda una nave con 2 astronauti in poche ore.'],c:()=>S.crew>=6},
+ {cat:'salud',t:['Trabajo en equipo: 3 astronautas en el laboratorio','Teamwork: 3 astronauts in the lab','Lavoro di squadra: 3 astronauti in laboratorio'],h:['Construí un laboratorio, elegilo y tocá «Llamar a la tripulación». Después llevá a tu cadete: tienen que estar los 3 juntos adentro.','Build a lab, select it and press «Call the crew». Then take your cadet there: all 3 must be inside together.','Costruisci un laboratorio, premi «Chiama l\'equipaggio» e porta il tuo cadetto: devono esserci tutti e 3.'],c:()=>S.equipos&&S.equipos.lab},
+ {cat:'alimentos',t:['Cena en equipo: 3 astronautas en la cocina','Team dinner: 3 astronauts in the kitchen','Cena di squadra: 3 astronauti in cucina'],h:['Elegí la cocina, tocá «Llamar a la tripulación» y llevá a tu cadete. Comer juntos cuida el ánimo de la tripulación.','Select the kitchen, press «Call the crew» and take your cadet. Eating together keeps morale up.','Scegli la cucina, premi «Chiama l\'equipaggio» e porta il tuo cadetto.'],c:()=>S.equipos&&S.equipos.cena},
+ {cat:'oxigeno',t:['En pareja: 2 astronautas revisan el MOXIE','In pairs: 2 astronauts check MOXIE','In coppia: 2 astronauti controllano il MOXIE'],h:['Elegí el MOXIE, tocá «Llamar a la tripulación» y entrá con tu cadete.','Select MOXIE, press «Call the crew» and go in with your cadet.','Scegli il MOXIE, premi «Chiama l\'equipaggio» ed entra con il tuo cadetto.'],c:()=>S.equipos&&S.equipos.moxie},
+ {cat:'energia',t:['Revisa el blindaje del KRUSTY con el dosímetro','Check the KRUSTY shielding with the dosimeter','Controlla la schermatura del KRUSTY con il dosimetro'],h:['Nadie entra al campo de radiación: elegí un KRUSTY y tocá «Revisar el blindaje». El brazo robótico lleva el dosímetro: marcá donde el contador suene más rápido.','Nobody enters the radiation field: select a KRUSTY and press «Check the shielding». The robotic arm carries the dosimeter: mark where it clicks fastest.','Nessuno entra nel campo: scegli un KRUSTY e premi «Controlla la schermatura».'],c:()=>S.hecho&&S.hecho.blindaje},
  {cat:'habitat',t:['Sobrevive 30 soles','Survive 30 sols','Sopravvivi 30 sol'],h:['Un sol es un día marciano: 24 h y 37 min.','A sol is a Martian day: 24 h 37 min.','Un sol è un giorno marziano: 24 h e 37 min.'],c:()=>S.sol>=30},
 ];
 const cubiertas=t=>{const l=S.mods.filter(m=>m.type===t);return l.length>0&&l.every(m=>m.shield)};
@@ -3539,6 +3546,8 @@ const MISIONES_CADETE=[
  {cat:'comms',t:['Sincroniza la señal con la Tierra','Sync the signal with Earth','Sincronizza il segnale con la Terra'],h:['Elegí comunicaciones y hacé coincidir la onda roja con la blanca.','Select communications and match the red wave with the white one.','Seleziona le comunicazioni e fai coincidere le onde.'],c:()=>S.hecho&&S.hecho.señal},
  {cat:'salud',t:['Activa los 5 pilares de bienestar','Turn on the 5 wellbeing pillars','Attiva i 5 pilastri del benessere'],h:['Tocá el corazón abajo a la izquierda.','Click the heart at the bottom left.','Tocca il cuore in basso a sinistra.'],c:()=>pilaresActivos()===5},
  {cat:'habitat',t:['Llega a 6 astronautas','Reach 6 astronauts','Arriva a 6 astronauti'],h:['Con la antena de Comunicaciones y 2 camas libres, la Tierra manda una nave con 2 astronautas en unas horas.','With the Communications antenna and 2 free beds, Earth sends a ship with 2 astronauts within a few hours.','Con l\'antenna delle Comunicazioni e 2 letti liberi, la Terra manda una nave con 2 astronauti in poche ore.'],c:()=>S.crew>=6},
+ {cat:'salud',t:['Trabajo en equipo: 3 astronautas en el laboratorio','Teamwork: 3 astronauts in the lab','Lavoro di squadra: 3 astronauti in laboratorio'],h:['Construí un laboratorio, elegilo y tocá «Llamar a la tripulación». Después llevá a tu cadete: tienen que estar los 3 juntos adentro.','Build a lab, select it and press «Call the crew». Then take your cadet there: all 3 must be inside together.','Costruisci un laboratorio, premi «Chiama l\'equipaggio» e porta il tuo cadetto: devono esserci tutti e 3.'],c:()=>S.equipos&&S.equipos.lab},
+ {cat:'alimentos',t:['Cena en equipo: 3 astronautas en la cocina','Team dinner: 3 astronauts in the kitchen','Cena di squadra: 3 astronauti in cucina'],h:['Elegí la cocina, tocá «Llamar a la tripulación» y llevá a tu cadete. Comer juntos cuida el ánimo de la tripulación.','Select the kitchen, press «Call the crew» and take your cadet. Eating together keeps morale up.','Scegli la cucina, premi «Chiama l\'equipaggio» e porta il tuo cadetto.'],c:()=>S.equipos&&S.equipos.cena},
  {cat:'habitat',t:['Sobrevive 30 soles','Survive 30 sols','Sopravvivi 30 sol'],h:['Un sol es un día marciano: 24 h y 37 min.','A sol is a Martian day: 24 h 37 min.','Un sol è un giorno marziano.'],c:()=>S.sol>=30},
 ];
 if(OPC.dificultad==='cadete')MISSIONS.splice(0,MISSIONS.length,...MISIONES_CADETE);
@@ -3727,6 +3736,7 @@ function check(type,sh,i,j,r,mover){
     if(!t.ice)allIce=false;
   }
   const otros=S.mods.filter(m=>m!==mover);
+  if(S.hangar&&(()=>{const g=separacion(R,{i:S.hangar.i,j:S.hangar.j,w:2,h:2});return g.dx<0&&g.dz<0})())return{ok:false,why:'Ahí está el hangar de los robots constructores.'};
   if(otros.some(o=>{const g=separacion(R,o);return g.dx<0&&g.dz<0}))return{ok:false,why:'Ese lugar ya está ocupado.'};
   if(type==='krusty'&&otros.some(o=>DEF[o.type].kind==='dome'&&Math.max(separacion(R,o).dx,separacion(R,o).dz)<1))return{ok:false,why:'El campo de radiación del KRUSTY (4,5 m) no puede tocar el hábitat.'};
   if(d.kind==='dome'&&otros.some(o=>o.type==='krusty'&&Math.max(separacion(R,o).dx,separacion(R,o).dz)<1))return{ok:false,why:'El campo de radiación del KRUSTY (4,5 m) no puede tocar el hábitat.'};
@@ -4604,7 +4614,7 @@ function rebuildTerrainDecor(){
   rocketLight=new THREE.PointLight(0xffa040,0,40);rocketLight.position.y=-1;rocket.add(rocketLight);
   rocket.position.set(px,0,pz);rocket.visible=false;decorRoot.add(rocket);
 }
-let rocketT=-1;function startRocket(){rocketT=0}
+let rocketT=-1,rocketBajan=0,polvoCohete=null;function startRocket(bajan){rocketT=0;rocketBajan=bajan||0}
 // ======================= CÁMARA =======================
 const camS={tx:-1,tz:3,yaw:.75,pitch:.6,dist:38,v:{x:0,z:0}};
 function placeCamera(){const cp=Math.cos(camS.pitch);camera.position.set(camS.tx+Math.sin(camS.yaw)*cp*camS.dist,Math.sin(camS.pitch)*camS.dist,camS.tz+Math.cos(camS.yaw)*cp*camS.dist);camera.lookAt(camS.tx,0,camS.tz)}
@@ -4870,6 +4880,52 @@ const MINIJUEGOS={
    c.fillStyle='#cfe3ff';c.font='700 15px Helvetica,Arial';c.textAlign='left';c.fillText('Frecuencia',40,325);c.fillText('Amplitud',40,375);
    for(const[y,v]of[[320,(j.f-.5)/4.5],[370,(j.a-.2)/.8]]){c.fillStyle='#163552';c.fillRect(160,y-6,400,12);c.fillStyle='#4cc3ff';c.fillRect(160,y-6,400*Math.max(0,Math.min(1,v)),12);c.fillStyle='#fff';c.fillRect(160+400*Math.max(0,Math.min(1,v))-3,y-11,6,22)}
    c.fillStyle=this.coincide(j)?'#5fd38d':'#ffb066';c.fillText(this.coincide(j)?'¡COINCIDEN!':'Ritmo objetivo: '+j.fo.toFixed(1)+' por segundo',580,345)}},
+ sellos:{titulo:'Sellar fugas de la esclusa',sub:'La ventisca aflojó los burletes: tocá cada fuga (donde sale aire) para sellarla',
+  ayuda:()=>usandoMando?'Cruceta: elegir fuga · A sellar':'Clic en cada fuga · o flechas + Enter',
+  iniciar(j){j.f=[...Array(6)].map((_,k)=>({a:k/6*Math.PI*2+Math.random()*.7,ok:false}));j.sel=0;j.tt=0;j.par=[]},
+  pos(f){return{x:360+Math.cos(f.a)*150,y:210+Math.sin(f.a)*150}},
+  sellar(j,k){const f=j.f[k];if(!f||f.ok)return;f.ok=true;sonTarea('ok');if(j.f.every(x=>x.ok))mjGanar('Esclusa hermética otra vez: no se escapa el aire.')},
+  abajo(j,p){j.f.forEach((f,k)=>{const q=this.pos(f);if(Math.hypot(p.x-q.x,p.y-q.y)<34)this.sellar(j,k)})},
+  sigue(j,d){for(let i=1;i<=6;i++){const k=(j.sel+d*i+60)%6;if(!j.f[k].ok){j.sel=k;return}}},
+  mando(j,p){if(p.apretado(14)||p.apretado(12))this.sigue(j,-1);if(p.apretado(15)||p.apretado(13))this.sigue(j,1);if(p.apretado(0))this.sellar(j,j.sel)},
+  tecla(j,k){if(k==='arrowleft'||k==='arrowup')this.sigue(j,-1);if(k==='arrowright'||k==='arrowdown')this.sigue(j,1);if(k==='enter'||k===' ')this.sellar(j,j.sel)},
+  paso(j,dt){j.tt+=dt;for(const f of j.f)if(!f.ok&&Math.random()<dt*14){const q=this.pos(f);j.par.push({x:q.x,y:q.y,vx:Math.cos(f.a)*(60+Math.random()*60)+(Math.random()-.5)*40,vy:Math.sin(f.a)*(60+Math.random()*60)+(Math.random()-.5)*40,v:1})}
+   for(const p of j.par){p.x+=p.vx*dt;p.y+=p.vy*dt;p.v-=dt*1.6}j.par=j.par.filter(p=>p.v>0);if(Math.random()<dt*3&&j.f.some(f=>!f.ok))sonTarea('clic')},
+  dibujar(j,c){c.fillStyle='#10151c';c.fillRect(0,0,720,420);c.strokeStyle='#5d6b7a';c.lineWidth=26;c.beginPath();c.arc(360,210,150,0,7);c.stroke();
+   c.strokeStyle='#2b3440';c.lineWidth=6;c.beginPath();c.arc(360,210,120,0,7);c.stroke();c.fillStyle='#1c2430';c.beginPath();c.arc(360,210,116,0,7);c.fill();
+   c.fillStyle='#ffd36b';c.font='700 15px Helvetica,Arial';c.textAlign='center';c.fillText('ESCLUSA',360,205);c.fillStyle='#9fb0c4';c.font='12px Helvetica,Arial';c.fillText(j.f.filter(f=>f.ok).length+' / 6',360,226);
+   for(const p of j.par){c.fillStyle='rgba(220,235,255,'+(p.v*.6)+')';c.beginPath();c.arc(p.x,p.y,3+4*(1-p.v),0,7);c.fill()}
+   j.f.forEach((f,k)=>{const q=this.pos(f);c.fillStyle=f.ok?'#5fd38d':'#ff6b6b';c.beginPath();c.arc(q.x,q.y,f.ok?9:12,0,7);c.fill();if(k===j.sel&&!f.ok){c.strokeStyle='#fff';c.lineWidth=3;c.beginPath();c.arc(q.x,q.y,20,0,7);c.stroke()}})}},
+ tablero:{titulo:'Restablecer el tablero eléctrico',sub:'La tormenta hizo saltar los disyuntores: subilos en el orden que marca el tablero (1 → 6)',
+  ayuda:()=>usandoMando?'Cruceta: elegir · A subir':'Clic en cada disyuntor en orden · o flechas + Enter',
+  iniciar(j){const o=[0,1,2,3,4,5].sort(()=>Math.random()-.5);j.ord=o;j.on=[...Array(6)].map(()=>false);j.sig=0;j.sel=0;j.err=0},
+  pos:k=>({x:135+k*90,y:230}),
+  subir(j,k){if(j.on[k])return;if(j.ord[k]===j.sig){j.on[k]=true;j.sig++;sonTarea('servo');if(j.sig===6)mjGanar('Tablero restablecido: vuelve la energía a toda la base.')}else{j.err=.6;sonTarea('error');j.on=j.on.map(()=>false);j.sig=0}},
+  abajo(j,p){for(let k=0;k<6;k++){const q=this.pos(k);if(Math.abs(p.x-q.x)<36&&Math.abs(p.y-q.y)<70)this.subir(j,k)}},
+  mando(j,p){if(p.apretado(14))j.sel=(j.sel+5)%6;if(p.apretado(15))j.sel=(j.sel+1)%6;if(p.apretado(0))this.subir(j,j.sel)},
+  tecla(j,k){if(k==='arrowleft')j.sel=(j.sel+5)%6;if(k==='arrowright')j.sel=(j.sel+1)%6;if(k==='enter'||k===' ')this.subir(j,j.sel)},
+  paso(j,dt){j.err=Math.max(0,j.err-dt)},
+  dibujar(j,c){c.fillStyle=j.err>0?'#2a1414':'#141a22';c.fillRect(0,0,720,420);c.fillStyle='#2c3542';c.fillRect(80,110,560,240);
+   for(let k=0;k<6;k++){const q=this.pos(k),on=j.on[k];c.fillStyle='#0d1117';c.fillRect(q.x-30,q.y-60,60,120);c.fillStyle=on?'#5fd38d':'#ff6b6b';c.fillRect(q.x-22,on?q.y-52:q.y+2,44,50);
+    c.fillStyle='#ffd36b';c.font='700 18px Helvetica,Arial';c.textAlign='center';c.fillText(String(j.ord[k]+1),q.x,q.y-75);if(k===j.sel){c.strokeStyle='#fff';c.lineWidth=3;c.strokeRect(q.x-34,q.y-64,68,128)}}
+   c.fillStyle='#cfe3ff';c.font='14px Helvetica,Arial';c.fillText(j.err>0?'¡Orden equivocado! Volvé a empezar.':'Disyuntor siguiente: '+(j.sig+1),360,385)}},
+ blindaje:{titulo:'Revisar el blindaje del KRUSTY',sub:'Con el brazo robótico, pasá el dosímetro alrededor del reactor y marcá las 3 fugas de radiación',
+  ayuda:()=>usandoMando?'Stick izquierdo: mover el dosímetro · A marcar':'Mové el mouse (o flechas) · clic o Enter para marcar donde el contador suene más',
+  iniciar(j){j.h=[0,1,2].map(k=>({a:k*2.1+Math.random()*1.4,ok:false}));j.a=0;j.tt=0;j.cl=0;j.err=0},
+  lect(j){let m=.06;for(const h of j.h)if(!h.ok){let d=Math.abs(Math.atan2(Math.sin(j.a-h.a),Math.cos(j.a-h.a)));m=Math.max(m,Math.exp(-d*d*28))}return m},
+  marcar(j){const h=j.h.find(h=>!h.ok&&Math.abs(Math.atan2(Math.sin(j.a-h.a),Math.cos(j.a-h.a)))<.16);if(h){h.ok=true;sonTarea('ok');if(j.h.every(x=>x.ok))mjGanar('Blindaje sellado: la radiación vuelve a quedar dentro del campo.')}else{j.err=.5;sonTarea('error')}},
+  abajo(j,p){j.a=Math.atan2(p.y-210,p.x-360);this.marcar(j)},
+  tecla(j,k){if(k==='arrowleft'||k==='arrowup')j.a-=.06;if(k==='arrowright'||k==='arrowdown')j.a+=.06;if(k==='enter'||k===' ')this.marcar(j)},
+  mando(j,p){if(p.apretado(0))this.marcar(j)},
+  paso(j,dt,ej){j.tt+=dt;j.err=Math.max(0,j.err-dt);if(ej&&Math.hypot(ej[0],ej[1])>.3)j.a=Math.atan2(ej[1],ej[0]);else if(j.raton&&!usandoMando&&(j.raton.x||j.raton.y)){j.a=Math.atan2(j.raton.y-210,j.raton.x-360)}
+   const l=this.lect(j);j.cl-=dt*(2+l*40);if(j.cl<=0){j.cl=1;sonTarea('clic')}},
+  dibujar(j,c){c.fillStyle='#0d1410';c.fillRect(0,0,720,420);c.fillStyle='#3a3f45';c.beginPath();c.arc(360,210,90,0,7);c.fill();c.fillStyle='#ffd36b';c.beginPath();c.arc(360,210,30,0,7);c.fill();
+   c.fillStyle='#222';for(let k=0;k<3;k++){c.beginPath();c.moveTo(360,210);c.arc(360,210,28,k*2.09+.3,k*2.09+1.35);c.fill()}
+   for(const h of j.h)if(h.ok){c.fillStyle='#5fd38d';c.beginPath();c.arc(360+Math.cos(h.a)*120,210+Math.sin(h.a)*120,9,0,7);c.fill()}
+   const x=360+Math.cos(j.a)*120,y=210+Math.sin(j.a)*120;c.strokeStyle='#9fb0c4';c.lineWidth=5;c.beginPath();c.moveTo(360+Math.cos(j.a)*200,210+Math.sin(j.a)*200);c.lineTo(x,y);c.stroke();
+   c.fillStyle=j.err>0?'#ff6b6b':'#cfe3ff';c.fillRect(x-12,y-12,24,24);
+   const l=this.lect(j);c.fillStyle='#1c2a20';c.fillRect(560,40,130,40);c.fillStyle=l>.6?'#ff6b6b':l>.3?'#ffd36b':'#5fd38d';c.fillRect(565,45,120*l,30);
+   c.fillStyle='#cfe3ff';c.font='12px Helvetica,Arial';c.textAlign='left';c.fillText('Dosímetro',562,100);c.fillText(j.h.filter(h=>h.ok).length+' / 3',562,118)}},
  reactor:{titulo:'Enfriar el reactor KRUSTY',sub:'Mové las barras de control hasta que la temperatura quede en la franja verde',
   ayuda:()=>usandoMando?'Stick izquierdo ↑ ↓: barras de control · B salir':'↑ ↓ o W / S: barras de control · o arrastrá las barras con el mouse',
   iniciar(j){j.barra=.12;j.temp=.9;j.ok=0;j.tt=0;j.arr=false;j.ab=false},
@@ -5011,7 +5067,7 @@ function updateTormenta(dt){
   if(enIntro||S.over)return;if(S.climaOn===false){alertaTormenta(dt);return}if(!S.tormenta)programarTormenta();const T=S.tormenta;const v=dt*(speed||0);if(!v){return}alertaTormenta(dt);
   if(!T.activa){T.en-=v;
     if(!T.avisada&&T.en<=30){T.avisada=true;const a=$('#avisoTormenta');a.hidden=false;Sonido.efecto('alerta');clearTimeout(a._t);a._t=setTimeout(()=>a.hidden=true,5000)}
-    if(T.en<=0){T.activa=true;T.dura=45+Math.random()*20;T.clima0=S.clima;S.clima='ventisca';S.climaHoras=99;Sonido.tormenta(true);toast('Ventisca: los paneles se repliegan. Esperá adentro a que pase.','bad')}}
+    if(T.en<=0){T.activa=true;T.dura=45+Math.random()*20;T.clima0=S.clima;S.clima='ventisca';S.climaHoras=99;Sonido.tormenta(true);{S.urgentes=S.urgentes||[];const adentro=['sellos','tablero'].filter(k=>REPARACIONES[k].puede()&&!S.urgentes.includes(k));if(adentro.length){const k=adentro[Math.floor(Math.random()*adentro.length)];REPARACIONES[k].aplicar();S.urgentes.push(k);setTimeout(()=>{try{revisarUrgentes()}catch(_){}},50)}}toast('Ventisca: los paneles se repliegan. Esperá adentro a que pase.','bad')}}
   else{T.dura-=v;if(T.dura<=0){T.activa=false;S.clima='templado';S.climaHoras=20+rnd()*20;Sonido.tormenta(false);dañosTormenta();programarTormenta()}}
 }
 // Cuánto falta para que termine la tormenta (a la izquierda de la barra superior derecha)
@@ -5032,7 +5088,7 @@ const REPARACIONES={
   puede:()=>deTipo('solar').length>0,aplicar(){deTipo('solar').forEach(m=>m.sucio=Math.max(m.sucio||0,.55))},listo:()=>!S.mods.some(m=>m.type==='solar'&&m.sucio>.05)},
  cable:{cat:'energia',t:['Cambia el cable cortado por el viento','Replace the cable cut by the wind','Sostituisci il cavo tagliato'],h:['Una piedra que voló cortó un cable de energía. Buscá el cartel «Cable cortado» y tocá «Cambiar cable cortado».','A flying rock cut a power cable. Find the «Cable cut» sign and press «Replace cut cable».','Un sasso ha tagliato un cavo.'],
   puede:()=>S.mods.some(m=>DEF[m.type].kind==='ext'),aplicar(){uno(S.mods.filter(m=>DEF[m.type].kind==='ext')).cableCortado=true},listo:()=>!S.mods.some(m=>m.cableCortado)},
- antena:{cat:'comms',t:['Vuelve a apuntar la antena a la Tierra','Point the antenna back at Earth','Riorienta l\'antenna verso la Terra'],h:['El viento movió la antena y se perdió la señal. Elegí Comunicaciones y sincronizá la señal.','The wind moved the antenna and the signal was lost. Select Communications and sync the signal.','Il vento ha spostato l\'antenna.'],
+ senal:{cat:'comms',t:['Vuelve a apuntar la antena a la Tierra','Point the antenna back at Earth','Riorienta l\'antenna verso la Terra'],h:['El viento movió la antena y se perdió la señal. Elegí Comunicaciones y sincronizá la señal.','The wind moved the antenna and the signal was lost. Select Communications and sync the signal.','Il vento ha spostato l\'antenna.'],
   puede:()=>deTipo('comms').length>0,aplicar(){uno(deTipo('comms')).desinc=true},listo:()=>!S.mods.some(m=>m.desinc)},
  regolito:{cat:'proteccion',t:['Vuelve a cubrir la cúpula con regolito','Cover the dome with regolith again','Ricopri la cupola di regolite'],h:['El viento se llevó la capa de regolito de una cúpula: adentro entra más radiación. Elegila y tocá «Cubrir con regolito».','The wind blew away the regolith layer of a dome. Select it and press «Cover with regolith».','Il vento ha portato via la regolite di una cupola.'],
   puede:()=>S.mods.some(m=>m.shield&&DEF[m.type].kind==='dome'),aplicar(){const m=uno(S.mods.filter(m=>m.shield&&DEF[m.type].kind==='dome'));m.shield=false;m.regolitoCaido=true;makeObj(m)},listo:()=>!S.mods.some(m=>m.regolitoCaido)},
@@ -5046,6 +5102,10 @@ const REPARACIONES={
   puede:()=>false,aplicar(){},listo:()=>!S.mods.some(m=>m.type==='taladro'&&m.perforado===false)},
  antena:{cat:'comms',t:['Vuelve a alinear la antena parabólica','Re-align the dish antenna','Riallinea l\'antenna parabolica'],h:['El viento movió el plato. Elegí la antena parabólica y tocá «Alinear antena» para apuntarla a la Tierra.','The wind moved the dish. Select it and press «Align antenna».','Il vento ha spostato il piatto.'],
   puede:()=>deTipo('antena').length>0,aplicar(){uno(deTipo('antena')).desalineada=true},listo:()=>!S.mods.some(m=>m.desalineada)},
+ sellos:{cat:'habitat',t:['Sella las fugas de aire de la esclusa','Seal the air leaks in the airlock','Sigilla le perdite d\'aria della camera stagna'],h:['La ventisca aflojó los burletes de la esclusa y se escapa aire. Llevá a tu cadete adentro de la esclusa y tocá «Sellar fugas».','The blizzard loosened the airlock seals and air is leaking. Take your cadet inside the airlock and press «Seal leaks».','La tempesta ha allentato le guarnizioni: porta il cadetto nella camera stagna e premi «Sigilla perdite».'],
+  puede:()=>deTipo('esclusa').length>0,aplicar(){S.sellosPend=true},listo:()=>!S.sellosPend},
+ tablero:{cat:'energia',t:['Restablece el tablero eléctrico del centro de control','Reset the power board in the control center','Ripristina il quadro elettrico del centro di controllo'],h:['Una descarga de la tormenta hizo saltar los disyuntores. Llevá a tu cadete al centro de control y tocá «Restablecer tablero».','A storm surge tripped the breakers. Take your cadet to the control center and press «Reset board».','Una scarica della tempesta ha fatto scattare gli interruttori: porta il cadetto al centro di controllo e premi «Ripristina quadro».'],
+  puede:()=>deTipo('control').length>0,aplicar(){S.tableroCaido=true},listo:()=>!S.tableroCaido},
  radiador:{cat:'energia',t:['Enfría el reactor KRUSTY','Cool down the KRUSTY reactor','Raffredda il reattore KRUSTY'],h:['El polvo tapó el radiador y el reactor se recalienta: da menos energía. Elegí un KRUSTY, tocá «Enfriar el reactor» y bajá las barras de control hasta la franja verde.','Dust covered the radiator and the reactor is overheating. Select a KRUSTY, press «Cool the reactor» and lower the control rods into the green band.','Il radiatore è coperto di polvere.'],
   puede:()=>deTipo('krusty').length>0,aplicar(){uno(deTipo('krusty')).sucio=.5},listo:()=>!S.mods.some(m=>m.type==='krusty'&&m.sucio>.05)},
 };
@@ -5078,26 +5138,70 @@ function revisarUrgentes(){
    y la arman en 5 segundos (con ruidos de servos, martillazos y soldadura). */
 const OBRA_DUR=5,obras=[];
 const chispaMat=new THREE.PointsMaterial({color:0xffc070,size:.09,transparent:true,opacity:.95,blending:THREE.AdditiveBlending,depthWrite:false});
+// El hangar ocupa 2×2 celdas cerca de la plataforma de cohetes; nadie puede construir encima
+let hangarObj=null;
+function libreHangar(i,j){if(i<1||j<1||i+3>GRID||j+3>GRID)return false;for(let y=j-1;y<j+3;y++)for(let x=i-1;x<i+3;x++){if(occ[y*GRID+x]||celdasTunel.has(y*GRID+x)||isPad(x,y))return false;const t=terrain[y*GRID+x];if(!t||t.crater)return false}return true}
+function asegurarHangar(){
+  if(!S||!S.mods)return null;
+  if(!S.hangar){let mejor=null;for(let r=2;r<14&&!mejor;r++)for(let dj=-r;dj<=r&&!mejor;dj++)for(let di=-r;di<=r;di++){if(Math.max(Math.abs(di),Math.abs(dj))!==r)continue;const i=OFF+2+di,j=OFF+5+dj;if(libreHangar(i,j)){mejor={i,j};break}}
+    S.hangar=mejor||{i:OFF+1,j:OFF+5}}
+  if(!hangarObj){const H=S.hangar,[x,z]=cellToWorld(H.i+1,H.j+1),g=new THREE.Group();
+    const cuerpo=mesh(new THREE.CylinderGeometry(1.8,1.8,3.6,24,1,false,0,Math.PI).rotateZ(Math.PI/2).rotateY(Math.PI/2),M.metal);cuerpo.position.y=0;g.add(cuerpo);
+    const piso=mesh(new THREE.BoxGeometry(3.7,.1,3.7),M.concrete,false);piso.position.y=.05;g.add(piso);
+    const tapa=mesh(new THREE.CircleGeometry(1.8,24,0,Math.PI),M.dark);tapa.position.set(0,0,-1.8);tapa.rotation.y=Math.PI;g.add(tapa);
+    const puerta=mesh(new THREE.BoxGeometry(1.5,1.4,.06),accent(0xf2c14e));puerta.position.set(0,.72,1.82);g.add(puerta);g.userData.puerta=puerta;
+    for(let k=-2;k<=2;k++){const r=mesh(new THREE.BoxGeometry(.05,.05,3.62),M.dark,false);const a=Math.PI/2+k*.55;r.position.set(Math.cos(a)*1.81,Math.sin(a)*1.81,0);g.add(r)}
+    const cv=document.createElement('canvas');cv.width=256;cv.height=64;const c=cv.getContext('2d');c.fillStyle='#1a1d22';c.fillRect(0,0,256,64);c.fillStyle='#f2c14e';c.font='700 34px Helvetica,Arial';c.textAlign='center';c.fillText('ROBOTS',128,45);
+    const cartel=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.35),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(cv)}));cartel.position.set(0,1.62,1.84);g.add(cartel);
+    g.position.set(x,0,z);decorRoot.add(g);hangarObj=g}
+  return S.hangar}
+const puertaHangar=()=>{asegurarHangar();const H=S.hangar,[x,z]=cellToWorld(H.i+1,H.j+2.4);return new THREE.Vector3(x,0,z)};
+// camino por la grilla (A*), sin pisar módulos, túneles ni la plataforma
+function caminoRobot(a,b,m){
+  const ce=p=>[Math.max(0,Math.min(GRID-1,Math.floor(p.x/CELL+GRID/2))),Math.max(0,Math.min(GRID-1,Math.floor(p.z/CELL+GRID/2)))];
+  const H=S.hangar,bloq=(x,y)=>{if(x<0||y<0||x>=GRID||y>=GRID)return true;const k=y*GRID+x;if(H&&x>=H.i&&x<H.i+2&&y>=H.j&&y<H.j+2)return true;return !!occ[k]||celdasTunel.has(k)||isPad(x,y)};
+  const[ax,ay]=ce(a);let[bx,by]=ce(b);
+  if(bloq(bx,by)){let mejor=null,dm=1e9;for(let r=1;r<6&&!mejor;r++)for(let y=by-r;y<=by+r;y++)for(let x=bx-r;x<=bx+r;x++){if(bloq(x,y))continue;const d=Math.hypot(x-bx,y-by);if(d<dm){dm=d;mejor=[x,y]}}if(mejor)[bx,by]=mejor}
+  const N=GRID*GRID,gs=new Float32Array(N).fill(1e9),de=new Int32Array(N).fill(-1),cer=new Uint8Array(N),abiertos=[ay*GRID+ax];gs[ay*GRID+ax]=0;const fin=by*GRID+bx;
+  const h=k=>Math.hypot(k%GRID-bx,Math.floor(k/GRID)-by);let it=0;
+  while(abiertos.length&&it++<6000){let bi=0;for(let q=1;q<abiertos.length;q++)if(gs[abiertos[q]]+h(abiertos[q])<gs[abiertos[bi]]+h(abiertos[bi]))bi=q;const k=abiertos.splice(bi,1)[0];if(k===fin)break;if(cer[k])continue;cer[k]=1;
+    const x=k%GRID,y=Math.floor(k/GRID);for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]]){const nx=x+dx,ny=y+dy;if(bloq(nx,ny)&&!(nx===ax&&ny===ay))continue;if(dx&&dy&&(bloq(x+dx,y)||bloq(x,y+dy)))continue;
+      const nk=ny*GRID+nx,g=gs[k]+(dx&&dy?1.414:1);if(g<gs[nk]){gs[nk]=g;de[nk]=k;abiertos.push(nk)}}}
+  if(de[fin]<0&&fin!==ay*GRID+ax)return rodeo(a,b).map(p=>p.clone());
+  const celdas=[];for(let k=fin;k>=0;k=de[k]){celdas.unshift(k);if(k===ay*GRID+ax)break}
+  // quitar los puntos alineados
+  const pts=[a.clone()];for(let q=1;q<celdas.length-1;q++){const p=celdas[q-1],c=celdas[q],n=celdas[q+1];if(c-p!==n-c){const[x,z]=cellToWorld(c%GRID+.5,Math.floor(c/GRID)+.5);pts.push(new THREE.Vector3(x,0,z))}}
+  pts.push(b.clone());return pts}
+const largoCamino=pts=>{let L=0;for(let k=1;k<pts.length;k++)L+=pts[k].distanceTo(pts[k-1]);return L};
+function puntoCamino(pts,d){for(let k=1;k<pts.length;k++){const l=pts[k].distanceTo(pts[k-1]);if(d<=l||k===pts.length-1){const t=l?Math.min(1,d/l):1;return{p:pts[k-1].clone().lerp(pts[k],t),mira:pts[k]}}d-=l}return{p:pts[pts.length-1].clone(),mira:pts[pts.length-1]}}
+const VEL_ROBOT=3.2,vueltasRobots=[];
 function construirConRobots(m,regolito){
   if(!window.Modelos3D){m.born=clockT;Sonido.efecto('construir');if(regolito){m.shield=true;makeObj(m)}return}
-  const ctrl=S.mods.find(x=>x.type==='control'),ori=ctrl?ctrl.obj.position:new THREE.Vector3(),dest=m.obj.position;
-  const r=Math.max(m.w,m.h)*CELL*.5+.5,bots=[];
+  const dest=m.obj.position,puerta=puertaHangar();
+  const r=Math.max(m.w,m.h)*CELL*.5+.5,bots=[];let llegar=0;
   for(let k=0;k<3;k++){const b=Modelos3D.robot();const a=k/3*Math.PI*2+.6,fin=new THREE.Vector3(dest.x+Math.cos(a)*r,0,dest.z+Math.sin(a)*r);
-    const ini=new THREE.Vector3(ori.x+(k-1)*.8,0,ori.z+2.4);b.g.position.copy(ini);scene.add(b.g);
+    const ini=puerta.clone().add(new THREE.Vector3((k-1)*.7,0,.3));b.g.position.copy(ini);scene.add(b.g);
+    const camino=caminoRobot(ini,fin,m);camino[camino.length-1]=fin.clone();const largo=largoCamino(camino);llegar=Math.max(llegar,largo/VEL_ROBOT+k*.35);
     const chis=new THREE.Points(new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute(new Float32Array(30*3),3)),chispaMat);chis.frustumCulled=false;scene.add(chis);
-    bots.push({b,ini,fin,chis,fase:k*1.7})}
-  if(!regolito)m.obj.scale.y=.02;m.obra={t0:clockT,bots,sig:0,regolito:!!regolito};obras.push(m);
+    bots.push({b,ini,fin,chis,fase:k*1.7,camino,largo,sale:k*.35})}
+  if(!regolito)m.obj.scale.y=.02;m.obra={t0:clockT,bots,sig:0,regolito:!!regolito,llegar:Math.min(llegar,40),dur:Math.min(llegar,40)+OBRA_DUR-1.3};obras.push(m);
+  if(hangarObj)hangarObj.userData.abrir=clockT;
   Sonido.efecto('robot');toast(regolito?'Robots: cubriendo de regolito '+nom(m.type):t('construyendo')+': '+nom(m.type));
 }
-function updateObras(dt){
+function updateVueltasRobots(dt){
+  if(hangarObj){const pu=hangarObj.userData.puerta,ab=hangarObj.userData.abrir!=null&&clockT-hangarObj.userData.abrir<3||vueltasRobots.some(v=>v.largo-v.t*VEL_ROBOT<3);pu.position.y+=((ab?1.95:.72)-pu.position.y)*Math.min(1,dt*4)}
+  for(let q=vueltasRobots.length-1;q>=0;q--){const v=vueltasRobots[q],B=v.b;v.t+=dt;const d=v.t*VEL_ROBOT,pc=puntoCamino(v.camino,d);B.g.position.copy(pc.p);B.g.lookAt(pc.mira.x,0,pc.mira.z);
+    const f=clockT*9+v.fase;B.pI.h.rotation.x=Math.sin(f)*.6;B.pD.h.rotation.x=-Math.sin(f)*.6;B.bI.h.rotation.x=-Math.sin(f)*.5;B.bD.h.rotation.x=Math.sin(f)*.5;B.bD.c.rotation.x=0;B.torso.rotation.x=0;B.g.position.y=Math.abs(Math.sin(f))*.04;
+    if(d>=v.largo){if(hangarObj){B.g.position.lerp(hangarObj.position,Math.min(1,(d-v.largo)/3))}if(d>=v.largo+2.4){scene.remove(B.g);vueltasRobots.splice(q,1)}}}}
+function updateObras(dt){asegurarHangar();updateVueltasRobots(dt);
   for(let q=obras.length-1;q>=0;q--){const m=obras[q],o=m.obra,tt=clockT-o.t0;
     if(!S.mods.includes(m)){o.bots.forEach(x=>{scene.remove(x.b.g);scene.remove(x.chis)});obras.splice(q,1);continue}
-    const llegar=1.3,irse=OBRA_DUR-.6;
+    const llegar=o.llegar||1.3,irse=(o.dur||OBRA_DUR)-.6;
     for(const x of o.bots){const B=x.b;
-      let caminar=0;
-      if(tt<llegar){const k=suave(tt/llegar);B.g.position.lerpVectors(x.ini,x.fin,k);caminar=1}
-      else if(tt>irse){const k=suave((tt-irse)/.6);B.g.position.lerpVectors(x.fin,x.ini,k*.35);B.g.scale.setScalar(1-k);caminar=1}
-      const mira=tt<llegar?x.fin:tt>irse?x.ini:m.obj.position;B.g.lookAt(mira.x,0,mira.z);
+      let caminar=0,mira=m.obj.position;
+      if(tt<llegar){if(x.camino){const pc=puntoCamino(x.camino,Math.max(0,tt-x.sale)*VEL_ROBOT);B.g.position.copy(pc.p);mira=pc.mira;caminar=tt>x.sale&&B.g.position.distanceTo(x.fin)>.05?1:0;if(!caminar)mira=m.obj.position}
+        else{const k=suave(tt/llegar);B.g.position.lerpVectors(x.ini,x.fin,k);caminar=1;mira=x.fin}}
+      if(mira)B.g.lookAt(mira.x,0,mira.z);
       const f=clockT*9+x.fase;
       B.pI.h.rotation.x=caminar*Math.sin(f)*.6;B.pD.h.rotation.x=-caminar*Math.sin(f)*.6;B.pI.r.rotation.x=caminar*Math.max(0,-Math.sin(f))*.7;B.pD.r.rotation.x=caminar*Math.max(0,Math.sin(f))*.7;
       const trabajo=tt>=llegar&&tt<=irse;
@@ -5111,7 +5215,9 @@ function updateObras(dt){
     // la estructura crece mientras trabajan
     const g=suave((tt-llegar+.2)/(irse-llegar));if(!o.regolito)m.obj.scale.y=.02+.98*g;
     if(tt>=llegar&&tt<=irse&&tt>=o.sig){o.sig=tt+.32;Sonido.efecto(['golpe','soldar','servo','golpe'][Math.floor(tt*3)%4])}
-    if(tt>=OBRA_DUR){o.bots.forEach(x=>{scene.remove(x.b.g);scene.remove(x.chis);x.chis.geometry.dispose()});m.obj.scale.y=1;m.born=-99;delete m.obra;obras.splice(q,1);Sonido.efecto('construir');
+    if(tt>=(o.dur||OBRA_DUR)){o.bots.forEach(x=>{scene.remove(x.chis);x.chis.geometry.dispose();
+        // vuelve caminando al hangar por el mismo camino, al revés
+        if(x.camino){const vuelta=caminoRobot(x.b.g.position.clone(),x.ini,null);vuelta[vuelta.length-1]=x.ini.clone();vueltasRobots.push({b:x.b,camino:vuelta,largo:largoCamino(vuelta),t:0,fase:x.fase})}else scene.remove(x.b.g)});m.obj.scale.y=1;m.born=-99;delete m.obra;obras.splice(q,1);Sonido.efecto('construir');
       if(o.regolito){m.shield=true;makeObj(m);m.born=-99;checkMissions();if(sel===m)renderInfo()}}
   }
 }
@@ -5322,12 +5428,16 @@ function renderInfo(){
    ${d.kind==='dome'?powerRows(m.shape,d.w?Math.round(d.w*FACTOR_FORMA(m.shape)):0):d.prod?`<div class="row"><span>${m.type==='solar'?'Pico al mediodía':'Produce'}</span><span>+${fmt(d.prod)} W</span></div>`:d.w?`<div class="row"><span>Consume</span><span>${fmt(d.w)} W</span></div>`:''}
    ${m.shield?'<p>Cubierta con regolito: la radiación adentro baja a la mitad.</p>':''}
    <div class="fact">${d.fact}</div>
-   <div class="btns">${m.dañado?`<button class="btn" id="rep" ${S.res.mat<COSTO_REPARAR()?'disabled':''}>Reparar${COSTO_REPARAR()?' · 5':''}</button>`:''}${canT?`<button class="btn" id="tgl">${m.type==='krusty'?(m.on?'Cerrar y apagar':'Abrir y encender'):m.on?'Apagar':'Encender'}</button>`:''}${(d.kind==='dome'||m.type==='taladro')&&!m.shield?`<button class="btn" id="shd" ${S.res.mat<COSTO_REGOLITO()?'disabled':''}>Cubrir con regolito${COSTO_REGOLITO()?' · 10':''}</button>`:''}${d.kind==='ext'||m.cableCortado?`<button class="btn${m.cableCortado?' on':''}" id="mjCab">${m.cableCortado?'Cambiar cable cortado':'Revisar cableado'}</button>`:''}${m.type==='solar'?`<button class="btn${m.sucio>.05?' on':''}" id="mjLim">Limpiar paneles${m.sucio>.05?' ('+Math.round(m.sucio*100)+' % sucio)':''}</button>`:''}${m.type==='krusty'?`<button class="btn${m.sucio>.05?' on':''}" id="mjKru">Enfriar el reactor${m.sucio>.05?' ('+Math.round(m.sucio*100)+' % recalentado)':''}</button>`:''}${m.type==='moxie'?`<button class="btn${m.desajustado?' on':''}" id="mjMox">${m.desajustado?'Mantenimiento urgente':'Mantenimiento'}</button>`:''}${m.type==='taladro'?`<button class="btn${m.trabado?' on':''}" id="mjTal">${m.trabado?'Destrabar: perforar':'Perforar hasta el hielo'}</button>`:''}${m.type==='comms'?`<button class="btn${m.desinc?' on':''}" id="mjSen">${m.desinc?'Sincronizar antena':'Sincronizar señal'}</button>`:''}${m.type==='granja'?`<button class="btn" id="mjGra">Ver dentro</button>`:''}<button class="btn" id="mov">${t('mover')}</button>${m.type!=='control'?`<button class="btn" id="dem">${demolishArm?'¿Seguro? Confirmar':t('desarmar')}</button>`:''}</div></div>`;
+   <div class="btns">${m.dañado?`<button class="btn" id="rep" ${S.res.mat<COSTO_REPARAR()?'disabled':''}>Reparar${COSTO_REPARAR()?' · 5':''}</button>`:''}${canT?`<button class="btn" id="tgl">${m.type==='krusty'?(m.on?'Cerrar y apagar':'Abrir y encender'):m.on?'Apagar':'Encender'}</button>`:''}${(d.kind==='dome'||m.type==='taladro')&&!m.shield?`<button class="btn" id="shd" ${S.res.mat<COSTO_REGOLITO()?'disabled':''}>Cubrir con regolito${COSTO_REGOLITO()?' · 10':''}</button>`:''}${d.kind==='ext'||m.cableCortado?`<button class="btn${m.cableCortado?' on':''}" id="mjCab">${m.cableCortado?'Cambiar cable cortado':'Revisar cableado'}</button>`:''}${m.type==='solar'?`<button class="btn${m.sucio>.05?' on':''}" id="mjLim">Limpiar paneles${m.sucio>.05?' ('+Math.round(m.sucio*100)+' % sucio)':''}</button>`:''}${m.type==='krusty'?`<button class="btn${m.sucio>.05?' on':''}" id="mjKru">Enfriar el reactor${m.sucio>.05?' ('+Math.round(m.sucio*100)+' % recalentado)':''}</button><button class="btn${S.hecho&&S.hecho.blindaje?'':' on'}" id="mjBlin">Revisar el blindaje (dosímetro)</button>`:''}${m.type==='moxie'?`<button class="btn${m.desajustado?' on':''}" id="mjMox">${m.desajustado?'Mantenimiento urgente':'Mantenimiento'}</button>`:''}${m.type==='taladro'?`<button class="btn${m.trabado?' on':''}" id="mjTal">${m.trabado?'Destrabar: perforar':'Perforar hasta el hielo'}</button>`:''}${m.type==='comms'?`<button class="btn${m.desinc?' on':''}" id="mjSen">${m.desinc?'Sincronizar antena':'Sincronizar señal'}</button>`:''}${m.type==='granja'?`<button class="btn" id="mjGra">Ver dentro</button>`:''}<button class="btn" id="mov">${t('mover')}</button>${m.type!=='control'?`<button class="btn" id="dem">${demolishArm?'¿Seguro? Confirmar':t('desarmar')}</button>`:''}</div></div>`;
   p.hidden=false;$('#cx').onclick=()=>{sel=null;renderInfo()};setTimeout(marcarFoco,0);
   {const habil={mjCab:m.cableCortado,mjLim:m.sucio>.05,mjKru:m.sucio>.05,mjMox:m.desajustado,mjSen:m.desinc,mjTal:m.trabado||m.perforado===false,mjAnt:m.desalineada};
    for(const id in habil){const b=$('#'+id);if(b&&!habil[id]){b.disabled=true;b.title='Sólo cuando una misión lo pide: ahora no hace falta.'}}}
   {const x=$('#info .btns'),bt=(id,txt)=>{const b=document.createElement('button');b.className='btn';b.id=id;b.textContent=txt;x.insertBefore(b,$('#mov'));return b};
    if(m.type==='esclusa')bt('btRover',modoRover?'Volver al contenedor':'Manejar el rover').onclick=()=>manejarRover(!modoRover);
+   if(m.type==='ocio')bt('btRadio',Radio.on?L3(['Apagar la radio','Turn off the radio','Spegni la radio']):L3(['Encender la radio (Wagner)','Turn on the radio (Wagner)','Accendi la radio (Wagner)'])).onclick=()=>{if(Radio.on){Radio.pausar()}else{Radio.iniciar();toast(L3(['Radio: «La entrada de los dioses en el Valhalla», de Richard Wagner.','Radio: «Entry of the Gods into Valhalla», by Richard Wagner.','Radio: «Ingresso degli dei nel Walhalla», di Richard Wagner.']),'good')}renderInfo()};
+   if(['investigacion','cocina','moxie'].includes(m.type))bt('btEquipo',L3(['Llamar a la tripulación','Call the crew','Chiama l\'equipaggio'])).onclick=()=>llamarTripulacion(m,m.type==='moxie'?1:2);
+   if(m.type==='esclusa'&&S.sellosPend)bt('btSellos',L3(['Sellar fugas','Seal leaks','Sigilla perdite'])).onclick=()=>irYJugar(m,'sellos',()=>{S.sellosPend=false});
+   if(m.type==='control'&&S.tableroCaido)bt('btTablero',L3(['Restablecer tablero','Reset board','Ripristina quadro'])).onclick=()=>irYJugar(m,'tablero',()=>{S.tableroCaido=false});
    if(m.type==='ocio')bt('btCinta','Correr en la cinta').onclick=()=>hacerActividad('cinta');
    if(m.type==='medico')bt('btMed','Control médico').onclick=()=>hacerActividad('medico');
    if(m.type==='cocina')bt('btCom','Comer caliente').onclick=()=>hacerActividad('comer');
@@ -5339,6 +5449,7 @@ function renderInfo(){
   const hacer=k=>{S.hecho=S.hecho||{};S.hecho[k]=true};
   if($('#mjCab'))$('#mjCab').onclick=()=>abrirMinijuego('cableado',m,()=>{m.cableCortado=false;hacer('cableado');rebuildConnectors()});
   if($('#mjLim'))$('#mjLim').onclick=()=>abrirMinijuego('limpiar',m,()=>{m.sucio=0;hacer('limpiar')});
+  if($('#mjBlin'))$('#mjBlin').onclick=()=>abrirMinijuego('blindaje',m,()=>hacer('blindaje'));
   if($('#mjKru'))$('#mjKru').onclick=()=>abrirMinijuego('reactor',m,()=>{m.sucio=0;hacer('reactor')});
   if($('#mjMox'))$('#mjMox').onclick=()=>abrirMinijuego('moxie',m,()=>{m.ajustado=S.sol;m.desajustado=false;hacer('moxie')});
   if($('#mjTal'))$('#mjTal').onclick=()=>abrirMinijuego('taladro',m,()=>{m.trabado=false;m.perforado=true;hacer('taladro')});
@@ -5445,6 +5556,111 @@ function updateMinimapa(dt){
   // norte
   const nx=R+Math.sin(ang)*(R-16),ny=R-Math.cos(ang)*(R-16);c.font='700 18px Helvetica,Arial';c.fillStyle='#ff5a3c';c.textAlign='center';c.textBaseline='middle';c.fillText('N',nx,ny);
 }
+// ---------- Radio de la sala de ocio: «La entrada de los dioses en el Valhalla» (Wagner, El oro del Rin, 1869) ----------
+// Arreglo sintetizado (metales, cuerdas, tuba y timbales) a partir del motivo del Valhalla; la obra es de dominio público.
+const Radio=(function(){
+  let on=false,pausada=false,t0=0,prox=0,idx=0,timer=null,gan=null,nodos=[],tPausa=0;
+  const N=n=>440*Math.pow(2,(n-69)/12);
+  // [compás.tiempo inicial (negras), duración (negras), nota MIDI] — Re♭ mayor, 52 negras por minuto
+  const MEL=[[0,2,61],[2,1.5,56],[3.5,.5,61],[4,2,65],[6,1,63],[7,1,61],[8,3,68],[11,1,66],[12,4,65],
+    [16,2,63],[18,1.5,61],[19.5,.5,63],[20,2,65],[22,2,70],[24,3,68],[27,1,66],[28,4,65],
+    [32,2,73],[34,1.5,68],[35.5,.5,73],[36,2,77],[38,1,75],[39,1,73],[40,3,80],[43,1,78],[44,4,77],
+    [48,2,75],[50,1,73],[51,1,72],[52,2,70],[54,2,68],[56,2,66],[58,2,65],[60,4,61],[64,4,61]];
+  const BAJO=[[0,4,37],[4,4,41],[8,4,44],[12,4,41],[16,4,39],[20,4,41],[24,4,44],[28,4,41],[32,4,37],[36,4,41],[40,4,44],[44,4,41],[48,4,39],[52,4,42],[56,4,44],[60,8,37]];
+  const ACORD=[[0,8,[61,65,68]],[8,8,[61,65,68]],[16,8,[63,66,70]],[24,8,[61,65,68]],[32,8,[61,65,68]],[40,8,[61,65,68]],[48,8,[63,66,70]],[56,4,[61,66,70]],[60,8,[61,65,68]]];
+  const LARGO=68,NEGRA=60/52;
+  function ctx(){Sonido.iniciar();return Sonido._ctx()}
+  function metal(c,t,d,f,v){const o1=c.createOscillator(),o2=c.createOscillator(),fl=c.createBiquadFilter(),g=c.createGain();o1.type='sawtooth';o2.type='sawtooth';o1.frequency.value=f;o2.frequency.value=f*1.004;
+    fl.type='lowpass';fl.frequency.setValueAtTime(600,t);fl.frequency.linearRampToValueAtTime(2400,t+.12);fl.frequency.linearRampToValueAtTime(1500,t+d);fl.Q.value=1.2;
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.09);g.gain.setValueAtTime(v,t+Math.max(.1,d-.15));g.gain.exponentialRampToValueAtTime(.0001,t+d+.25);
+    o1.connect(fl);o2.connect(fl);fl.connect(g);g.connect(gan);o1.start(t);o2.start(t);o1.stop(t+d+.3);o2.stop(t+d+.3);nodos.push(o1,o2)}
+  function cuerdas(c,t,d,f,v){const o=c.createOscillator(),fl=c.createBiquadFilter(),g=c.createGain(),lfo=c.createOscillator(),lg=c.createGain();o.type='sawtooth';o.frequency.value=f;lfo.frequency.value=5.2;lg.gain.value=f*.006;lfo.connect(lg);lg.connect(o.frequency);
+    fl.type='lowpass';fl.frequency.value=1100;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.5);g.gain.setValueAtTime(v,t+d-.3);g.gain.exponentialRampToValueAtTime(.0001,t+d+.4);
+    o.connect(fl);fl.connect(g);g.connect(gan);o.start(t);lfo.start(t);o.stop(t+d+.5);lfo.stop(t+d+.5);nodos.push(o,lfo)}
+  function timbal(c,t,v){const o=c.createOscillator(),g=c.createGain();o.frequency.setValueAtTime(92,t);o.frequency.exponentialRampToValueAtTime(58,t+.5);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+1.1);o.connect(g);g.connect(gan);o.start(t);o.stop(t+1.2);nodos.push(o)}
+  function programar(){const c=ctx();if(!c||!on||pausada)return;const ahora=c.currentTime;
+    while(prox<ahora+1.5){const vuelta=Math.floor(idx/1),base=t0+vuelta*LARGO*NEGRA;
+      for(const[b,d,n]of MEL)metal(c,base+b*NEGRA,d*NEGRA,N(n),.07);
+      for(const[b,d,n]of BAJO){metal(c,base+b*NEGRA,d*NEGRA*.95,N(n),.05);timbal(c,base+b*NEGRA,.25)}
+      for(const[b,d,ac]of ACORD)ac.forEach(n=>cuerdas(c,base+b*NEGRA,d*NEGRA,N(n-12),.018));
+      idx++;prox=base+LARGO*NEGRA}}
+  function iniciar(){const c=ctx();if(!c)return;if(c.state==='suspended')c.resume();parar(true);gan=c.createGain();gan.gain.value=.9*Ajustes.get('musica')/.5;gan.connect(Sonido._salida());
+    on=true;pausada=false;idx=0;t0=c.currentTime+.15;prox=t0;programar();timer=setInterval(programar,400);pintar()}
+  function parar(silencio){if(timer)clearInterval(timer);timer=null;nodos.forEach(o=>{try{o.stop()}catch(_){}});nodos=[];if(gan){try{gan.disconnect()}catch(_){}gan=null}if(!silencio){on=false;pintar()}}
+  function pausar(){if(!on)return;if(pausada){iniciar();return}pausada=true;tPausa=performance.now();parar(true);pintar()}
+  function pintar(){const b=$('#radioBtns');if(!b)return;b.hidden=!on;const p=$('#radioPausa');if(p)p.textContent=pausada?'▶':'❚❚';b.classList.toggle('pausada',pausada)}
+  // si queda pausada más de 15 segundos, los botones se ocultan
+  setInterval(()=>{if(on&&pausada&&performance.now()-tPausa>15000){on=false;pausada=false;pintar()}},1000);
+  return{iniciar,pausar,reiniciar:()=>iniciar(),get on(){return on},get pausada(){return pausada}};
+})();
+// ---------- Voces de la tripulación: «ua», «uaua», «uaaa» cuando el cadete pasa cerca ----------
+function vozTripulante(P){const c=Sonido._ctx&&Sonido._ctx();if(!c)return;const out=Sonido._salida();
+  const pat=[['u','a'],['u','a','u','a'],['u','a','a']][Math.floor(Math.random()*3)],agudo=/Ingeniera|Lucía|Sofía|Valentina|Camila|Julieta/.test(P.nombre)||P.id==='ingeniero';
+  let t=c.currentTime+.02;const f0=(agudo?220:130)*(.94+Math.random()*.12);const F={u:[320,800],a:[750,1150]};
+  for(let k=0;k<pat.length;k++){const v=pat[k],sig=pat[k+1],d=v==='a'&&k===pat.length-1&&pat.length===3?.5:.16;
+    const o=c.createOscillator();o.type='sawtooth';o.frequency.setValueAtTime(f0*(1+(k%2)*.06),t);o.frequency.linearRampToValueAtTime(f0*(.92+Math.random()*.1),t+d);
+    const g=c.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.16,t+.03);g.gain.setValueAtTime(.16,t+d-.04);g.gain.exponentialRampToValueAtTime(.0001,t+d+.05);
+    for(const i of[0,1]){const b=c.createBiquadFilter();b.type='bandpass';b.Q.value=7;b.frequency.setValueAtTime(F[v][i],t);if(sig)b.frequency.linearRampToValueAtTime(F[sig][i],t+d);o.connect(b);b.connect(g)}
+    g.connect(out);o.start(t);o.stop(t+d+.08);t+=d*.92}}
+// ---------- Ambiente de cada habitación (sólo mientras se maneja al cadete) ----------
+const Ambiente=(function(){
+  let actual=null,gan=null,fuentes=[],ev=null;
+  function ruido(c){const b=c.createBuffer(1,c.sampleRate*2,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const s=c.createBufferSource();s.buffer=b;s.loop=true;return s}
+  function zumb(c,f,v,tipo='sine'){const o=c.createOscillator(),g=c.createGain();o.type=tipo;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(gan);o.start();fuentes.push(o)}
+  function aire(c,f,q,v){const n=ruido(c),b=c.createBiquadFilter(),g=c.createGain();b.type='bandpass';b.frequency.value=f;b.Q.value=q;g.gain.value=v;n.connect(b);b.connect(g);g.connect(gan);n.start();fuentes.push(n)}
+  function blip(c,f,d,v,tipo='sine'){const o=c.createOscillator(),g=c.createGain(),t=c.currentTime;o.type=tipo;o.frequency.value=f;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(gan);o.start(t);o.stop(t+d+.02)}
+  function chas(c,f,d,v){const n=ruido(c),b=c.createBiquadFilter(),g=c.createGain(),t=c.currentTime;b.type='highpass';b.frequency.value=f;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);n.connect(b);b.connect(g);g.connect(gan);n.start(t,Math.random());n.stop(t+d+.02)}
+  function burbuja(c){const o=c.createOscillator(),g=c.createGain(),t=c.currentTime,f=300+Math.random()*500;o.frequency.setValueAtTime(f,t);o.frequency.exponentialRampToValueAtTime(f*2.2,t+.08);g.gain.setValueAtTime(.05,t);g.gain.exponentialRampToValueAtTime(.0001,t+.1);o.connect(g);g.connect(gan);o.start(t);o.stop(t+.12)}
+  // cada tipo: sonido de fondo + eventos cada tanto
+  const TIPOS={
+    control:{fondo:c=>{zumb(c,60,.03);aire(c,900,.8,.01)},cada:[.6,1.6],ev:c=>blip(c,[1320,1760,990,2093][Math.floor(Math.random()*4)],.08,.03,'square')},
+    investigacion:{fondo:c=>{zumb(c,50,.02);aire(c,1200,.7,.008)},cada:[.08,.35],ev:c=>chas(c,3500,.025,.05)},
+    dormitorio:{fondo:c=>{aire(c,350,.5,.025)},cada:[3,6],ev:c=>blip(c,420,.6,.008)},
+    esclusa:{fondo:c=>{zumb(c,45,.03);aire(c,2600,.6,.01)},cada:[2.5,5],ev:c=>chas(c,1500,.9,.05)},
+    agua:{fondo:c=>{aire(c,600,.9,.02);zumb(c,70,.02)},cada:[.07,.25],ev:c=>burbuja(c)},
+    moxie:{fondo:c=>{zumb(c,120,.03,'sawtooth');zumb(c,240,.01);aire(c,4000,.5,.008)},cada:[1.5,3],ev:c=>chas(c,5000,.4,.03)},
+    cocina:{fondo:c=>{aire(c,5200,.4,.02)},cada:[.05,.2],ev:c=>chas(c,6000,.03,.03)},
+    granja:{fondo:c=>{aire(c,800,1.2,.02);aire(c,250,.6,.012)},cada:[.15,.5],ev:c=>burbuja(c)},
+    ocio:{fondo:c=>{zumb(c,55,.015)},cada:[.42,.48],ev:c=>blip(c,70,.12,.08)},
+    medico:{fondo:c=>{zumb(c,50,.015)},cada:[1,1],ev:c=>blip(c,1000,.12,.05)},
+    comms:{fondo:c=>{aire(c,2000,.3,.012)},cada:[.1,.5],ev:c=>blip(c,700,Math.random()<.5?.06:.18,.03)},
+    bano:{fondo:c=>{aire(c,450,.4,.01)},cada:[1.2,3],ev:c=>burbuja(c)},
+    refugio:{fondo:c=>{zumb(c,40,.03)},cada:[4,7],ev:c=>blip(c,220,.8,.02)},
+    tunel:{fondo:c=>{aire(c,300,.4,.015);zumb(c,48,.015)},cada:[5,9],ev:c=>chas(c,800,.5,.02)},
+  };
+  function poner(tipo){if(tipo===actual)return;const c=Sonido._ctx&&Sonido._ctx();if(!c)return;const viejo=gan,vf=fuentes;
+    if(viejo){viejo.gain.setTargetAtTime(0,c.currentTime,.25);setTimeout(()=>{vf.forEach(o=>{try{o.stop()}catch(_){}});try{viejo.disconnect()}catch(_){}},1200)}
+    fuentes=[];gan=null;clearTimeout(ev);actual=tipo;const T=TIPOS[tipo];if(!T)return;
+    gan=c.createGain();gan.gain.value=0;gan.connect(Sonido._salida());gan.gain.setTargetAtTime(.9,c.currentTime,.4);T.fondo(c);
+    const ciclo=()=>{if(actual!==tipo)return;try{T.ev(c)}catch(_){}ev=setTimeout(ciclo,1000*(T.cada[0]+Math.random()*(T.cada[1]-T.cada[0])))};ev=setTimeout(ciclo,400)}
+  return{poner};
+})();
+let ambT=0;
+function updateAudioBase(dt){
+  ambT-=dt;if(ambT>0||!S)return;ambT=.4;
+  const C=cadete(),maneja=C&&modoCadete!=='auto'&&!modoRover&&!enIntro&&!MJ;
+  let tipo=null;if(maneja&&!C.fuera){const z=zonaDe(C.g.position);tipo=z.tipo==='dom'?z.m.type:z.tipo==='tunel'?'tunel':null}
+  Ambiente.poner(tipo);
+  // voces: al pasar cerca de un compañero
+  if(maneja){for(const P of PJ){if(P===C||P.estado==='dormir')continue;const d=Math.hypot(P.g.position.x-C.g.position.x,P.g.position.z-C.g.position.z);
+    if(d<1.6&&(!P.vozT||clockT-P.vozT>7)){P.vozT=clockT;vozTripulante(P);break}}}
+  revisarEquipos();
+}
+// ---------- Misiones en equipo (2 o 3 astronautas juntos en una habitación) ----------
+// misiones de adentro: el cadete tiene que estar en esa habitación (si va solo, camina hasta ahí y empieza al llegar)
+function irYJugar(m,tipo,fin){const C=cadete();if(!C)return;const fin2=()=>{fin();checkMissions();renderInfo()};
+  if(zonaDe(C.g.position).m===m){abrirMinijuego(tipo,m,fin2);return}
+  if(modoCadete==='auto'){const ls=lugaresDom(m),L=ls[0],r=rutaHacia(C,{m,lugar:L,k:0});if(r&&r.length){C.ruta=r;C.dest={m,lugar:L,k:0,alLlegar:()=>abrirMinijuego(tipo,m,fin2)};C.estado='caminar';C.lugar={m,L:0};
+    toast(L3(['Tu cadete va a ','Your cadet is heading to ','Il tuo cadetto va a '])+nom(m.type)+'.','good');return}}
+  avisoCentro(L3(['Llevá a tu cadete hasta ','Take your cadet to ','Porta il tuo cadetto a '])+nom(m.type)+L3([' (primera o tercera persona).',' (first or third person).',' (prima o terza persona).']))}
+function llamarTripulacion(m,n){const libres=PJ.filter(P=>P.id!=='cadete'&&P.estado!=='dormir'&&!P.fuera&&!P.actividad).sort((a,b)=>a.g.position.distanceTo(m.obj.position)-b.g.position.distanceTo(m.obj.position)).slice(0,n);
+  const ls=lugaresDom(m);let k=0;for(const P of libres){const L=ls[(k+1)%ls.length];const r=rutaHacia(P,{m,lugar:L,k:(k+1)%ls.length});if(r&&r.length){P.ruta=r;P.dest={m,lugar:L,k:(k+1)%ls.length,trabajo:'equipo',alLlegar:Q=>{Q.t=50}};P.estado='caminar';P.lugar={m,L:(k+1)%ls.length}}k++}
+  toast(L3(['Vienen ','Coming: ','Arrivano: '])+libres.map(P=>P.nombre).join(L3([' y ',' and ',' e ']))+L3([' a trabajar en equipo.',' to work as a team.',' a lavorare in squadra.']),'good');Sonido.efecto('ok');return libres.length}
+function enModulo(m){return PJ.filter(P=>{const z=zonaDe(P.g.position);return z.tipo==='dom'&&z.m===m}).length}
+function revisarEquipos(){S.equipos=S.equipos||{};
+  const reglas=[['investigacion',3,'lab'],['cocina',3,'cena'],['moxie',2,'moxie']];
+  for(const[ty,n,k]of reglas){if(S.equipos[k])continue;const m=S.mods.find(x=>x.type===ty);if(m&&enModulo(m)>=n&&cadete()&&zonaDe(cadete().g.position).m===m){S.equipos[k]=true;
+    toast(L3(['¡Trabajo en equipo cumplido!','Teamwork done!','Lavoro di squadra completato!']),'good');Sonido.efecto('mision');checkMissions()}}}
 const tormentaInminente=()=>!!S&&!!S.tormenta&&!S.tormenta.activa&&!!S.tormenta.avisada&&S.tormenta.en>0&&S.climaOn!==false;
 let alarmaT=0,alarmaOn=false;
 function alertaTormenta(dt){
@@ -5974,7 +6190,7 @@ function loop(now){
   if(enIntro)updateIntro(dt);
   else if(speed&&!S.over){let hrs=dt*speed/HOUR_SEC;while(hrs>0){const h=Math.min(.25,hrs);step(h);hrs-=h}}
   if(!camaraGranja()&&!(modoRover&&!hayModalAbierto()&&(updateRover(dt),true))&&!(modoCadete!=='auto'&&!enIntro&&!hayModalAbierto()&&cadeteManual(dt)))updateCamera(dt);
-  updateTormenta(dt);updateMinijuego(dt);updateHoldTecla(dt);updateMinimapa(dt);
+  updateTormenta(dt);updateMinijuego(dt);updateHoldTecla(dt);updateMinimapa(dt);updateAudioBase(dt);
   if(usandoMando&&!enIntro){mouse.set(0,0);ray.setFromCamera(mouse,camera);hoverCell=groundCell()} // con el control se apunta con la mira del centro
   updateGhost();updateEnv();updateRemolinos(dt,clockT);updateInteriores(clockT);updateObras(dt);updatePuertas(dt);updateTripulacion(dt);if(enIntro)PJ.forEach(P=>P.g.visible=false);if(!enIntro&&speed&&!S.over)robotsRegolito(dt);
   // contorno del sector alrededor de la construcción seleccionada
@@ -5991,7 +6207,12 @@ function loop(now){
       if(Math.abs(m.abierto-(m._ab??-1))>.003){m._ab=m.abierto;const e=m.abierto*m.abierto*(3-2*m.abierto);md.krusty((80-55*e)*Math.PI/180)}}
   }
   selRing.visible=false;
-  if(rocketT>=0){rocketT+=dt;const tt=rocketT;let y;if(tt<4)y=70*(1-tt/4)**2;else if(tt<9)y=0;else if(tt<13)y=70*((tt-9)/4)**2;else{rocketT=-1;rocket.visible=false}
+  if(rocketT>=0){rocketT+=dt;const tt=rocketT,H=rocketBajan?15:9;let y;if(tt<4)y=70*(1-tt/4)**2;else if(tt<H)y=0;else if(tt<H+4)y=70*((tt-H)/4)**2;else{rocketT=-1;rocket.visible=false}
+    // polvo que levanta el motor al aterrizar y al despegar
+    if(!polvoCohete){polvoCohete=new THREE.Mesh(new THREE.RingGeometry(.6,2.6,40).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0xc58a5e,transparent:true,opacity:0,depthWrite:false,side:THREE.DoubleSide}));polvoCohete.position.y=.25;decorRoot.add(polvoCohete)}
+    {const fase=tt>2.6&&tt<6.5?(tt-2.6)/3.9:tt>H-.5&&tt<H+3?(tt-H+.5)/3.5:-1;polvoCohete.visible=fase>=0&&rocketT>=0;if(fase>=0){polvoCohete.position.x=rocket.position.x;polvoCohete.position.z=rocket.position.z;polvoCohete.scale.setScalar(1+fase*3.2);polvoCohete.material.opacity=.55*(1-fase)}}
+    // se abre la escotilla y bajan los astronautas nuevos
+    if(rocketBajan>0&&tt>=5){for(let k=0;k<rocketBajan;k++)sumarTripulante(false,true);toast(L3(['Bajan los astronautas nuevos y caminan hasta la esclusa.','The new astronauts step out and walk to the airlock.','I nuovi astronauti scendono e camminano verso la camera stagna.']),'good');rocketBajan=-1}
     if(rocketT>=0){rocket.visible=true;rocket.position.y=y;const burn=tt<4||tt>9;rocket.userData.flame.visible=burn;rocket.userData.flame.scale.y=.8+Math.random()*.4;rocketLight.intensity=burn?6:0}}
   const pa=dustGeo.attributes.position;if(S.clima!=='templado'){for(let k=0;k<pa.count;k++){let x=pa.getX(k)+dt*(S.clima==='ventisca'?22:10);if(x>80)x-=160;pa.setX(k,x)}pa.needsUpdate=true;dust.position.set(camS.tx,0,camS.tz)}
   if(!enIntro)updatePantallas();
@@ -6302,16 +6523,18 @@ function crearTripulacion(){
   for(let k=2;k<Math.min(S.crew,12);k++)sumarTripulante(true);
 }
 const NOMBRES_NUEVOS=['Lucía','Mateo','Sofía','Tomás','Valentina','Joaquín','Camila','Bruno','Julieta','Lautaro'];
-function sumarTripulante(silencio){
+function sumarTripulante(silencio,desdeNave){
   const ctrl=S.mods.find(m=>m.type==='control');if(!ctrl||!window.Personas3D)return;const k=PJ.filter(P=>P.nuevo).length;
   const look={gender:k%2?'female':'male',hair:['black','brown','blonde'][k%3]},col=[COLOR_TRAJE.azul,COLOR_TRAJE.rosa,COLOR_TRAJE.rojo,COLOR_TRAJE.gris,COLOR_TRAJE.blanco][k%5];
   const mo=personaModelo(look,col),hb=hubLocal(ctrl);mo.g.position.copy(aMundoDom(ctrl,hb.x+(Math.random()-.5)*.8,hb.z+(Math.random()-.5)*.8));mo.g.position.y=PISO;scene.add(mo.g);
-  PJ.push({id:'tripulante'+k,nuevo:true,nombre:NOMBRES_NUEVOS[k%NOMBRES_NUEVOS.length],...mo,ruta:[],estado:'pensar',t:Math.random()*2,fuera:false,yaw:Math.PI,fase:Math.random()*6,lugar:null,anim:'quieto',ta:0});
+  const P={id:'tripulante'+k,nuevo:true,nombre:NOMBRES_NUEVOS[k%NOMBRES_NUEVOS.length],...mo,ruta:[],estado:'pensar',t:Math.random()*2,fuera:false,yaw:Math.PI,fase:Math.random()*6,lugar:null,anim:'quieto',ta:0};PJ.push(P);
+  if(desdeNave&&rocket){const a=Math.random()*Math.PI*2;P.g.position.set(rocket.position.x+Math.cos(a)*1.3,0,rocket.position.z+Math.sin(a)*1.3);P.fuera=true;ponerTraje(P,true);
+    const r=rutaHacia(P,{m:ctrl});if(r&&r.length){P.ruta=r;P.dest={m:ctrl};P.estado='caminar'}}
 }
 // Nave de tripulación: si hay al menos 2 camas libres y antena de Comunicaciones, llegan 2 astronautas en unas horas
 function revisarNaveTripulacion(h){
   if(S.over)return;const libres=beds()-S.crew;
-  if(S.naveCrewH!=null){S.naveCrewH-=h;if(S.naveCrewH<=0){S.naveCrewH=null;if(beds()-S.crew>=2){S.crew+=2;sumarTripulante();sumarTripulante();startRocket();Sonido.efecto('ok');
+  if(S.naveCrewH!=null){S.naveCrewH-=h;if(S.naveCrewH<=0){S.naveCrewH=null;if(beds()-S.crew>=2){S.crew+=2;startRocket(2);Sonido.efecto('ok');
       toast('Aterrizó la nave de tripulación: llegan 2 astronautas nuevos ('+S.crew+' en la base).','good');checkMissions()}}return}
   if(libres>=2&&S.crew<12){if(active('comms')){S.naveCrewH=4;toast('La Tierra vio camas libres: una nave con 2 astronautas aterriza en unas horas.','good')}
     else if(!S.avisoCommsCrew){S.avisoCommsCrew=true;toast('Hay camas libres, pero sin antena de Comunicaciones la Tierra no puede mandar astronautas.','bad')}}
@@ -6595,7 +6818,7 @@ function ponerClima(on){S.climaOn=on;
   else{S.climaHoras=18+rnd()*24;programarTormenta();toast('Clima activado: vuelven las ventiscas, los tornados y las tormentas solares.','')}
   pintarClimaBtn();renderStats();renderInfo()}
 Ajustes.alCambiar(()=>{construirStats();renderStats();renderCats();if(panelTipo)renderPanelDer();if(misionVisible)renderMision();renderInfo();if(!$('#pausa').hidden)renderPausa();aplicarCalidad();pintarIconosHud()});
-window.__hab={rebuildConnectors:()=>rebuildConnectors(),get scene(){return scene},get camera(){return camera},get renderer(){return renderer},feedDe:m=>feedDe(m),ver:m=>{sel=m;showEnergy=false;renderInfo()},pasoTut:k=>{tutorial={k,alTerminar:null,prev:1};$('#tutorial').hidden=false;pasoTutorial()},get ESC(){return ESC},get PUERTAS(){return PUERTAS},manejarRover,hacerActividad,get modoRover(){return modoRover},cambiarModalidad,moverCadete,get PJ(){return PJ},setModoCadete,get modoCadete(){return modoCadete},get notifs(){return notifs},abrirNotifs,cerrarNotifs,get tuneles(){return tuneles},get S(){return S},get tutorial(){return tutorial},sigTutorial,finTutorial,abrirMinijuego,get MJ(){return MJ},verDentroGranja,salirGranja,dañosTormenta,camS,saltarIntro,get guia(){return guia},abrirPausa,construirConRobots,addMod:(...a)=>{const m=addMod(...a);rebuildConnectors();return m},cellToClient:(x,y)=>{const[wx,wz]=cellToWorld(x,y);const v=new THREE.Vector3(wx,0,wz).project(camera);return[(v.x+1)/2*innerWidth,(1-v.y)/2*innerHeight]}};
+window.__hab={rebuildConnectors:()=>rebuildConnectors(),get scene(){return scene},get camera(){return camera},get renderer(){return renderer},feedDe:m=>feedDe(m),ver:m=>{sel=m;showEnergy=false;renderInfo()},pasoTut:k=>{tutorial={k,alTerminar:null,prev:1};$('#tutorial').hidden=false;pasoTutorial()},get ESC(){return ESC},get PUERTAS(){return PUERTAS},manejarRover,hacerActividad,get modoRover(){return modoRover},cambiarModalidad,moverCadete,get PJ(){return PJ},setModoCadete,get modoCadete(){return modoCadete},get notifs(){return notifs},abrirNotifs,cerrarNotifs,get tuneles(){return tuneles},get S(){return S},get tutorial(){return tutorial},sigTutorial,finTutorial,abrirMinijuego,get MJ(){return MJ},verDentroGranja,salirGranja,dañosTormenta,camS,saltarIntro,get guia(){return guia},abrirPausa,construirConRobots,startRocket:b=>startRocket(b),Radio,irYJugar:(...a)=>irYJugar(...a),llamarTripulacion:(...a)=>llamarTripulacion(...a),addMod:(...a)=>{const m=addMod(...a);rebuildConnectors();return m},cellToClient:(x,y)=>{const[wx,wz]=cellToWorld(x,y);const v=new THREE.Vector3(wx,0,wz).project(camera);return[(v.x+1)/2*innerWidth,(1-v.y)/2*innerHeight]}};
 requestAnimationFrame(loop);
 }
 </script>
